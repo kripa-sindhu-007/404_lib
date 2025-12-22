@@ -33,7 +33,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
       <!-- CTA Buttons -->
       <div class="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
-        <a href="/gallery" class="btn btn-primary px-8 py-3 text-lg">
+        <a href="/404_lib/gallery" class="btn btn-primary px-8 py-3 text-lg">
           View Gallery
         </a>
         <a href="#installation" class="btn btn-secondary px-8 py-3 text-lg">
@@ -45,7 +45,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
       <div class="mx-auto mt-12 max-w-md">
         <div class="flex items-center gap-2 rounded-lg border border-gray-200 bg-gray-100 px-4 py-3 dark:border-gray-700 dark:bg-gray-800">
           <code class="flex-1 font-mono text-sm text-gray-800 dark:text-gray-200">
-            npm install @404-ui/core
+            npm install @kripa006/404-ui
           </code>
           <button
             id="copy-install"
@@ -150,7 +150,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
           <h3 class="mb-4 flex items-center gap-2 font-space text-xl font-semibold text-gray-900 dark:text-white">
             <span class="text-2xl">⚛️</span> React
           </h3>
-          <pre class="code-block"><code>{`import { Space404 } from '@404-ui/core/react';
+          <pre class="code-block"><code>{`import { Space404 } from '@kripa006/404-ui/react';
 
 function NotFoundPage() {
   return (
@@ -170,7 +170,7 @@ function NotFoundPage() {
             <span class="text-2xl">💚</span> Vue
           </h3>
           <pre class="code-block"><code>{`<script setup>
-import { Space404 } from '@404-ui/core/vue';
+import { Space404 } from '@kripa006/404-ui/vue';
 </script>
 
 <template>
@@ -188,7 +188,7 @@ import { Space404 } from '@404-ui/core/vue';
           <h3 class="mb-4 flex items-center gap-2 font-space text-xl font-semibold text-gray-900 dark:text-white">
             <span class="text-2xl">🟨</span> Vanilla JS
           </h3>
-          <pre class="code-block"><code>{`import { createSpace404 } from '@404-ui/core/vanilla';
+          <pre class="code-block"><code>{`import { createSpace404 } from '@kripa006/404-ui/vanilla';
 
 const container = document.getElementById('app');
 createSpace404(container, {
@@ -205,7 +205,7 @@ createSpace404(container, {
 <script>
   // Copy to clipboard functionality
   document.getElementById('copy-install')?.addEventListener('click', async () => {
-    await navigator.clipboard.writeText('npm install @404-ui/core');
+    await navigator.clipboard.writeText('npm install @kripa006/404-ui');
     alert('Copied to clipboard!');
   });
 
