@@ -1,0 +1,16 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { Space404 } from "@kripa006/404-ui/react";
+---
+
+<BaseLayout title="Space 404 Demo | 404-UI">
+  <div style="height: calc(100vh - 64px);">
+    <Space404
+      client:only="react"
+      title="404"
+      subtitle="Lost in space..."
+      buttonText="Go Home"
+      onButtonClick={() => window.location.href = '/404_lib/'}
+    />
+  </div>
+</BaseLayout>

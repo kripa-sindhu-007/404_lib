@@ -125,13 +125,13 @@ const templates = [
                 >
                   {template.comingSoon ? "Coming Soon" : "Copy Code"}
                 </button>
-                <button
-                  class="btn btn-secondary"
-                  data-preview={template.id}
-                  disabled={template.comingSoon}
+                <a
+                  href={template.comingSoon ? "#" : `/404_lib/demo/${template.id}`}
+                  target={template.comingSoon ? "_self" : "_blank"}
+                  class={`btn btn-secondary text-center ${template.comingSoon ? "cursor-not-allowed opacity-50" : ""}`}
                 >
                   Preview
-                </button>
+                </a>
               </div>
             </div>
           </div>
