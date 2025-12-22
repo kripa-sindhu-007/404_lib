@@ -43,7 +43,7 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Build packages
-        run: pnpm build --filter=@kripa_006/*
+        run: pnpm build --filter=@kripa006/*
 
       - name: Build docs
         run: pnpm build --filter=docs

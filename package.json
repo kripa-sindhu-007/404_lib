@@ -25,7 +25,7 @@
     "prepare": "husky",
     "changeset": "changeset",
     "version-packages": "changeset version",
-    "release": "turbo run build --filter=@kripa_006/* && changeset publish"
+    "release": "turbo run build --filter=@kripa006/* && changeset publish"
   },
   "devDependencies": {
     "@changesets/cli": "^2.27.10",

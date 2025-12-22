@@ -6,8 +6,8 @@
 
 **Beautiful, animated 404 error pages for React, Vue, and Vanilla JS**
 
-[![npm version](https://img.shields.io/npm/v/@kripa_006/404-ui.svg?style=flat-square)](https://www.npmjs.com/package/@kripa_006/404-ui)
-[![npm downloads](https://img.shields.io/npm/dm/@kripa_006/404-ui.svg?style=flat-square)](https://www.npmjs.com/package/@kripa_006/404-ui)
+[![npm version](https://img.shields.io/npm/v/@kripa006/404-ui.svg?style=flat-square)](https://www.npmjs.com/package/@kripa006/404-ui)
+[![npm downloads](https://img.shields.io/npm/dm/@kripa006/404-ui.svg?style=flat-square)](https://www.npmjs.com/package/@kripa006/404-ui)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=flat-square)](https://opensource.org/licenses/MIT)
 [![TypeScript](https://img.shields.io/badge/TypeScript-Ready-blue.svg?style=flat-square)](https://www.typescriptlang.org/)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
@@ -32,13 +32,13 @@
 
 ```bash
 # npm
-npm install @kripa_006/404-ui
+npm install @kripa006/404-ui
 
 # pnpm
-pnpm add @kripa_006/404-ui
+pnpm add @kripa006/404-ui
 
 # yarn
-yarn add @kripa_006/404-ui
+yarn add @kripa006/404-ui
 ```
 
 ## 🚀 Quick Start
@@ -46,7 +46,7 @@ yarn add @kripa_006/404-ui
 ### React
 
 ```tsx
-import { Space404 } from "@kripa_006/404-ui/react";
+import { Space404 } from "@kripa006/404-ui/react";
 
 function NotFoundPage() {
   return (
@@ -66,7 +66,7 @@ export default NotFoundPage;
 
 ```vue
 <script setup>
-import { Space404 } from "@kripa_006/404-ui/vue";
+import { Space404 } from "@kripa006/404-ui/vue";
 
 function handleClick() {
   window.location.href = "/";
@@ -86,7 +86,7 @@ function handleClick() {
 ### Vanilla JavaScript
 
 ```js
-import { createSpace404 } from "@kripa_006/404-ui/vanilla";
+import { createSpace404 } from "@kripa006/404-ui/vanilla";
 
 const container = document.getElementById("app");
 
@@ -107,7 +107,7 @@ const space404 = createSpace404(container, {
 
 ```html
 <script type="module">
-  import "@kripa_006/404-ui/vanilla";
+  import "@kripa006/404-ui/vanilla";
 </script>
 
 <space-404
