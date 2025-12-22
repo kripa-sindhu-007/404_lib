@@ -28,7 +28,11 @@
 - ♿ **Accessible** - WCAG compliant with proper ARIA attributes
 - 🌙 **Dark Mode Ready** - All templates support dark mode out of the box
 
-## 📦 Installation
+## 🚀 How to Use in 3 Steps
+
+### Step 1: Install the package
+
+Install the package using your favorite package manager:
 
 ```bash
 # npm
@@ -41,80 +45,85 @@ pnpm add @kripa006/404-ui
 yarn add @kripa006/404-ui
 ```
 
-## 🚀 Quick Start
+### Step 2: Import the component
 
-### React
+Import the `Space404` component into your project. We support React, Vue, and Vanilla JS.
+
+#### React
 
 ```tsx
 import { Space404 } from "@kripa006/404-ui/react";
-
-function NotFoundPage() {
-  return (
-    <Space404
-      title="404"
-      subtitle="Houston, we have a problem..."
-      buttonText="Return Home"
-      onButtonClick={() => (window.location.href = "/")}
-    />
-  );
-}
-
-export default NotFoundPage;
 ```
 
-### Vue
+#### Vue
 
 ```vue
 <script setup>
 import { Space404 } from "@kripa006/404-ui/vue";
-
-function handleClick() {
-  window.location.href = "/";
-}
 </script>
-
-<template>
-  <Space404
-    title="404"
-    subtitle="Houston, we have a problem..."
-    button-text="Return Home"
-    @button-click="handleClick"
-  />
-</template>
 ```
 
-### Vanilla JavaScript
+#### Vanilla JS
 
 ```js
 import { createSpace404 } from "@kripa006/404-ui/vanilla";
-
-const container = document.getElementById("app");
-
-const space404 = createSpace404(container, {
-  title: "404",
-  subtitle: "Houston, we have a problem...",
-  buttonText: "Return Home",
-  onButtonClick: () => {
-    window.location.href = "/";
-  },
-});
-
-// Cleanup when needed
-// space404.destroy();
 ```
 
-### Web Component
+### Step 3: Use the component
 
-```html
-<script type="module">
-  import "@kripa006/404-ui/vanilla";
+Add the component to your page and customize the text and button behavior.
+
+#### React Example
+
+```tsx
+export default function NotFound() {
+  return (
+    <div style={{ height: "100vh" }}>
+      <Space404
+        title="404"
+        subtitle="Page not found"
+        buttonText="Go Home"
+        onButtonClick={() => (window.location.href = "/")}
+      />
+    </div>
+  );
+}
+```
+
+#### Vue Example
+
+```vue
+<template>
+  <div style="height: 100vh">
+    <Space404
+      title="404"
+      subtitle="Page not found"
+      buttonText="Go Home"
+      @button-click="goHome"
+    />
+  </div>
+</template>
+
+<script setup>
+function goHome() {
+  window.location.href = "/";
+}
 </script>
+```
 
-<space-404
-  title="404"
-  subtitle="Houston, we have a problem..."
-  button-text="Return Home"
-></space-404>
+#### Vanilla JS Example
+
+```js
+const container = document.getElementById("app");
+// Make sure container has height
+container.style.height = "100vh";
+
+createSpace404(container, {
+  title: "404",
+  subtitle: "Page not found",
+  buttonText: "Go Home",
+  onButtonClick: () => (window.location.href = "/"),
+});
 ```
 
 ## 🎨 Available Templates

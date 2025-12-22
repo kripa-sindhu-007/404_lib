@@ -137,7 +137,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
       <div class="text-center">
         <h2 class="font-space text-3xl font-bold text-gray-900 dark:text-white sm:text-4xl">
-          Quick Start
+          How to Use
         </h2>
         <p class="mt-4 text-lg text-gray-600 dark:text-gray-400">
           Get started in minutes with your favorite framework
@@ -150,10 +150,12 @@ import BaseLayout from "../layouts/BaseLayout.astro";
           <h3 class="mb-4 flex items-center gap-2 font-space text-xl font-semibold text-gray-900 dark:text-white">
             <span class="text-2xl">⚛️</span> React
           </h3>
-          <pre class="code-block"><code>{`import { Space404 } from '@kripa006/404-ui/react';
+          <pre class="code-block"><code>{`// 1. Import the component
+import { Space404 } from '@kripa006/404-ui/react';
 
 function NotFoundPage() {
   return (
+    // 2. Use it in your page
     <Space404
       title="404"
       subtitle="Page not found"
@@ -170,10 +172,12 @@ function NotFoundPage() {
             <span class="text-2xl">💚</span> Vue
           </h3>
           <pre class="code-block"><code>{`<script setup>
+// 1. Import the component
 import { Space404 } from '@kripa006/404-ui/vue';
 </script>
 
 <template>
+  <!-- 2. Use it in your template -->
   <Space404
     title="404"
     subtitle="Page not found"
@@ -188,9 +192,13 @@ import { Space404 } from '@kripa006/404-ui/vue';
           <h3 class="mb-4 flex items-center gap-2 font-space text-xl font-semibold text-gray-900 dark:text-white">
             <span class="text-2xl">🟨</span> Vanilla JS
           </h3>
-          <pre class="code-block"><code>{`import { createSpace404 } from '@kripa006/404-ui/vanilla';
+          <pre class="code-block"><code>{`// 1. Import the function
+import { createSpace404 } from '@kripa006/404-ui/vanilla';
 
+// 2. Target a container
 const container = document.getElementById('app');
+
+// 3. Initialize the 404 page
 createSpace404(container, {
   title: '404',
   subtitle: 'Page not found',

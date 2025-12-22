@@ -1,48 +1,75 @@
-# @404-ui/core
+# @kripa006/404-ui
 
 Beautiful, animated 404 error pages for React, Vue, and Vanilla JS.
 
-## Installation
+## 🚀 How to Use in 3 Steps
+
+### Step 1: Install the package
 
 ```bash
-npm install @404-ui/core
+npm install @kripa006/404-ui
 ```
 
-## Usage
+### Step 2: Import the component
 
-### React
+#### React
 
 ```tsx
-import { Space404 } from '@404-ui/core/react';
-
-<Space404 onButtonClick={() => navigate('/')} />
+import { Space404 } from "@kripa006/404-ui/react";
 ```
 
-### Vue
+#### Vue
 
 ```vue
 <script setup>
-import { Space404 } from '@404-ui/core/vue';
+import { Space404 } from "@kripa006/404-ui/vue";
 </script>
-
-<template>
-  <Space404 @button-click="$router.push('/')" />
-</template>
 ```
 
-### Vanilla JS
+#### Vanilla JS
 
 ```js
-import { createSpace404 } from '@404-ui/core/vanilla';
+import { createSpace404 } from "@kripa006/404-ui/vanilla";
+```
 
-createSpace404(document.getElementById('app'), {
-  onButtonClick: () => window.location.href = '/'
+### Step 3: Use the component
+
+#### React Example
+
+```tsx
+<Space404
+  title="404"
+  subtitle="Page not found"
+  buttonText="Go Home"
+  onButtonClick={() => (window.location.href = "/")}
+/>
+```
+
+#### Vue Example
+
+```vue
+<Space404
+  title="404"
+  subtitle="Page not found"
+  buttonText="Go Home"
+  @button-click="$router.push('/')"
+/>
+```
+
+#### Vanilla JS Example
+
+```js
+createSpace404(document.getElementById("app"), {
+  title: "404",
+  subtitle: "Page not found",
+  buttonText: "Go Home",
+  onButtonClick: () => (window.location.href = "/"),
 });
 ```
 
 ## Documentation
 
-For full documentation, visit [https://kripa-sindhu-007.github.io/404_lib](https://kripa-sindhu-007.github.io/404_lib)
+For full documentation and gallery, visit [https://kripa-sindhu-007.github.io/404_lib](https://kripa-sindhu-007.github.io/404_lib)
 
 ## License
 
