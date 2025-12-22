@@ -1,0 +1,230 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout>
+  <!-- Hero Section -->
+  <section class="relative overflow-hidden py-24 sm:py-32">
+    <!-- Background gradient -->
+    <div class="absolute inset-0 -z-10 bg-gradient-to-b from-space-900/5 to-transparent dark:from-space-900/20"></div>
+    
+    <div class="mx-auto max-w-7xl px-4 text-center sm:px-6 lg:px-8">
+      <!-- Badge -->
+      <div class="mb-8 inline-flex items-center gap-2 rounded-full border border-gray-200 bg-white px-4 py-2 text-sm dark:border-gray-700 dark:bg-gray-800">
+        <span class="animate-pulse text-green-500">●</span>
+        <span class="text-gray-600 dark:text-gray-300">v1.0.0 just released!</span>
+      </div>
+
+      <!-- Title -->
+      <h1 class="font-space text-4xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-6xl lg:text-7xl">
+        Beautiful
+        <span class="bg-gradient-to-r from-space-accent to-space-glow bg-clip-text text-transparent">
+          404 Pages
+        </span>
+        <br />
+        for Modern Apps
+      </h1>
+
+      <!-- Subtitle -->
+      <p class="mx-auto mt-6 max-w-2xl text-lg text-gray-600 dark:text-gray-400 sm:text-xl">
+        A collection of stunning, animated 404 error pages. Available for React, Vue, and Vanilla JS. 
+        Built with Tailwind CSS for maximum customization.
+      </p>
+
+      <!-- CTA Buttons -->
+      <div class="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
+        <a href="/gallery" class="btn btn-primary px-8 py-3 text-lg">
+          View Gallery
+        </a>
+        <a href="#installation" class="btn btn-secondary px-8 py-3 text-lg">
+          Get Started
+        </a>
+      </div>
+
+      <!-- Install command -->
+      <div class="mx-auto mt-12 max-w-md">
+        <div class="flex items-center gap-2 rounded-lg border border-gray-200 bg-gray-100 px-4 py-3 dark:border-gray-700 dark:bg-gray-800">
+          <code class="flex-1 font-mono text-sm text-gray-800 dark:text-gray-200">
+            npm install @404-ui/core
+          </code>
+          <button
+            id="copy-install"
+            class="text-gray-500 transition-colors hover:text-gray-700 dark:text-gray-400 dark:hover:text-white"
+            title="Copy to clipboard"
+          >
+            <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Section -->
+  <section class="py-24">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="grid gap-8 md:grid-cols-3">
+        <!-- Feature 1 -->
+        <div class="card card-hover p-6">
+          <div class="mb-4 text-4xl">⚡</div>
+          <h3 class="font-space text-xl font-semibold text-gray-900 dark:text-white">
+            Framework Agnostic
+          </h3>
+          <p class="mt-2 text-gray-600 dark:text-gray-400">
+            Works with React, Vue, and Vanilla JS. Use the same stunning designs in any project.
+          </p>
+        </div>
+
+        <!-- Feature 2 -->
+        <div class="card card-hover p-6">
+          <div class="mb-4 text-4xl">🎨</div>
+          <h3 class="font-space text-xl font-semibold text-gray-900 dark:text-white">
+            Tailwind Powered
+          </h3>
+          <p class="mt-2 text-gray-600 dark:text-gray-400">
+            Built with Tailwind CSS for easy customization. Modify colors, animations, and layouts effortlessly.
+          </p>
+        </div>
+
+        <!-- Feature 3 -->
+        <div class="card card-hover p-6">
+          <div class="mb-4 text-4xl">📦</div>
+          <h3 class="font-space text-xl font-semibold text-gray-900 dark:text-white">
+            Tree-Shakable
+          </h3>
+          <p class="mt-2 text-gray-600 dark:text-gray-400">
+            Import only what you need. Our library is optimized for minimal bundle size.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Preview Section -->
+  <section id="preview" class="bg-gray-100 py-24 dark:bg-gray-900">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div class="text-center">
+        <h2 class="font-space text-3xl font-bold text-gray-900 dark:text-white sm:text-4xl">
+          Live Preview
+        </h2>
+        <p class="mt-4 text-lg text-gray-600 dark:text-gray-400">
+          See the Space 404 template in action
+        </p>
+      </div>
+
+      <div class="mt-12 overflow-hidden rounded-2xl shadow-2xl">
+        <div class="preview-container" style="height: 500px;">
+          <!-- Live preview will be rendered here -->
+          <div class="space-404-container h-full">
+            <div id="stars-container" class="absolute inset-0 overflow-hidden"></div>
+            <div class="space-404-planet -left-16 -top-16"></div>
+            <div class="space-404-rocket right-8 top-1/4">🚀</div>
+            <div class="space-404-content">
+              <h1 class="space-404-title">404</h1>
+              <p class="space-404-subtitle">Lost in space...</p>
+              <button class="space-404-button">Return Home</button>
+            </div>
+            <div class="space-404-planet -bottom-20 -right-20 opacity-20" style="animation-delay: 2s;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Installation Section -->
+  <section id="installation" class="py-24">
+    <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+      <div class="text-center">
+        <h2 class="font-space text-3xl font-bold text-gray-900 dark:text-white sm:text-4xl">
+          Quick Start
+        </h2>
+        <p class="mt-4 text-lg text-gray-600 dark:text-gray-400">
+          Get started in minutes with your favorite framework
+        </p>
+      </div>
+
+      <div class="mt-12 space-y-8">
+        <!-- React -->
+        <div class="card p-6">
+          <h3 class="mb-4 flex items-center gap-2 font-space text-xl font-semibold text-gray-900 dark:text-white">
+            <span class="text-2xl">⚛️</span> React
+          </h3>
+          <pre class="code-block"><code>{`import { Space404 } from '@404-ui/core/react';
+
+function NotFoundPage() {
+  return (
+    <Space404
+      title="404"
+      subtitle="Page not found"
+      buttonText="Go Home"
+      onButtonClick={() => window.location.href = '/'}
+    />
+  );
+}`}</code></pre>
+        </div>
+
+        <!-- Vue -->
+        <div class="card p-6">
+          <h3 class="mb-4 flex items-center gap-2 font-space text-xl font-semibold text-gray-900 dark:text-white">
+            <span class="text-2xl">💚</span> Vue
+          </h3>
+          <pre class="code-block"><code>{`<script setup>
+import { Space404 } from '@404-ui/core/vue';
+</script>
+
+<template>
+  <Space404
+    title="404"
+    subtitle="Page not found"
+    buttonText="Go Home"
+    @button-click="$router.push('/')"
+  />
+</template>`}</code></pre>
+        </div>
+
+        <!-- Vanilla -->
+        <div class="card p-6">
+          <h3 class="mb-4 flex items-center gap-2 font-space text-xl font-semibold text-gray-900 dark:text-white">
+            <span class="text-2xl">🟨</span> Vanilla JS
+          </h3>
+          <pre class="code-block"><code>{`import { createSpace404 } from '@404-ui/core/vanilla';
+
+const container = document.getElementById('app');
+createSpace404(container, {
+  title: '404',
+  subtitle: 'Page not found',
+  onButtonClick: () => window.location.href = '/'
+});`}</code></pre>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  // Copy to clipboard functionality
+  document.getElementById('copy-install')?.addEventListener('click', async () => {
+    await navigator.clipboard.writeText('npm install @404-ui/core');
+    alert('Copied to clipboard!');
+  });
+
+  // Generate stars for preview
+  function generateStars(count: number) {
+    const container = document.getElementById('stars-container');
+    if (!container) return;
+
+    for (let i = 0; i < count; i++) {
+      const star = document.createElement('div');
+      star.className = 'space-404-star';
+      star.style.setProperty('--star-size', `${Math.random() * 2 + 1}px`);
+      star.style.setProperty('--star-x', `${Math.random() * 100}%`);
+      star.style.setProperty('--star-y', `${Math.random() * 100}%`);
+      star.style.setProperty('--star-duration', `${Math.random() * 3 + 2}s`);
+      star.style.setProperty('--star-delay', `${Math.random() * 3}s`);
+      container.appendChild(star);
+    }
+  }
+
+  generateStars(80);
+</script>

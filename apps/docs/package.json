@@ -1,0 +1,33 @@
+{
+    "name": "docs",
+    "type": "module",
+    "version": "0.0.0",
+    "private": true,
+    "scripts": {
+        "dev": "astro dev",
+        "build": "astro build",
+        "preview": "astro preview",
+        "astro": "astro",
+        "lint": "eslint src/",
+        "lint:fix": "eslint src/ --fix",
+        "typecheck": "astro check && tsc --noEmit"
+    },
+    "dependencies": {
+        "@404-ui/core": "workspace:*",
+        "@astrojs/react": "^4.1.3",
+        "@astrojs/tailwind": "^5.1.4",
+        "astro": "^5.1.1",
+        "react": "^19.0.0",
+        "react-dom": "^19.0.0"
+    },
+    "devDependencies": {
+        "@astrojs/check": "^0.9.4",
+        "@types/react": "^19.0.1",
+        "@types/react-dom": "^19.0.2",
+        "autoprefixer": "^10.4.20",
+        "postcss": "^8.4.49",
+        "shiki": "^1.24.4",
+        "tailwindcss": "^3.4.17",
+        "typescript": "^5.7.2"
+    }
+}

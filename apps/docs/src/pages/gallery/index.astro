@@ -1,0 +1,299 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+// Template data
+const templates = [
+  {
+    id: "space",
+    name: "Space 404",
+    description: "A cosmic journey through the stars with a floating astronaut theme",
+    tags: ["animated", "dark", "space"],
+    preview: "🚀",
+  },
+  {
+    id: "glitch",
+    name: "Glitch 404",
+    description: "A retro-futuristic glitch effect with cyberpunk vibes",
+    tags: ["animated", "dark", "retro"],
+    preview: "📺",
+    comingSoon: true,
+  },
+  {
+    id: "ocean",
+    name: "Ocean 404",
+    description: "Peaceful underwater scene with floating bubbles",
+    tags: ["animated", "calm", "blue"],
+    preview: "🌊",
+    comingSoon: true,
+  },
+  {
+    id: "forest",
+    name: "Forest 404",
+    description: "A serene forest scene with falling leaves",
+    tags: ["animated", "nature", "green"],
+    preview: "🌲",
+    comingSoon: true,
+  },
+];
+---
+
+<BaseLayout title="Gallery | 404-UI">
+  <section class="py-16">
+    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <!-- Header -->
+      <div class="text-center">
+        <h1 class="font-space text-4xl font-bold text-gray-900 dark:text-white sm:text-5xl">
+          Template Gallery
+        </h1>
+        <p class="mt-4 text-xl text-gray-600 dark:text-gray-400">
+          Browse our collection of beautiful 404 page templates
+        </p>
+      </div>
+
+      <!-- Framework Toggle -->
+      <div class="mt-12 flex justify-center">
+        <div class="framework-toggle">
+          <button class="framework-toggle-btn framework-toggle-btn-active" data-framework="react">
+            ⚛️ React
+          </button>
+          <button class="framework-toggle-btn framework-toggle-btn-inactive" data-framework="vue">
+            💚 Vue
+          </button>
+          <button class="framework-toggle-btn framework-toggle-btn-inactive" data-framework="vanilla">
+            🟨 Vanilla
+          </button>
+        </div>
+      </div>
+
+      <!-- Templates Grid -->
+      <div class="mt-12 grid gap-8 md:grid-cols-2">
+        {templates.map((template) => (
+          <div class="card card-hover overflow-hidden">
+            <!-- Preview -->
+            <div class="preview-container relative bg-gray-100 dark:bg-gray-800" style="height: 280px;">
+              {template.comingSoon ? (
+                <div class="flex h-full items-center justify-center">
+                  <div class="text-center">
+                    <span class="text-6xl">{template.preview}</span>
+                    <p class="mt-4 font-space text-lg font-medium text-gray-500 dark:text-gray-400">
+                      Coming Soon
+                    </p>
+                  </div>
+                </div>
+              ) : (
+                <div class="space-404-container h-full" id={`preview-${template.id}`}>
+                  <div class="absolute inset-0 overflow-hidden stars-container"></div>
+                  <div class="space-404-planet -left-12 -top-12 scale-75"></div>
+                  <div class="space-404-rocket right-4 top-1/4 text-3xl">🚀</div>
+                  <div class="space-404-content">
+                    <h1 class="space-404-title text-5xl md:text-6xl">404</h1>
+                    <p class="space-404-subtitle text-base">Lost in space...</p>
+                    <button class="space-404-button px-4 py-1.5 text-sm">Return Home</button>
+                  </div>
+                </div>
+              )}
+            </div>
+
+            <!-- Info -->
+            <div class="p-6">
+              <div class="flex items-start justify-between">
+                <div>
+                  <h3 class="font-space text-xl font-semibold text-gray-900 dark:text-white">
+                    {template.name}
+                  </h3>
+                  <p class="mt-2 text-gray-600 dark:text-gray-400">
+                    {template.description}
+                  </p>
+                </div>
+              </div>
+
+              <!-- Tags -->
+              <div class="mt-4 flex flex-wrap gap-2">
+                {template.tags.map((tag) => (
+                  <span class="rounded-full bg-gray-100 px-3 py-1 text-xs font-medium text-gray-600 dark:bg-gray-800 dark:text-gray-400">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+
+              <!-- Actions -->
+              <div class="mt-6 flex gap-3">
+                <button
+                  class="btn btn-primary flex-1"
+                  data-template={template.id}
+                  disabled={template.comingSoon}
+                >
+                  {template.comingSoon ? "Coming Soon" : "Copy Code"}
+                </button>
+                <button
+                  class="btn btn-secondary"
+                  data-preview={template.id}
+                  disabled={template.comingSoon}
+                >
+                  Preview
+                </button>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Full Screen Preview Modal -->
+  <div id="preview-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/80 p-4">
+    <button id="close-modal" class="absolute right-4 top-4 text-white hover:text-gray-300">
+      <svg class="h-8 w-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+      </svg>
+    </button>
+    <div id="modal-content" class="h-full w-full max-w-6xl overflow-hidden rounded-2xl"></div>
+  </div>
+
+  <!-- Code Modal -->
+  <div id="code-modal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/80 p-4">
+    <div class="w-full max-w-3xl rounded-2xl bg-white p-6 dark:bg-gray-900">
+      <div class="flex items-center justify-between mb-4">
+        <h3 class="font-space text-xl font-semibold text-gray-900 dark:text-white">
+          Copy Code
+        </h3>
+        <button id="close-code-modal" class="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-white">
+          <svg class="h-6 w-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+      <pre id="code-content" class="code-block max-h-96 overflow-auto"></pre>
+      <button id="copy-code" class="btn btn-primary mt-4 w-full">
+        Copy to Clipboard
+      </button>
+    </div>
+  </div>
+</BaseLayout>
+
+<script is:inline>
+  // Generate stars for previews
+  document.querySelectorAll('.stars-container').forEach(function(container) {
+    for (var i = 0; i < 40; i++) {
+      var star = document.createElement('div');
+      star.className = 'space-404-star';
+      star.style.setProperty('--star-size', (Math.random() * 2 + 1) + 'px');
+      star.style.setProperty('--star-x', (Math.random() * 100) + '%');
+      star.style.setProperty('--star-y', (Math.random() * 100) + '%');
+      star.style.setProperty('--star-duration', (Math.random() * 3 + 2) + 's');
+      star.style.setProperty('--star-delay', (Math.random() * 3) + 's');
+      container.appendChild(star);
+    }
+  });
+
+  // Framework toggle
+  var currentFramework = 'react';
+  document.querySelectorAll('[data-framework]').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      document.querySelectorAll('[data-framework]').forEach(function(b) {
+        b.classList.remove('framework-toggle-btn-active');
+        b.classList.add('framework-toggle-btn-inactive');
+      });
+      btn.classList.remove('framework-toggle-btn-inactive');
+      btn.classList.add('framework-toggle-btn-active');
+      currentFramework = btn.dataset.framework || 'react';
+    });
+  });
+
+  // Code snippets
+  var codeSnippets = {
+    space: {
+      react: "import { Space404 } from '@404-ui/core/react';\n\nfunction NotFoundPage() {\n  return (\n    <Space404\n      title=\"404\"\n      subtitle=\"Lost in space...\"\n      buttonText=\"Return Home\"\n      onButtonClick={() => window.location.href = '/'}\n      starCount={100}\n      showRocket={true}\n      showPlanet={true}\n    />\n  );\n}\n\nexport default NotFoundPage;",
+      vue: "<script setup>\nimport { Space404 } from '@404-ui/core/vue';\n\nfunction handleClick() {\n  window.location.href = '/';\n}\n<\/script>\n\n<template>\n  <Space404\n    title=\"404\"\n    subtitle=\"Lost in space...\"\n    button-text=\"Return Home\"\n    :star-count=\"100\"\n    :show-rocket=\"true\"\n    :show-planet=\"true\"\n    @button-click=\"handleClick\"\n  />\n</template>",
+      vanilla: "import { createSpace404 } from '@404-ui/core/vanilla';\n\nconst container = document.getElementById('app');\n\nconst space404 = createSpace404(container, {\n  title: '404',\n  subtitle: 'Lost in space...',\n  buttonText: 'Return Home',\n  starCount: 100,\n  showRocket: true,\n  showPlanet: true,\n  onButtonClick: () => {\n    window.location.href = '/';\n  }\n});\n\n// Cleanup when needed\n// space404.destroy();"
+    }
+  };
+
+  // Copy code button
+  document.querySelectorAll('[data-template]').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var templateId = btn.dataset.template;
+      if (!templateId || !codeSnippets[templateId]) return;
+
+      var code = codeSnippets[templateId][currentFramework];
+      var codeContent = document.getElementById('code-content');
+      var codeModal = document.getElementById('code-modal');
+      
+      if (codeContent && codeModal) {
+        codeContent.textContent = code;
+        codeModal.classList.remove('hidden');
+        codeModal.classList.add('flex');
+      }
+    });
+  });
+
+  // Close code modal
+  var closeCodeModal = document.getElementById('close-code-modal');
+  if (closeCodeModal) {
+    closeCodeModal.addEventListener('click', function() {
+      var codeModal = document.getElementById('code-modal');
+      if (codeModal) {
+        codeModal.classList.add('hidden');
+        codeModal.classList.remove('flex');
+      }
+    });
+  }
+
+  // Copy to clipboard
+  var copyCode = document.getElementById('copy-code');
+  if (copyCode) {
+    copyCode.addEventListener('click', function() {
+      var codeContent = document.getElementById('code-content');
+      var code = codeContent ? codeContent.textContent : '';
+      if (code) {
+        navigator.clipboard.writeText(code).then(function() {
+          alert('Code copied to clipboard!');
+        });
+      }
+    });
+  }
+
+  // Preview modal
+  document.querySelectorAll('[data-preview]').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      var templateId = btn.dataset.preview;
+      var preview = document.getElementById('preview-' + templateId);
+      var modal = document.getElementById('preview-modal');
+      var content = document.getElementById('modal-content');
+      
+      if (preview && modal && content) {
+        content.innerHTML = preview.outerHTML;
+        modal.classList.remove('hidden');
+        modal.classList.add('flex');
+      }
+    });
+  });
+
+  // Close preview modal
+  var closeModal = document.getElementById('close-modal');
+  if (closeModal) {
+    closeModal.addEventListener('click', function() {
+      var modal = document.getElementById('preview-modal');
+      if (modal) {
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+      }
+    });
+  }
+
+  // Close on escape
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      var previewModal = document.getElementById('preview-modal');
+      var codeModal = document.getElementById('code-modal');
+      if (previewModal) {
+        previewModal.classList.add('hidden');
+        previewModal.classList.remove('flex');
+      }
+      if (codeModal) {
+        codeModal.classList.add('hidden');
+        codeModal.classList.remove('flex');
+      }
+    }
+  });
+</script>

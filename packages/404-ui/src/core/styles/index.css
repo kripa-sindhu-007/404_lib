@@ -1,0 +1,90 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Base styles for 404 UI components */
+@layer base {
+  :root {
+    --404ui-font-family: "Space Grotesk", system-ui, sans-serif;
+  }
+}
+
+@layer components {
+  /* Space 404 Component Styles */
+  .space-404-container {
+    @apply relative flex min-h-screen w-full flex-col items-center justify-center overflow-hidden;
+    background: linear-gradient(
+      180deg,
+      theme("colors.space.900") 0%,
+      theme("colors.space.800") 50%,
+      theme("colors.space.700") 100%
+    );
+  }
+
+  .space-404-star {
+    @apply absolute rounded-full bg-white;
+    width: var(--star-size, 2px);
+    height: var(--star-size, 2px);
+    left: var(--star-x, 50%);
+    top: var(--star-y, 50%);
+    animation: twinkle var(--star-duration, 3s) ease-in-out
+      var(--star-delay, 0s) infinite;
+  }
+
+  .space-404-content {
+    @apply relative z-10 flex flex-col items-center gap-8 px-4 text-center;
+  }
+
+  .space-404-title {
+    @apply font-space text-8xl font-bold tracking-wider text-white md:text-9xl;
+    text-shadow:
+      0 0 20px rgba(99, 102, 241, 0.5),
+      0 0 40px rgba(99, 102, 241, 0.3),
+      0 0 60px rgba(99, 102, 241, 0.1);
+    animation: float 6s ease-in-out infinite;
+  }
+
+  .space-404-subtitle {
+    @apply font-space text-xl text-gray-300 md:text-2xl;
+    animation: float 6s ease-in-out 0.3s infinite;
+  }
+
+  .space-404-button {
+    @apply rounded-full px-8 py-3 font-space text-lg font-medium text-white transition-all duration-300;
+    @apply bg-gradient-to-r from-space-accent to-space-glow;
+    @apply hover:scale-105 hover:shadow-lg;
+    animation: pulseGlow 2s ease-in-out infinite;
+  }
+
+  .space-404-rocket {
+    @apply absolute text-6xl;
+    animation: rocket 8s ease-in-out infinite;
+  }
+
+  .space-404-planet {
+    @apply absolute h-48 w-48 rounded-full opacity-30 md:h-64 md:w-64;
+    background: radial-gradient(
+      circle at 30% 30%,
+      theme("colors.space.accent"),
+      theme("colors.space.900")
+    );
+    animation: float 10s ease-in-out infinite;
+  }
+}
+
+@layer utilities {
+  .text-glow {
+    text-shadow:
+      0 0 10px currentColor,
+      0 0 20px currentColor,
+      0 0 30px currentColor;
+  }
+
+  .animate-pause {
+    animation-play-state: paused;
+  }
+
+  .animate-play {
+    animation-play-state: running;
+  }
+}
