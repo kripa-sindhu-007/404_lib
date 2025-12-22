@@ -45,7 +45,7 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Build packages
-        run: pnpm build --filter=@404-ui/*
+        run: pnpm build --filter=@kripa-sindhu-007/*
 
       - name: Build docs
         run: pnpm build --filter=docs
