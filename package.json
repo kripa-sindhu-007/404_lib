@@ -3,16 +3,15 @@
   "version": "0.0.0",
   "private": true,
   "description": "A library of animated 404 pages for React, Vue, and Vanilla JS",
-  "author": "Kripa Sindhu <sindhukripa007@gmail.com>",
+  "author": "Kripa Sindhu <kripa-sindhu-007@users.noreply.github.com>",
   "license": "MIT",
   "repository": {
     "type": "git",
     "url": "https://github.com/kripa-sindhu-007/404_lib.git"
   },
-  "packageManager": "pnpm@9.15.0",
+  "packageManager": "pnpm@10.26.1",
   "engines": {
-    "node": ">=18.0.0",
-    "pnpm": ">=9.0.0"
+    "node": ">=18.0.0"
   },
   "scripts": {
     "build": "turbo run build",
@@ -26,7 +25,7 @@
     "prepare": "husky",
     "changeset": "changeset",
     "version-packages": "changeset version",
-    "release": "turbo run build --filter=@404-ui/* && changeset publish"
+    "release": "turbo run build --filter=@kripa-sindhu-007/* && changeset publish"
   },
   "devDependencies": {
     "@changesets/cli": "^2.27.10",
