@@ -67,6 +67,16 @@
         "default": "./dist/vanilla/index.cjs"
       }
     },
+    "./theme": {
+      "import": {
+        "types": "./dist/theme.d.ts",
+        "default": "./dist/theme.js"
+      },
+      "require": {
+        "types": "./dist/theme.d.cts",
+        "default": "./dist/theme.cjs"
+      }
+    },
     "./styles.css": "./dist/styles.css"
   },
   "files": [
@@ -74,8 +84,10 @@
     "README.md"
   ],
   "scripts": {
-    "build": "tsup",
-    "dev": "tsup --watch",
+    "build": "pnpm build:css && pnpm build:js",
+    "build:css": "tailwindcss -i src/core/styles/index.css -o dist/styles.css --minify",
+    "build:js": "tsup",
+    "dev": "pnpm build:css && tsup --watch",
     "typecheck": "tsc --noEmit",
     "lint": "eslint src/",
     "lint:fix": "eslint src/ --fix",

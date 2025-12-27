@@ -1,6 +1,7 @@
 import type React from "react";
 import { useMemo, useCallback } from "react";
 import { generateStars } from "../../core/utils";
+import { ASTRONAUT_SVG } from "../../core/assets";
 
 export interface Space404Props {
   /** Title text displayed prominently (default: "404") */
@@ -13,10 +14,8 @@ export interface Space404Props {
   onButtonClick?: () => void;
   /** Number of stars to generate (default: 100) */
   starCount?: number;
-  /** Whether to show the floating rocket */
-  showRocket?: boolean;
-  /** Whether to show the background planet */
-  showPlanet?: boolean;
+  /** Whether to show the floating astronaut */
+  showAstronaut?: boolean;
   /** Additional CSS classes for the container */
   className?: string;
   /** Custom styles for the container */
@@ -48,13 +47,21 @@ export function Space404({
   buttonText = "Return Home",
   onButtonClick,
   starCount = 100,
-  showRocket = true,
-  showPlanet = true,
+  showAstronaut = true,
   className = "",
   style,
 }: Space404Props): React.JSX.Element {
   // Memoize stars to prevent regeneration on every render
   const stars = useMemo(() => generateStars(starCount), [starCount]);
+
+  // Generate random position for astronaut
+  const astronautPosition = useMemo(
+    () => ({
+      right: `${Math.random() * 20 + 5}%`,
+      top: `${Math.random() * 60 + 10}%`,
+    }),
+    []
+  );
 
   const handleButtonClick = useCallback(() => {
     if (onButtonClick) {
@@ -83,22 +90,17 @@ export function Space404({
         ))}
       </div>
 
-      {/* Background Planet */}
-      {showPlanet && (
+      {/* Floating Astronaut */}
+      {showAstronaut && (
         <div
-          className="space-404-planet -left-24 -top-24"
+          className="space-404-astronaut"
+          style={{
+            right: astronautPosition.right,
+            top: astronautPosition.top,
+          }}
           aria-hidden="true"
+          dangerouslySetInnerHTML={{ __html: ASTRONAUT_SVG }}
         />
-      )}
-
-      {/* Floating Rocket */}
-      {showRocket && (
-        <div
-          className="space-404-rocket right-10 top-1/4"
-          aria-hidden="true"
-        >
-          🚀
-        </div>
       )}
 
       {/* Main Content */}
@@ -114,15 +116,6 @@ export function Space404({
           {buttonText}
         </button>
       </div>
-
-      {/* Secondary Planet */}
-      {showPlanet && (
-        <div
-          className="space-404-planet -bottom-32 -right-32 opacity-20"
-          style={{ animationDelay: "2s" }}
-          aria-hidden="true"
-        />
-      )}
     </div>
   );
 }

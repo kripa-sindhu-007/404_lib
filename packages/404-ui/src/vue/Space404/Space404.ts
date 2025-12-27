@@ -1,5 +1,6 @@
 import { defineComponent, h, computed, type PropType } from "vue";
 import { generateStars } from "../../core/utils";
+import { ASTRONAUT_SVG } from "../../core/assets";
 
 export interface Space404Props {
   /** Title text displayed prominently (default: "404") */
@@ -10,10 +11,8 @@ export interface Space404Props {
   buttonText?: string;
   /** Number of stars to generate (default: 100) */
   starCount?: number;
-  /** Whether to show the floating rocket */
-  showRocket?: boolean;
-  /** Whether to show the background planet */
-  showPlanet?: boolean;
+  /** Whether to show the floating astronaut */
+  showAstronaut?: boolean;
 }
 
 /**
@@ -53,11 +52,7 @@ export const Space404 = defineComponent({
       type: Number as PropType<number>,
       default: 100,
     },
-    showRocket: {
-      type: Boolean as PropType<boolean>,
-      default: true,
-    },
-    showPlanet: {
+    showAstronaut: {
       type: Boolean as PropType<boolean>,
       default: true,
     },
@@ -101,23 +96,13 @@ export const Space404 = defineComponent({
             )
           ),
 
-          // Background Planet
-          props.showPlanet &&
+          // Floating Astronaut
+          props.showAstronaut &&
             h("div", {
-              class: "space-404-planet -left-24 -top-24",
+              class: "space-404-astronaut right-10 top-1/4",
               "aria-hidden": "true",
+              innerHTML: ASTRONAUT_SVG,
             }),
-
-          // Floating Rocket
-          props.showRocket &&
-            h(
-              "div",
-              {
-                class: "space-404-rocket right-10 top-1/4",
-                "aria-hidden": "true",
-              },
-              "🚀"
-            ),
 
           // Main Content
           h("div", { class: "space-404-content" }, [
@@ -134,14 +119,6 @@ export const Space404 = defineComponent({
               props.buttonText
             ),
           ]),
-
-          // Secondary Planet
-          props.showPlanet &&
-            h("div", {
-              class: "space-404-planet -bottom-32 -right-32 opacity-20",
-              style: "animation-delay: 2s",
-              "aria-hidden": "true",
-            }),
         ]
       );
   },

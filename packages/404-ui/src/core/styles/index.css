@@ -2,6 +2,68 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Keyframes for animations */
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes twinkle {
+  0%,
+  100% {
+    opacity: 0.2;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.5);
+  }
+}
+
+@keyframes pulseGlow {
+  0%,
+  100% {
+    box-shadow: 0 0 20px rgba(99, 102, 241, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(99, 102, 241, 0.8);
+  }
+}
+
+@keyframes drift {
+  0% {
+    transform: translateX(0) translateY(0);
+  }
+  100% {
+    transform: translateX(-100px) translateY(50px);
+  }
+}
+
+@keyframes astronaut {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-20px) rotate(5deg);
+  }
+}
+
+@keyframes rocket {
+  0%,
+  100% {
+    transform: translateY(0) rotate(-45deg);
+  }
+  50% {
+    transform: translateY(-30px) rotate(-45deg);
+  }
+}
+
 /* Base styles for 404 UI components */
 @layer base {
   :root {
@@ -12,7 +74,8 @@
 @layer components {
   /* Space 404 Component Styles */
   .space-404-container {
-    @apply relative flex min-h-screen w-full flex-col items-center justify-center overflow-hidden;
+    @apply relative flex w-full flex-col items-center justify-center overflow-hidden;
+    min-height: calc(100vh - 4rem);
     background: linear-gradient(
       180deg,
       theme("colors.space.900") 0%,
@@ -50,25 +113,15 @@
   }
 
   .space-404-button {
-    @apply rounded-full px-8 py-3 font-space text-lg font-medium text-white transition-all duration-300;
-    @apply bg-gradient-to-r from-space-accent to-space-glow;
+    @apply font-space rounded-full px-8 py-3 text-lg font-medium text-white transition-all duration-300;
+    @apply from-space-accent to-space-glow bg-gradient-to-r;
     @apply hover:scale-105 hover:shadow-lg;
     animation: pulseGlow 2s ease-in-out infinite;
   }
 
-  .space-404-rocket {
-    @apply absolute text-6xl;
-    animation: rocket 8s ease-in-out infinite;
-  }
-
-  .space-404-planet {
-    @apply absolute h-48 w-48 rounded-full opacity-30 md:h-64 md:w-64;
-    background: radial-gradient(
-      circle at 30% 30%,
-      theme("colors.space.accent"),
-      theme("colors.space.900")
-    );
-    animation: float 10s ease-in-out infinite;
+  .space-404-astronaut {
+    @apply absolute z-20 h-32 w-32 drop-shadow-lg md:h-48 md:w-48;
+    animation: astronaut 8s ease-in-out infinite;
   }
 }
 

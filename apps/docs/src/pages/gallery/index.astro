@@ -1,5 +1,6 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+import { Space404 } from "@kripa006/404-ui/react";
 
 // Template data
 const templates = [
@@ -70,7 +71,7 @@ const templates = [
         {templates.map((template) => (
           <div class="card card-hover overflow-hidden">
             <!-- Preview -->
-            <div class="preview-container relative bg-gray-100 dark:bg-gray-800" style="height: 280px;">
+            <div class="preview-container relative overflow-hidden bg-gray-100 dark:bg-gray-800" style="height: 320px;">
               {template.comingSoon ? (
                 <div class="flex h-full items-center justify-center">
                   <div class="text-center">
@@ -81,14 +82,16 @@ const templates = [
                   </div>
                 </div>
               ) : (
-                <div class="space-404-container h-full" id={`preview-${template.id}`}>
-                  <div class="absolute inset-0 overflow-hidden stars-container"></div>
-                  <div class="space-404-planet -left-12 -top-12 scale-75"></div>
-                  <div class="space-404-rocket right-4 top-1/4 text-3xl">🚀</div>
-                  <div class="space-404-content">
-                    <h1 class="space-404-title text-5xl md:text-6xl">404</h1>
-                    <p class="space-404-subtitle text-base">Lost in space...</p>
-                    <button class="space-404-button px-4 py-1.5 text-sm">Return Home</button>
+                <div class="absolute inset-0" style="transform: scale(0.6); transform-origin: center center;">
+                  <div style="width: 166.67%; height: 166.67%; margin-left: -33.33%; margin-top: -33.33%;">
+                    <Space404
+                      client:load
+                      title="404"
+                      subtitle="Lost in space..."
+                      buttonText="Go Home"
+                      starCount={50}
+                      showAstronaut={true}
+                    />
                   </div>
                 </div>
               )}
@@ -172,20 +175,6 @@ const templates = [
 </BaseLayout>
 
 <script is:inline>
-  // Generate stars for previews
-  document.querySelectorAll('.stars-container').forEach(function(container) {
-    for (var i = 0; i < 40; i++) {
-      var star = document.createElement('div');
-      star.className = 'space-404-star';
-      star.style.setProperty('--star-size', (Math.random() * 2 + 1) + 'px');
-      star.style.setProperty('--star-x', (Math.random() * 100) + '%');
-      star.style.setProperty('--star-y', (Math.random() * 100) + '%');
-      star.style.setProperty('--star-duration', (Math.random() * 3 + 2) + 's');
-      star.style.setProperty('--star-delay', (Math.random() * 3) + 's');
-      container.appendChild(star);
-    }
-  });
-
   // Framework toggle
   var currentFramework = 'react';
   document.querySelectorAll('[data-framework]').forEach(function(btn) {

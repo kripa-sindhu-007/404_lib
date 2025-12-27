@@ -1,4 +1,5 @@
 import { generateStars } from "../../core/utils";
+import { ASTRONAUT_SVG } from "../../core/assets";
 
 export interface Space404Options {
   /** Title text displayed prominently (default: "404") */
@@ -11,10 +12,8 @@ export interface Space404Options {
   onButtonClick?: () => void;
   /** Number of stars to generate (default: 100) */
   starCount?: number;
-  /** Whether to show the floating rocket */
-  showRocket?: boolean;
-  /** Whether to show the background planet */
-  showPlanet?: boolean;
+  /** Whether to show the floating astronaut */
+  showAstronaut?: boolean;
 }
 
 const DEFAULT_OPTIONS: Required<Space404Options> = {
@@ -25,8 +24,7 @@ const DEFAULT_OPTIONS: Required<Space404Options> = {
     window.location.href = "/";
   },
   starCount: 100,
-  showRocket: true,
-  showPlanet: true,
+  showAstronaut: true,
 };
 
 /**
@@ -76,21 +74,13 @@ export function createSpace404(
 
   wrapper.appendChild(starsContainer);
 
-  // Background planet
-  if (config.showPlanet) {
-    const planet1 = document.createElement("div");
-    planet1.className = "space-404-planet -left-24 -top-24";
-    planet1.setAttribute("aria-hidden", "true");
-    wrapper.appendChild(planet1);
-  }
-
-  // Rocket
-  if (config.showRocket) {
-    const rocket = document.createElement("div");
-    rocket.className = "space-404-rocket right-10 top-1/4";
-    rocket.setAttribute("aria-hidden", "true");
-    rocket.textContent = "🚀";
-    wrapper.appendChild(rocket);
+  // Astronaut
+  if (config.showAstronaut) {
+    const astronaut = document.createElement("div");
+    astronaut.className = "space-404-astronaut right-10 top-1/4";
+    astronaut.setAttribute("aria-hidden", "true");
+    astronaut.innerHTML = ASTRONAUT_SVG;
+    wrapper.appendChild(astronaut);
   }
 
   // Content section
@@ -117,15 +107,6 @@ export function createSpace404(
   content.appendChild(button);
   wrapper.appendChild(content);
 
-  // Secondary planet
-  if (config.showPlanet) {
-    const planet2 = document.createElement("div");
-    planet2.className = "space-404-planet -bottom-32 -right-32 opacity-20";
-    planet2.style.animationDelay = "2s";
-    planet2.setAttribute("aria-hidden", "true");
-    wrapper.appendChild(planet2);
-  }
-
   // Mount to container
   container.appendChild(wrapper);
 
@@ -146,14 +127,7 @@ export class Space404Element extends HTMLElement {
   private _cleanup: (() => void) | null = null;
 
   static get observedAttributes(): string[] {
-    return [
-      "title",
-      "subtitle",
-      "button-text",
-      "star-count",
-      "show-rocket",
-      "show-planet",
-    ];
+    return ["title", "subtitle", "button-text", "star-count", "show-astronaut"];
   }
 
   connectedCallback(): void {
@@ -186,16 +160,11 @@ export class Space404Element extends HTMLElement {
       starCount: this.hasAttribute("star-count")
         ? parseInt(this.getAttribute("star-count")!, 10)
         : undefined,
-      showRocket: this.hasAttribute("show-rocket")
-        ? this.getAttribute("show-rocket") !== "false"
-        : undefined,
-      showPlanet: this.hasAttribute("show-planet")
-        ? this.getAttribute("show-planet") !== "false"
+      showAstronaut: this.hasAttribute("show-astronaut")
+        ? this.getAttribute("show-astronaut") !== "false"
         : undefined,
       onButtonClick: () => {
-        this.dispatchEvent(
-          new CustomEvent("button-click", { bubbles: true })
-        );
+        this.dispatchEvent(new CustomEvent("button-click", { bubbles: true }));
       },
     };
 
