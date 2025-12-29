@@ -10,6 +10,9 @@
 
 # CI/CD and configuration ownership
 /.github/ @kripa-sindhu-007
-*.json @kripa-sindhu-007
+/*.json @kripa-sindhu-007
+/package.json @kripa-sindhu-007
+/tsconfig*.json @kripa-sindhu-007
+/turbo.json @kripa-sindhu-007
 *.yml @kripa-sindhu-007
 *.yaml @kripa-sindhu-007
