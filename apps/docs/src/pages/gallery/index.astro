@@ -176,7 +176,7 @@ const templates = [
 
 <script is:inline>
   // Framework toggle
-  var currentFramework = 'react';
+  let currentFramework = 'react';
   document.querySelectorAll('[data-framework]').forEach(function(btn) {
     btn.addEventListener('click', function() {
       document.querySelectorAll('[data-framework]').forEach(function(b) {
@@ -190,23 +190,25 @@ const templates = [
   });
 
   // Code snippets
-  var codeSnippets = {
+  const codeSnippets = {
     space: {
-      react: "import { Space404 } from '@404-ui/core/react';\n\nfunction NotFoundPage() {\n  return (\n    <Space404\n      title=\"404\"\n      subtitle=\"Lost in space...\"\n      buttonText=\"Return Home\"\n      onButtonClick={() => window.location.href = '/'}\n      starCount={100}\n      showRocket={true}\n      showPlanet={true}\n    />\n  );\n}\n\nexport default NotFoundPage;",
-      vue: "<script setup>\nimport { Space404 } from '@404-ui/core/vue';\n\nfunction handleClick() {\n  window.location.href = '/';\n}\n<\/script>\n\n<template>\n  <Space404\n    title=\"404\"\n    subtitle=\"Lost in space...\"\n    button-text=\"Return Home\"\n    :star-count=\"100\"\n    :show-rocket=\"true\"\n    :show-planet=\"true\"\n    @button-click=\"handleClick\"\n  />\n</template>",
-      vanilla: "import { createSpace404 } from '@404-ui/core/vanilla';\n\nconst container = document.getElementById('app');\n\nconst space404 = createSpace404(container, {\n  title: '404',\n  subtitle: 'Lost in space...',\n  buttonText: 'Return Home',\n  starCount: 100,\n  showRocket: true,\n  showPlanet: true,\n  onButtonClick: () => {\n    window.location.href = '/';\n  }\n});\n\n// Cleanup when needed\n// space404.destroy();"
-    }
+      react:
+        "import { Space404 } from '@kripa006/404-ui/react';\n\nfunction NotFoundPage() {\n  return (\n    <Space404\n      title=\"404\"\n      subtitle=\"Lost in space...\"\n      buttonText=\"Return Home\"\n      onButtonClick={() => window.location.href = '/'}\n      starCount={100}\n      showRocket={true}\n      showPlanet={true}\n    />\n  );\n}\n\nexport default NotFoundPage;",
+      vue: "<script setup>\nimport { Space404 } from '@kripa006/404-ui/vue';\n\nfunction handleClick() {\n  window.location.href = '/';\n}\n<\\/script>\n\n<template>\n  <Space404\n    title=\"404\"\n    subtitle=\"Lost in space...\"\n    button-text=\"Return Home\"\n    :star-count=\"100\"\n    :show-rocket=\"true\"\n    :show-planet=\"true\"\n    @button-click=\"handleClick\"\n  />\n</template>",
+      vanilla:
+        "import { createSpace404 } from '@kripa006/404-ui/vanilla';\n\nconst container = document.getElementById('app');\n\nconst space404 = createSpace404(container, {\n  title: '404',\n  subtitle: 'Lost in space...',\n  buttonText: 'Return Home',\n  starCount: 100,\n  showRocket: true,\n  showPlanet: true,\n  onButtonClick: () => {\n    window.location.href = '/';\n  }\n});\n\n// Cleanup when needed\n// space404.destroy();",
+    },
   };
 
   // Copy code button
   document.querySelectorAll('[data-template]').forEach(function(btn) {
     btn.addEventListener('click', function() {
-      var templateId = btn.dataset.template;
+      const templateId = btn.dataset.template;
       if (!templateId || !codeSnippets[templateId]) return;
 
-      var code = codeSnippets[templateId][currentFramework];
-      var codeContent = document.getElementById('code-content');
-      var codeModal = document.getElementById('code-modal');
+      const code = codeSnippets[templateId][currentFramework];
+      const codeContent = document.getElementById('code-content');
+      const codeModal = document.getElementById('code-modal');
       
       if (codeContent && codeModal) {
         codeContent.textContent = code;
@@ -217,10 +219,10 @@ const templates = [
   });
 
   // Close code modal
-  var closeCodeModal = document.getElementById('close-code-modal');
+  const closeCodeModal = document.getElementById('close-code-modal');
   if (closeCodeModal) {
     closeCodeModal.addEventListener('click', function() {
-      var codeModal = document.getElementById('code-modal');
+      const codeModal = document.getElementById('code-modal');
       if (codeModal) {
         codeModal.classList.add('hidden');
         codeModal.classList.remove('flex');
@@ -229,11 +231,11 @@ const templates = [
   }
 
   // Copy to clipboard
-  var copyCode = document.getElementById('copy-code');
+  const copyCode = document.getElementById('copy-code');
   if (copyCode) {
     copyCode.addEventListener('click', function() {
-      var codeContent = document.getElementById('code-content');
-      var code = codeContent ? codeContent.textContent : '';
+      const codeContent = document.getElementById('code-content');
+      const code = codeContent ? codeContent.textContent : '';
       if (code) {
         navigator.clipboard.writeText(code).then(function() {
           alert('Code copied to clipboard!');
@@ -245,10 +247,10 @@ const templates = [
   // Preview modal
   document.querySelectorAll('[data-preview]').forEach(function(btn) {
     btn.addEventListener('click', function() {
-      var templateId = btn.dataset.preview;
-      var preview = document.getElementById('preview-' + templateId);
-      var modal = document.getElementById('preview-modal');
-      var content = document.getElementById('modal-content');
+      const templateId = btn.dataset.preview;
+      const preview = document.getElementById('preview-' + templateId);
+      const modal = document.getElementById('preview-modal');
+      const content = document.getElementById('modal-content');
       
       if (preview && modal && content) {
         content.innerHTML = preview.outerHTML;
@@ -259,10 +261,10 @@ const templates = [
   });
 
   // Close preview modal
-  var closeModal = document.getElementById('close-modal');
+  const closeModal = document.getElementById('close-modal');
   if (closeModal) {
     closeModal.addEventListener('click', function() {
-      var modal = document.getElementById('preview-modal');
+      const modal = document.getElementById('preview-modal');
       if (modal) {
         modal.classList.add('hidden');
         modal.classList.remove('flex');
@@ -273,8 +275,8 @@ const templates = [
   // Close on escape
   document.addEventListener('keydown', function(e) {
     if (e.key === 'Escape') {
-      var previewModal = document.getElementById('preview-modal');
-      var codeModal = document.getElementById('code-modal');
+      const previewModal = document.getElementById('preview-modal');
+      const codeModal = document.getElementById('code-modal');
       if (previewModal) {
         previewModal.classList.add('hidden');
         previewModal.classList.remove('flex');

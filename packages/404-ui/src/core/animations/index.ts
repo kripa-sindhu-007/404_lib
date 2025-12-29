@@ -47,12 +47,7 @@ export function applyAnimation(
   animationName: string,
   config: AnimationConfig = {}
 ): void {
-  const {
-    duration = 1,
-    delay = 0,
-    easing = "ease",
-    iterations = 1,
-  } = config;
+  const { duration = 1, delay = 0, easing = "ease", iterations = 1 } = config;
 
   element.style.animation = `${animationName} ${duration}s ${easing} ${delay}s ${iterations}`;
 }
