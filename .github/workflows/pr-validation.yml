@@ -1,0 +1,208 @@
+name: PR Validation
+
+on:
+  pull_request:
+    branches: [main]
+
+# Limit GITHUB_TOKEN permissions to read-only
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+
+jobs:
+  lint:
+    name: Lint (ESLint)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "pnpm"
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Run ESLint
+        run: pnpm lint
+
+  prettier:
+    name: Format Check (Prettier)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "pnpm"
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Check formatting
+        run: pnpm format:check
+
+  typecheck:
+    name: Type Check
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "pnpm"
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Run TypeScript
+        run: pnpm typecheck
+
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "pnpm"
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build packages
+        run: pnpm build
+
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: dist
+          # Artifact paths match the monorepo structure: packages/*/dist and apps/docs/dist
+          path: |
+            packages/*/dist
+            apps/docs/dist
+          retention-days: 7
+
+  release-check:
+    name: Release Check (Dry Run)
+    runs-on: ubuntu-latest
+    outputs:
+      has-changeset: ${{ steps.check-changeset.outputs.has-changeset }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "pnpm"
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Check for changeset files
+        id: check-changeset
+        run: |
+          # Check if any changeset files were added or modified in this PR
+          # Compare against the base branch to find changed files
+          git fetch origin ${{ github.base_ref }}
+          CHANGED_FILES=$(git diff --name-only origin/${{ github.base_ref }}...HEAD)
+          
+          # Check if any .md files in .changeset directory (excluding README.md specifically)
+          CHANGESET_FILES=$(echo "$CHANGED_FILES" | grep -E '^\.changeset/.*\.md$' | grep -v '^\.changeset/README\.md$' || true)
+          
+          if [ -n "$CHANGESET_FILES" ]; then
+            echo "has-changeset=true" >> $GITHUB_OUTPUT
+            echo "✅ Changeset file(s) found:"
+            echo "$CHANGESET_FILES"
+          else
+            echo "has-changeset=false" >> $GITHUB_OUTPUT
+            echo "ℹ️  No changeset files found in this PR"
+            echo "If this PR includes changes that should be released, please add a changeset:"
+            echo "   pnpm changeset"
+          fi
+
+      - name: Validate changeset format
+        if: steps.check-changeset.outputs.has-changeset == 'true'
+        run: |
+          echo "Validating changeset format..."
+          pnpm changeset status
+          echo "✅ Changeset validation passed! This PR will trigger a release."
+
+      - name: Skip validation
+        if: steps.check-changeset.outputs.has-changeset == 'false'
+        run: |
+          echo "ℹ️  Skipping changeset validation (no changesets in this PR)"
+          echo "This PR will not trigger a release."
+
+  pr-validation-complete:
+    name: PR Validation Complete
+    runs-on: ubuntu-latest
+    if: always()
+    needs: [lint, prettier, typecheck, build, release-check]
+    steps:
+      - name: Check job status
+        run: |
+          echo "Checking status of all required jobs..."
+          
+          # Check each job status
+          if [ "${{ needs.lint.result }}" != "success" ]; then
+            echo "❌ Lint job failed or was cancelled"
+            exit 1
+          fi
+          
+          if [ "${{ needs.prettier.result }}" != "success" ]; then
+            echo "❌ Prettier job failed or was cancelled"
+            exit 1
+          fi
+          
+          if [ "${{ needs.typecheck.result }}" != "success" ]; then
+            echo "❌ TypeCheck job failed or was cancelled"
+            exit 1
+          fi
+          
+          if [ "${{ needs.build.result }}" != "success" ]; then
+            echo "❌ Build job failed or was cancelled"
+            exit 1
+          fi
+          
+          if [ "${{ needs.release-check.result }}" != "success" ]; then
+            echo "❌ Release Check job failed or was cancelled"
+            exit 1
+          fi
+          
+          echo "✅ All validation checks passed successfully!"
