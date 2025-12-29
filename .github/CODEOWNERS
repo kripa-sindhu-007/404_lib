@@ -1,0 +1,15 @@
+# Default owner for all files
+* @kripa-sindhu-007
+
+# Package ownership
+/packages/404-ui/ @kripa-sindhu-007
+
+# Documentation ownership
+/apps/docs/ @kripa-sindhu-007
+*.md @kripa-sindhu-007
+
+# CI/CD and configuration ownership
+/.github/ @kripa-sindhu-007
+*.json @kripa-sindhu-007
+*.yml @kripa-sindhu-007
+*.yaml @kripa-sindhu-007
