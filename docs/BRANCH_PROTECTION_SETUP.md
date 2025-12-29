@@ -1,241 +1,251 @@
 # Branch Protection Setup Guide
 
-This guide provides step-by-step instructions for configuring GitHub branch protection rules to enforce code quality and prevent direct pushes to the main branch.
+This guide explains how to set up branch protection rules for the `main` branch in your repository to ensure code quality and maintain a clean commit history.
 
-## Overview
+## Prerequisites
 
-Branch protection rules ensure that:
-- No one can push directly to the `main` branch
-- All changes must go through pull requests
-- All automated checks must pass before merging
-- Code reviews are required
-- Changes are properly documented with changesets
+- Repository admin access
+- GitHub account with appropriate permissions
 
-## Step-by-Step Configuration
+## Setup Steps
 
 ### 1. Navigate to Branch Protection Settings
 
 1. Go to your repository on GitHub
-2. Click on **Settings** (top navigation)
-3. Click on **Branches** (left sidebar)
+2. Click on **Settings** tab
+3. In the left sidebar, click on **Branches**
 4. Under "Branch protection rules", click **Add rule** or **Add branch protection rule**
 
-### 2. Configure Basic Settings
+### 2. Configure Branch Name Pattern
 
-In the "Branch name pattern" field, enter: `main`
+- In the "Branch name pattern" field, enter: `main`
 
-### 3. Enable Required Settings
+### 3. Configure Protection Rules
 
-Check the following boxes:
+Enable the following settings:
 
-#### ✅ Require a pull request before merging
-- **Purpose**: Prevents direct pushes to main
-- **Action**: Check this box
-- **Recommended sub-options**:
-  - ✅ Require approvals: Set to at least **1** approval
-  - ✅ Dismiss stale pull request approvals when new commits are pushed
-  - ✅ Require review from Code Owners (if using CODEOWNERS file)
-  - ✅ Require approval of the most recent reviewable push
+#### Require Pull Request Reviews
 
-#### ✅ Require status checks to pass before merging
-- **Purpose**: Ensures all CI/CD checks pass before merge
-- **Action**: Check this box
-- **Required sub-options**:
-  - ✅ Require branches to be up to date before merging
-  
-**Add the following status checks** (search for each and add):
-1. `Lint (ESLint)` - Ensures code passes linting
-2. `Format Check (Prettier)` - Ensures code is properly formatted
-3. `Type Check` - Ensures TypeScript types are correct
-4. `Build` - Ensures code builds successfully
-5. `Release Check (Dry Run)` - Validates changeset format
-6. `PR Validation Complete` - Final gate ensuring all checks passed
+- ✅ **Require a pull request before merging**
+  - ✅ **Require approvals**: Set to `1` (or more based on team size)
+  - ✅ **Dismiss stale pull request approvals when new commits are pushed**
+  - ✅ **Require review from Code Owners** (if you have a CODEOWNERS file)
 
-> **Note**: These status checks will only appear in the list after they have run at least once. You may need to create a test PR first to make them visible.
+#### Require Status Checks
 
-#### ✅ Require conversation resolution before merging
-- **Purpose**: Ensures all review comments are addressed
-- **Action**: Check this box
+- ✅ **Require status checks to pass before merging**
+  - ✅ **Require branches to be up to date before merging**
+  - Add required status checks:
+    - `build` (or your CI job name)
+    - `test` (or your test job name)
+    - `lint` (if you have linting in CI)
+    - Any other CI/CD checks you've configured
 
-### 4. Additional Recommended Settings
+#### Additional Settings
 
-Consider enabling these additional protections:
+- ✅ **Require conversation resolution before merging**
+  - Ensures all PR comments are resolved before merge
+- ✅ **Require signed commits** (optional but recommended)
+  - Adds an extra layer of security
+- ✅ **Require linear history**
+  - Prevents merge commits, enforces rebase or squash
+- ✅ **Include administrators**
+  - Applies rules to repository administrators too
 
-#### ⚠️ Require signed commits (Optional but Recommended)
-- **Purpose**: Ensures commits are cryptographically signed
-- **Action**: Check "Require signed commits"
+#### Restrictions (Optional)
 
-#### ⚠️ Include administrators (Recommended)
-- **Purpose**: Applies rules to administrators too
-- **Action**: Check "Do not allow bypassing the above settings"
-- **Note**: Recommended for team consistency, but may need to be disabled temporarily for emergency fixes
+- **Restrict who can push to matching branches**
+  - Can be left unchecked for smaller teams
+  - For larger teams, restrict to specific users or teams
 
-#### ⚠️ Restrict who can push to matching branches (Optional)
-- **Purpose**: Limits who can push to main
-- **Action**: Leave unchecked if you want PR-based workflow only
-- **Use case**: Can be used to restrict even PR merges to specific people
+#### Rules Applied to Everyone
 
-#### ✅ Require linear history (Recommended)
-- **Purpose**: Prevents merge commits, enforces squash or rebase
-- **Action**: Check this box if you want a clean history
+- ✅ **Allow force pushes**: ❌ (Keep disabled)
+- ✅ **Allow deletions**: ❌ (Keep disabled)
 
-#### ✅ Require deployments to succeed before merging (Optional)
-- **Purpose**: Ensures deployments work before merging
-- **Action**: Enable if you have preview deployments
+### 4. Save Changes
 
-### 5. Save the Rule
+- Scroll to the bottom and click **Create** or **Save changes**
 
-Click **Create** or **Save changes** at the bottom of the page.
+## Recommended Configuration Summary
 
-## What This Protection Guards Against
+Here's a quick checklist of recommended settings:
 
-✅ **Direct pushes to main** - All changes must go through PRs  
-✅ **Unreviewed code** - At least one approval required  
-✅ **Linting violations** - Code must pass ESLint checks  
-✅ **Format inconsistencies** - Code must pass Prettier checks  
-✅ **Type errors** - TypeScript must compile without errors  
-✅ **Build failures** - Code must build successfully  
-✅ **Missing changesets** - Package changes are properly documented  
-✅ **Unresolved discussions** - All review comments must be addressed  
+```
+✅ Require pull request before merging
+  ✅ Require 1 approval
+  ✅ Dismiss stale reviews
+✅ Require status checks to pass
+  ✅ Require branches to be up to date
+  ✅ Add CI/CD status checks
+✅ Require conversation resolution
+✅ Require linear history
+✅ Include administrators
+❌ Allow force pushes (disabled)
+❌ Allow deletions (disabled)
+```
 
-## Testing Your Configuration
+## Verification
 
-After setting up branch protection:
+After setup, try to:
 
-1. **Create a test branch**:
-   ```bash
-   git checkout -b test/branch-protection
-   echo "test" >> README.md
-   git add README.md
-   git commit -m "test: verify branch protection"
-   git push origin test/branch-protection
-   ```
-
-2. **Create a pull request** targeting the `main` branch
-
-3. **Verify the following**:
-   - ✅ All status checks appear in the PR
-   - ✅ Each check runs and completes
-   - ✅ The "Merge" button is disabled until all checks pass
-   - ✅ The "Merge" button is disabled until approval is given
-
-4. **Try to push directly to main** (should fail):
-   ```bash
-   git checkout main
-   git pull
-   echo "test" >> README.md
-   git add README.md
-   git commit -m "test: this should fail"
-   git push origin main
-   ```
-   
-   Expected result: `[remote rejected] main -> main (protected branch hook declined)`
+1. Push directly to `main` branch - should be blocked
+2. Create a PR without passing CI - should not be mergeable
+3. Create a PR with passing CI - should require approval before merge
 
 ## Troubleshooting
 
-### Status Checks Don't Appear
+### Can't Push to Main
 
-**Problem**: Required status checks are not visible in the dropdown.
+**Issue**: Getting error when trying to push to main
+**Solution**: This is expected! Create a feature branch and open a PR instead.
 
+```bash
+git checkout -b feature/your-feature
+git push origin feature/your-feature
+# Then create a PR on GitHub
+```
+
+### Status Checks Not Showing
+
+**Issue**: Required status checks aren't appearing
 **Solution**: 
-- Status checks only appear after they've run at least once
-- Create a test PR to trigger the workflows
-- Wait for the PR validation workflow to complete
-- Return to branch protection settings and add the checks
+- Ensure your CI workflow is configured correctly
+- Status checks must run at least once before they can be added as required
+- Check that the status check names match exactly
 
-### Can't Merge Even When Checks Pass
+### PR Can't Be Merged
 
-**Problem**: Merge button is still disabled after all checks pass.
-
+**Issue**: PR shows "Merge blocked" even though CI passed
 **Solution**:
-- Verify all required status checks are actually passing (not just some)
-- Check if "Require branches to be up to date before merging" is enabled
-  - If yes, click "Update branch" to rebase on latest main
-- Ensure conversation resolution is enabled and all comments are resolved
-- Verify required approvals have been given
+- Ensure all required approvals are given
+- Check that all conversations are resolved
+- Verify branch is up to date with main
+- Confirm all required status checks have passed
 
-### Accidentally Locked Out
+## Best Practices
 
-**Problem**: Admin is locked out and can't merge critical fixes.
+1. **Start with basic protection** and add more rules as needed
+2. **Test the workflow** with a small change before enforcing on the team
+3. **Document your branching strategy** for team members
+4. **Use meaningful commit messages** for better history
+5. **Keep branches short-lived** to avoid merge conflicts
+6. **Review PRs promptly** to keep the development flow smooth
 
-**Solution**:
-- Go to Settings > Branches > Edit the rule
-- Temporarily uncheck "Do not allow bypassing the above settings"
-- Make your critical merge
-- Re-enable the setting afterwards
+## For Team Leads
 
-### PR Validation Workflow Not Running
+When setting this up for your team:
 
-**Problem**: The `pr-validation.yml` workflow doesn't trigger.
+1. **Communicate changes**: Let team members know about new branch protection rules
+2. **Provide training**: Ensure everyone understands the PR workflow
+3. **Set expectations**: Define SLAs for PR reviews
+4. **Monitor compliance**: Check that rules are being followed
+5. **Adjust as needed**: Be flexible and refine rules based on team feedback
 
-**Solution**:
-- Verify the workflow file is on the base branch (main)
-- Check that the PR targets the `main` branch
-- Look at Actions tab to see if there are any workflow errors
-- Ensure the workflow file has correct YAML syntax
+## Exemptions and Emergency Procedures
 
-## Maintenance
+### Creating Bypass Rules
 
-### When to Update Status Checks
+If you need to allow certain users or apps to bypass branch protection:
 
-Update the required status checks list when:
-- You add new jobs to the PR validation workflow
-- You rename existing jobs
-- You remove jobs from validation
+1. Go to **Settings** > **Branches**
+2. Click on your branch protection rule
+3. Scroll to "Allow bypasses"
+4. Add specific users, teams, or apps that can bypass
 
-### Regular Reviews
+### Emergency Hotfixes
 
-Review branch protection rules:
-- **Quarterly**: Ensure rules still match team needs
-- **After major changes**: When CI/CD pipelines change
-- **When team grows**: Adjust approval requirements
+For critical production issues:
 
-## Quick Reference
+1. **Document the emergency** in a tracking system
+2. If bypass is enabled for admins, create an emergency PR
+3. Get expedited review from available team members
+4. Merge and deploy
+5. Follow up with a post-mortem
+6. Update documentation if needed
 
-### Required Status Checks Checklist
+## Integration with CI/CD
 
-Copy-paste these names into the status check search:
-
-```
-Lint (ESLint)
-Format Check (Prettier)
-Type Check
-Build
-Release Check (Dry Run)
-PR Validation Complete
-```
-
-### Recommended Settings Summary
+Ensure your CI/CD pipeline includes:
 
 ```yaml
-Branch: main
-✅ Require pull request before merging
-  ✅ Require 1 approval
-  ✅ Dismiss stale approvals
-  ✅ Require review from Code Owners
-✅ Require status checks to pass
-  ✅ Require branches to be up to date
-  ✅ All 6 status checks required
-✅ Require conversation resolution
-✅ Include administrators
-✅ Require linear history
+# Example GitHub Actions workflow snippet
+name: CI
+on:
+  pull_request:
+    branches: [ main ]
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Run tests
+        run: npm test
+      - name: Run lint
+        run: npm run lint
 ```
+
+The status check names in your workflow (e.g., `build`) should match the ones you add to branch protection.
 
 ## Additional Resources
 
-- [GitHub Branch Protection Documentation](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches/about-protected-branches)
-- [Changesets Documentation](https://github.com/changesets/changesets)
+- [GitHub Branch Protection Documentation](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/defining-the-mergeability-of-pull-requests/about-protected-branches)
 - [GitHub Actions Documentation](https://docs.github.com/en/actions)
+- [Code Review Best Practices](https://google.github.io/eng-practices/review/)
 
-## Support
+## Updating Branch Protection Rules
 
-If you encounter issues not covered in this guide:
+To modify existing rules:
 
-1. Check the GitHub Actions logs for detailed error messages
-2. Review the PR validation workflow file: `.github/workflows/pr-validation.yml`
-3. Consult with repository administrators
-4. Create an issue in the repository
+1. Go to **Settings** > **Branches**
+2. Find your branch protection rule for `main`
+3. Click **Edit**
+4. Make your changes
+5. Click **Save changes**
 
----
+## Common Branch Protection Patterns
 
-**Version**: 1.0.0
+### Pattern 1: Small Team (2-5 developers)
+
+```
+✅ Require PR before merging (1 approval)
+✅ Require status checks
+✅ Require conversation resolution
+❌ Require signed commits
+✅ Require linear history
+```
+
+### Pattern 2: Medium Team (6-15 developers)
+
+```
+✅ Require PR before merging (2 approvals)
+✅ Dismiss stale reviews
+✅ Require status checks (must be up to date)
+✅ Require conversation resolution
+✅ Require signed commits
+✅ Require linear history
+✅ Include administrators
+```
+
+### Pattern 3: Large Team/Open Source (15+ developers)
+
+```
+✅ Require PR before merging (2+ approvals)
+✅ Require review from Code Owners
+✅ Dismiss stale reviews
+✅ Require status checks (must be up to date)
+✅ Require conversation resolution
+✅ Require signed commits
+✅ Require linear history
+✅ Include administrators
+✅ Restrict push access to specific teams
+```
+
+## Conclusion
+
+Proper branch protection is essential for maintaining code quality and preventing accidental changes to important branches. Start with the recommended configuration and adjust based on your team's needs and workflow.
+
+Remember: The goal is to improve code quality and collaboration, not to create unnecessary obstacles. Find the right balance for your team.
