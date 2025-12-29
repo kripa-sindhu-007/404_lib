@@ -238,5 +238,4 @@ If you encounter issues not covered in this guide:
 
 ---
 
-**Last Updated**: 2025-12-29  
 **Version**: 1.0.0

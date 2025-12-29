@@ -101,6 +101,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: dist
+          # Artifact paths match the monorepo structure: packages/*/dist and apps/docs/dist
           path: |
             packages/*/dist
             apps/docs/dist
@@ -137,8 +138,8 @@ jobs:
           git fetch origin ${{ github.base_ref }}
           CHANGED_FILES=$(git diff --name-only origin/${{ github.base_ref }}...HEAD)
           
-          # Check if any .md files in .changeset directory (excluding config and README)
-          CHANGESET_FILES=$(echo "$CHANGED_FILES" | grep -E '^\.changeset/.*\.md$' | grep -v 'README.md' || true)
+          # Check if any .md files in .changeset directory (excluding README.md specifically)
+          CHANGESET_FILES=$(echo "$CHANGED_FILES" | grep -E '^\.changeset/.*\.md$' | grep -v '^\.changeset/README\.md$' || true)
           
           if [ -n "$CHANGESET_FILES" ]; then
             echo "has-changeset=true" >> $GITHUB_OUTPUT
