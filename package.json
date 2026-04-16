@@ -2,13 +2,29 @@
   "name": "404-lib-monorepo",
   "version": "0.0.0",
   "private": true,
-  "description": "A library of animated 404 pages for React, Vue, and Vanilla JS",
+  "description": "Open-source animated 404 page components for React, Vue, and vanilla JavaScript.",
   "author": "Kripa Sindhu <kripa-sindhu-007@users.noreply.github.com>",
   "license": "MIT",
+  "homepage": "https://kripa-sindhu-007.github.io/404_lib",
+  "bugs": {
+    "url": "https://github.com/kripa-sindhu-007/404_lib/issues"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/kripa-sindhu-007/404_lib.git"
   },
+  "keywords": [
+    "404",
+    "404-page",
+    "not-found",
+    "error-page",
+    "react",
+    "vue",
+    "vanilla-js",
+    "typescript",
+    "tailwindcss",
+    "animated-components"
+  ],
   "packageManager": "pnpm@10.26.1",
   "engines": {
     "node": ">=18.0.0"

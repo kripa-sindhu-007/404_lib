@@ -2,9 +2,7 @@
 
 <div align="center">
 
-![404-UI Logo](https://via.placeholder.com/200x200?text=404-UI)
-
-**Beautiful, animated 404 error pages for React, Vue, and Vanilla JS**
+**Open-source animated 404 error pages for React, Vue, and vanilla JavaScript**
 
 [![npm version](https://img.shields.io/npm/v/@kripa006/404-ui.svg?style=flat-square)](https://www.npmjs.com/package/@kripa006/404-ui)
 [![npm downloads](https://img.shields.io/npm/dm/@kripa006/404-ui.svg?style=flat-square)](https://www.npmjs.com/package/@kripa006/404-ui)
@@ -20,13 +18,13 @@
 
 ## ✨ Features
 
-- 🎨 **Beautiful Designs** - Stunning, animated 404 pages that impress users
-- ⚡ **Framework Agnostic** - Works with React, Vue, and Vanilla JavaScript
-- 🎯 **TypeScript First** - Full TypeScript support with complete type definitions
-- 🌈 **Tailwind Powered** - Built with Tailwind CSS for easy customization
-- 📦 **Tree-Shakable** - Import only what you need, minimal bundle impact
-- ♿ **Accessible** - WCAG compliant with proper ARIA attributes
-- 🌙 **Dark Mode Ready** - All templates support dark mode out of the box
+- 🎨 **Animated Templates** - Ready-made 404 pages that make dead ends feel intentional
+- ⚡ **Framework Agnostic** - Works with React, Vue, and vanilla JavaScript
+- 🎯 **TypeScript First** - Type definitions are included with the package
+- 🌈 **Tailwind Powered** - Built with Tailwind CSS for practical customization
+- 📦 **Tree-Shakable** - Import framework-specific entry points and only use what you need
+- ♿ **Accessibility Minded** - Templates are designed with semantic content and keyboard-friendly actions
+- 🌙 **Dark Mode Ready** - Current templates are built for polished dark-mode experiences
 
 ## 🚀 How to Use in 3 Steps
 
@@ -47,7 +45,7 @@ yarn add @kripa006/404-ui
 
 ### Step 2: Import the component
 
-Import the `Space404` component into your project. We support React, Vue, and Vanilla JS.
+Import the `Space404` component into your project. React, Vue, and vanilla JavaScript entry points are available.
 
 #### React
 
@@ -201,6 +199,8 @@ Contributions are welcome! Please read our [Contributing Guide](CONTRIBUTING.md)
 3. Commit your changes (`git commit -m 'feat: add amazing feature'`)
 4. Push to the branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
+
+Please also review the [Code of Conduct](CODE_OF_CONDUCT.md) and [Security Policy](SECURITY.md) before opening community or security-related reports.
 
 ## 📄 License
 
