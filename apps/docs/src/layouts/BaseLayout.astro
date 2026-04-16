@@ -2,12 +2,18 @@
 export interface Props {
   title?: string;
   description?: string;
+  keywords?: string;
 }
 
 const { 
   title = "404-UI | Beautiful Animated 404 Pages",
-  description = "A library of beautiful, animated 404 error pages for React, Vue, and Vanilla JS"
+  description = "Open-source animated 404 page components for React, Vue, and vanilla JavaScript.",
+  keywords = "404 page, not found page, error page, React 404 component, Vue 404 component, animated 404, TypeScript components, Tailwind CSS"
 } = Astro.props;
+
+const siteUrl = Astro.site ?? new URL("https://kripa-sindhu-007.github.io");
+const canonicalUrl = new URL(Astro.url.pathname, siteUrl).toString();
+const faviconPath = `${import.meta.env.BASE_URL}favicon.svg`;
 ---
 
 <!doctype html>
@@ -16,16 +22,25 @@ const {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
+    <meta name="keywords" content={keywords} />
+    <meta name="author" content="Kripa Sindhu" />
+    <meta name="robots" content="index, follow" />
+    <meta name="theme-color" content="#0f172a" />
     <meta name="generator" content={Astro.generator} />
+    <link rel="canonical" href={canonicalUrl} />
     
     <!-- Favicon -->
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/svg+xml" href={faviconPath} />
     
     <!-- SEO -->
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
-    <meta name="twitter:card" content="summary_large_image" />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:site_name" content="404-UI" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
     
     <title>{title}</title>
   </head>

@@ -3,6 +3,7 @@
   "type": "module",
   "version": "0.0.0",
   "private": true,
+  "description": "Documentation and gallery site for @kripa006/404-ui animated 404 page components.",
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",

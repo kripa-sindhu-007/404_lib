@@ -1,6 +1,6 @@
 # @kripa006/404-ui
 
-Beautiful, animated 404 error pages for React, Vue, and Vanilla JS.
+Open-source animated 404 error page components for React, Vue, and vanilla JavaScript.
 
 ## 🚀 How to Use in 3 Steps
 
@@ -69,7 +69,7 @@ createSpace404(document.getElementById("app"), {
 
 ## Documentation
 
-For full documentation and gallery, visit [https://kripa-sindhu-007.github.io/404_lib](https://kripa-sindhu-007.github.io/404_lib)
+For full documentation, examples, and the template gallery, visit [https://kripa-sindhu-007.github.io/404_lib](https://kripa-sindhu-007.github.io/404_lib).
 
 ## License
 
