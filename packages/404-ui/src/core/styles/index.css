@@ -567,7 +567,8 @@
 
   /* CRT intensify — Shift-hold easter egg */
   .space-404-container[data-intensify="true"] .space-404-scanlines {
-    opacity: 1.6;
+    opacity: 1;
+    filter: brightness(1.6);
   }
 
   .space-404-container[data-intensify="true"] .space-404-title {
