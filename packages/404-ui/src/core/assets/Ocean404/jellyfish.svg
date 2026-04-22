@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 160" fill="none" aria-hidden="true">
+  <defs>
+    <radialGradient id="oc-jelly-bell" cx="50%" cy="40%" r="60%">
+      <stop offset="0%" stop-color="#e6fffa" stop-opacity="0.95" />
+      <stop offset="45%" stop-color="#7ef0ff" stop-opacity="0.8" />
+      <stop offset="100%" stop-color="#2ec4b6" stop-opacity="0.15" />
+    </radialGradient>
+    <linearGradient id="oc-jelly-tentacle" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#7ef0ff" stop-opacity="0.9" />
+      <stop offset="100%" stop-color="#2ec4b6" stop-opacity="0" />
+    </linearGradient>
+  </defs>
+  <!-- Bell -->
+  <path
+    d="M10 70 Q10 18 60 18 Q110 18 110 70 Q110 82 95 82 Q90 74 80 82 Q70 74 60 82 Q50 74 40 82 Q30 74 25 82 Q10 82 10 70 Z"
+    fill="url(#oc-jelly-bell)"
+    stroke="rgba(230,255,250,0.55)"
+    stroke-width="1"
+  />
+  <!-- Inner glow -->
+  <ellipse cx="60" cy="48" rx="28" ry="14" fill="rgba(230,255,250,0.25)" />
+  <!-- Tentacles -->
+  <g stroke="url(#oc-jelly-tentacle)" stroke-width="1.6" stroke-linecap="round" fill="none" opacity="0.85">
+    <path d="M28 82 Q22 110 30 140 Q34 152 28 158" />
+    <path d="M44 82 Q40 112 48 142 Q44 154 50 160" />
+    <path d="M60 82 Q60 116 60 150 Q60 156 62 160" />
+    <path d="M76 82 Q80 112 72 142 Q76 154 70 160" />
+    <path d="M92 82 Q98 110 90 140 Q86 152 92 158" />
+  </g>
+</svg>

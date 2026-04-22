@@ -13,54 +13,205 @@
   }
 }
 
-@keyframes twinkle {
-  0%,
-  100% {
-    opacity: 0.2;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 1;
-    transform: scale(1.5);
-  }
-}
-
-@keyframes pulseGlow {
-  0%,
-  100% {
-    box-shadow: 0 0 20px rgba(99, 102, 241, 0.5);
-  }
-  50% {
-    box-shadow: 0 0 40px rgba(99, 102, 241, 0.8);
-  }
-}
-
-@keyframes drift {
+/* Space404 — mission-control keyframes */
+@keyframes scan {
   0% {
-    transform: translateX(0) translateY(0);
+    transform: translateY(-100%);
   }
   100% {
-    transform: translateX(-100px) translateY(50px);
+    transform: translateY(100%);
   }
 }
 
-@keyframes astronaut {
+@keyframes crtGlitch {
   0%,
+  92%,
   100% {
-    transform: translateY(0) rotate(0deg);
+    transform: translate(0, 0);
+    filter: none;
   }
-  50% {
-    transform: translateY(-20px) rotate(5deg);
+  93% {
+    transform: translate(-2px, 1px) skewX(-0.5deg);
+    filter: drop-shadow(-1px 0 0 #ff3d3d) drop-shadow(1px 0 0 #7cff4a);
+  }
+  94% {
+    transform: translate(2px, -1px) skewX(0.5deg);
+    filter: drop-shadow(1px 0 0 #ff3d3d) drop-shadow(-1px 0 0 #7cff4a);
+  }
+  95% {
+    transform: translate(-1px, 0) skewX(0deg);
+    filter: none;
+  }
+  96% {
+    transform: translate(1px, 0);
+    filter: none;
   }
 }
 
-@keyframes rocket {
+@keyframes orbitSpin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes ledBlink {
+  0%,
+  60%,
+  100% {
+    opacity: 1;
+  }
+  61%,
+  99% {
+    opacity: 0.15;
+  }
+}
+
+@keyframes cursorBlink {
+  0%,
+  49% {
+    opacity: 1;
+  }
+  50%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes morseFlash {
   0%,
   100% {
-    transform: translateY(0) rotate(-45deg);
+    opacity: 0;
+  }
+  10%,
+  90% {
+    opacity: 1;
+  }
+}
+
+@keyframes rocketLaunch {
+  0% {
+    transform: translate(0, 0);
+    opacity: 0;
+  }
+  15% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate(0, -120vh);
+    opacity: 0;
+  }
+}
+
+@keyframes telemetryTick {
+  0%,
+  100% {
+    opacity: 0.85;
   }
   50% {
-    transform: translateY(-30px) rotate(-45deg);
+    opacity: 0.5;
+  }
+}
+
+/* Ocean404 keyframes */
+@keyframes rise {
+  0% {
+    transform: translate3d(0, 0, 0) scale(0.9);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.9;
+  }
+  80% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: translate3d(var(--bubble-drift, 20px), -110vh, 0) scale(1.05);
+    opacity: 0;
+  }
+}
+
+@keyframes caustic {
+  0%,
+  100% {
+    transform: translate3d(-4%, -2%, 0) rotate(0deg);
+    opacity: 0.35;
+  }
+  50% {
+    transform: translate3d(4%, 3%, 0) rotate(1.5deg);
+    opacity: 0.55;
+  }
+}
+
+@keyframes sonar {
+  0% {
+    transform: scale(0.4);
+    opacity: 0.6;
+  }
+  100% {
+    transform: scale(2.4);
+    opacity: 0;
+  }
+}
+
+@keyframes jellyBell {
+  0%,
+  100% {
+    transform: translateY(0) scaleX(1) scaleY(1);
+  }
+  50% {
+    transform: translateY(-14px) scaleX(1.06) scaleY(0.92);
+  }
+}
+
+@keyframes shimmer {
+  0%,
+  100% {
+    text-shadow:
+      0 0 18px rgba(126, 240, 255, 0.35),
+      0 0 40px rgba(46, 196, 182, 0.25);
+  }
+  50% {
+    text-shadow:
+      0 0 26px rgba(126, 240, 255, 0.55),
+      0 0 60px rgba(46, 196, 182, 0.35);
+  }
+}
+
+@keyframes subCruise {
+  0% {
+    transform: translateX(-20vw);
+  }
+  100% {
+    transform: translateX(120vw);
+  }
+}
+
+@keyframes anglerDrift {
+  0% {
+    transform: translateX(-10vw);
+    opacity: 0;
+  }
+  20%,
+  80% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(110vw);
+    opacity: 0;
+  }
+}
+
+@keyframes bubblePop {
+  0% {
+    transform: scale(1);
+    opacity: 0.85;
+  }
+  100% {
+    transform: scale(2.4);
+    opacity: 0;
   }
 }
 
@@ -72,56 +223,588 @@
 }
 
 @layer components {
-  /* Space 404 Component Styles */
+  /* ─────────────────────────────────────────────────────────────────────────
+     Space 404 — Apollo-era mission control
+     ───────────────────────────────────────────────────────────────────────── */
   .space-404-container {
-    @apply relative flex w-full flex-col items-center justify-center overflow-hidden;
+    @apply relative flex w-full flex-col overflow-hidden;
     min-height: calc(100vh - 4rem);
+    container-type: inline-size;
+    container-name: space404;
+    color: theme("colors.space.phosphor");
+    background-color: theme("colors.space.hull");
+    background-image:
+      linear-gradient(rgba(124, 255, 74, 0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(124, 255, 74, 0.06) 1px, transparent 1px),
+      radial-gradient(
+        ellipse at 50% 40%,
+        rgba(124, 255, 74, 0.12) 0%,
+        rgba(11, 13, 10, 0) 55%
+      );
+    background-size:
+      48px 48px,
+      48px 48px,
+      100% 100%;
+    font-family: theme("fontFamily.telemetry");
+    isolation: isolate;
+  }
+
+  /* CRT scanlines, subtly drifting */
+  .space-404-scanlines {
+    @apply pointer-events-none absolute inset-0 z-[5];
+    background: repeating-linear-gradient(
+      to bottom,
+      rgba(124, 255, 74, 0.04) 0px,
+      rgba(124, 255, 74, 0.04) 1px,
+      transparent 2px,
+      transparent 4px
+    );
+    mix-blend-mode: overlay;
+  }
+
+  .space-404-scanlines::after {
+    content: "";
+    @apply absolute inset-0;
     background: linear-gradient(
       180deg,
-      theme("colors.space.900") 0%,
-      theme("colors.space.800") 50%,
-      theme("colors.space.700") 100%
+      transparent 0%,
+      rgba(124, 255, 74, 0.08) 50%,
+      transparent 100%
     );
+    height: 40%;
+    animation: scan 6s linear infinite;
   }
 
-  .space-404-star {
-    @apply absolute rounded-full bg-white;
-    width: var(--star-size, 2px);
-    height: var(--star-size, 2px);
-    left: var(--star-x, 50%);
-    top: var(--star-y, 50%);
-    animation: twinkle var(--star-duration, 3s) ease-in-out
-      var(--star-delay, 0s) infinite;
+  /* CRT curvature + vignette */
+  .space-404-vignette {
+    @apply pointer-events-none absolute inset-0 z-[6];
+    background: radial-gradient(
+      ellipse at center,
+      transparent 40%,
+      rgba(11, 13, 10, 0.55) 85%,
+      rgba(11, 13, 10, 0.95) 100%
+    );
+    box-shadow: inset 0 0 160px rgba(0, 0, 0, 0.65);
   }
 
+  /* Top status bar */
+  .space-404-statusbar {
+    @apply relative z-10 flex items-center gap-4 border-b px-6 py-3 text-[10px] uppercase;
+    letter-spacing: 0.35em;
+    border-color: rgba(124, 255, 74, 0.18);
+    background: linear-gradient(
+      180deg,
+      rgba(124, 255, 74, 0.04),
+      rgba(20, 23, 18, 0.4)
+    );
+    color: rgba(124, 255, 74, 0.8);
+  }
+
+  .space-404-statusbar-label {
+    color: theme("colors.space.amber");
+  }
+
+  .space-404-led {
+    @apply inline-block h-2 w-2 rounded-full;
+    background: theme("colors.space.amber");
+    box-shadow: 0 0 8px theme("colors.space.amber");
+    animation: ledBlink 1.6s steps(1, end) infinite;
+  }
+
+  .space-404-warn {
+    color: theme("colors.space.warn");
+    animation: ledBlink 1.2s steps(1, end) infinite;
+  }
+
+  .space-404-spacer {
+    flex: 1;
+  }
+
+  /* Main stage */
+  .space-404-stage {
+    @apply relative z-10 grid w-full flex-1;
+    grid-template-columns: minmax(0, 220px) minmax(0, 1fr) minmax(0, 220px);
+    gap: 0;
+  }
+
+  /* Adapt to the component's own container width rather than the viewport.
+     This lets narrow preview frames on the docs/gallery hide the rails
+     automatically without brittle transform-scale hacks.
+     The doubled `.space-404-rail` class bumps specificity above the plain
+     `.space-404-rail { display: flex }` declaration that follows. */
+  @container space404 (max-width: 900px) {
+    .space-404-stage {
+      grid-template-columns: 1fr;
+    }
+    .space-404-rail.space-404-rail--left,
+    .space-404-rail.space-404-rail--right {
+      display: none;
+    }
+  }
+
+  /* Telemetry rails */
+  .space-404-rail {
+    @apply relative flex flex-col gap-3 px-5 py-6 text-[11px];
+    border-color: rgba(124, 255, 74, 0.15);
+    color: rgba(124, 255, 74, 0.75);
+    letter-spacing: 0.1em;
+  }
+
+  .space-404-rail--left {
+    border-right: 1px solid rgba(124, 255, 74, 0.15);
+  }
+
+  .space-404-rail--right {
+    border-left: 1px solid rgba(124, 255, 74, 0.15);
+    text-align: right;
+  }
+
+  .space-404-rail-heading {
+    @apply mb-2 text-[10px] uppercase;
+    letter-spacing: 0.35em;
+    color: theme("colors.space.amber");
+  }
+
+  .space-404-rail-row {
+    @apply flex items-baseline justify-between gap-3;
+  }
+
+  .space-404-rail-row--right {
+    flex-direction: row-reverse;
+  }
+
+  .space-404-rail-key {
+    color: rgba(124, 255, 74, 0.55);
+    text-transform: uppercase;
+    font-size: 9px;
+    letter-spacing: 0.3em;
+  }
+
+  .space-404-rail-val {
+    color: theme("colors.space.phosphor");
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* Center stage */
   .space-404-content {
-    @apply relative z-10 flex flex-col items-center gap-8 px-4 text-center;
+    @apply relative flex flex-col items-center justify-center gap-6 px-6 py-10 text-center;
+  }
+
+  .space-404-eyebrow {
+    @apply text-[10px] uppercase;
+    letter-spacing: 0.5em;
+    color: theme("colors.space.amber");
   }
 
   .space-404-title {
-    @apply font-space text-8xl font-bold tracking-wider text-white md:text-9xl;
+    @apply relative text-[clamp(6rem,22vw,16rem)] font-black leading-none;
+    font-family: theme("fontFamily.telemetry");
+    letter-spacing: 0.08em;
+    color: theme("colors.space.phosphor");
     text-shadow:
-      0 0 20px rgba(99, 102, 241, 0.5),
-      0 0 40px rgba(99, 102, 241, 0.3),
-      0 0 60px rgba(99, 102, 241, 0.1);
-    animation: float 6s ease-in-out infinite;
+      0 0 8px rgba(124, 255, 74, 0.7),
+      0 0 22px rgba(124, 255, 74, 0.35),
+      0 0 48px rgba(124, 255, 74, 0.18);
+    animation: crtGlitch 9s steps(1, end) infinite;
+    user-select: none;
+  }
+
+  .space-404-title::before,
+  .space-404-title::after {
+    content: attr(data-text);
+    @apply pointer-events-none absolute inset-0;
+    mix-blend-mode: screen;
+  }
+
+  .space-404-title::before {
+    color: theme("colors.space.warn");
+    transform: translate(-1px, 0);
+    opacity: 0.35;
+  }
+
+  .space-404-title::after {
+    color: theme("colors.space.glow");
+    transform: translate(1px, 0);
+    opacity: 0.2;
+  }
+
+  .space-404-headline {
+    @apply text-base font-normal uppercase;
+    letter-spacing: 0.45em;
+    color: theme("colors.space.phosphor");
   }
 
   .space-404-subtitle {
-    @apply font-space text-xl text-gray-300 md:text-2xl;
-    animation: float 6s ease-in-out 0.3s infinite;
+    @apply max-w-md text-sm;
+    color: rgba(124, 255, 74, 0.72);
+    letter-spacing: 0.05em;
+    line-height: 1.6;
   }
 
+  /* Orbital diagnostic */
+  .space-404-orbit {
+    @apply pointer-events-none relative my-2;
+    width: min(320px, 60%);
+    aspect-ratio: 16 / 9;
+  }
+
+  .space-404-orbit svg {
+    @apply h-full w-full;
+    filter: drop-shadow(0 0 10px rgba(124, 255, 74, 0.35));
+  }
+
+  .space-404-orbit-ring {
+    animation: orbitSpin var(--orbit-duration, 36s) linear infinite;
+    transform-origin: 50% 50%;
+  }
+
+  .space-404-orbit-ring--fast {
+    --orbit-duration: 22s;
+    animation-direction: reverse;
+  }
+
+  .space-404-craft {
+    @apply pointer-events-auto cursor-pointer;
+    transform-origin: 50% 50%;
+  }
+
+  .space-404-craft circle {
+    transition: r 200ms ease;
+  }
+
+  .space-404-craft:hover circle {
+    r: 7;
+  }
+
+  /* Primary action */
   .space-404-button {
-    @apply font-space rounded-full px-8 py-3 text-lg font-medium text-white transition-all duration-300;
-    @apply from-space-accent to-space-glow bg-gradient-to-r;
-    @apply hover:scale-105 hover:shadow-lg;
-    animation: pulseGlow 2s ease-in-out infinite;
+    @apply relative inline-flex items-center gap-3 rounded-none border px-6 py-3 text-[11px] uppercase transition-all duration-200;
+    font-family: theme("fontFamily.telemetry");
+    letter-spacing: 0.4em;
+    color: theme("colors.space.phosphor");
+    border-color: rgba(124, 255, 74, 0.5);
+    background: linear-gradient(
+      180deg,
+      rgba(124, 255, 74, 0.06),
+      rgba(20, 23, 18, 0.5)
+    );
+    box-shadow: 0 0 0 1px rgba(124, 255, 74, 0.05) inset;
   }
 
-  .space-404-astronaut {
-    @apply absolute z-20 h-32 w-32 drop-shadow-lg md:h-48 md:w-48;
-    animation: astronaut 8s ease-in-out infinite;
+  .space-404-button:hover {
+    color: theme("colors.space.hull");
+    background: theme("colors.space.phosphor");
+    border-color: theme("colors.space.phosphor");
+    box-shadow:
+      0 0 18px rgba(124, 255, 74, 0.45),
+      0 0 40px rgba(124, 255, 74, 0.15);
+  }
+
+  .space-404-button:focus-visible {
+    outline: 2px solid theme("colors.space.amber");
+    outline-offset: 2px;
+  }
+
+  .space-404-button-bracket {
+    color: theme("colors.space.amber");
+  }
+
+  /* Transmission ticker */
+  .space-404-ticker {
+    @apply relative z-10 flex items-center gap-3 border-t px-6 py-3 text-[11px];
+    border-color: rgba(124, 255, 74, 0.18);
+    background: linear-gradient(
+      180deg,
+      rgba(20, 23, 18, 0.4),
+      rgba(124, 255, 74, 0.04)
+    );
+    color: rgba(124, 255, 74, 0.85);
+    min-height: 44px;
+  }
+
+  .space-404-ticker-prompt {
+    color: theme("colors.space.amber");
+  }
+
+  .space-404-ticker-text {
+    @apply flex-1 overflow-hidden whitespace-nowrap;
+    letter-spacing: 0.08em;
+  }
+
+  .space-404-ticker-cursor {
+    display: inline-block;
+    width: 8px;
+    height: 14px;
+    margin-left: 2px;
+    background: theme("colors.space.phosphor");
+    vertical-align: text-bottom;
+    animation: cursorBlink 1s steps(1, end) infinite;
+  }
+
+  /* Morse burst — easter egg */
+  .space-404-morse {
+    @apply pointer-events-none absolute left-1/2 top-1/2 z-20 -translate-x-1/2 -translate-y-1/2 font-bold;
+    font-family: theme("fontFamily.telemetry");
+    font-size: clamp(2rem, 6vw, 4rem);
+    letter-spacing: 0.6em;
+    color: theme("colors.space.warn");
+    text-shadow:
+      0 0 12px rgba(255, 61, 61, 0.8),
+      0 0 32px rgba(255, 61, 61, 0.4);
+    animation: morseFlash 900ms ease-out forwards;
+  }
+
+  /* Launched rocket — APOLLO easter egg */
+  .space-404-rocket {
+    @apply pointer-events-none absolute bottom-0 z-20;
+    left: var(--rocket-x, 50%);
+    width: 34px;
+    height: 80px;
+    transform-origin: 50% 100%;
+    animation: rocketLaunch 2.2s ease-in forwards;
+    filter: drop-shadow(0 0 12px rgba(255, 181, 71, 0.8));
+  }
+
+  /* CRT intensify — Shift-hold easter egg */
+  .space-404-container[data-intensify="true"] .space-404-scanlines {
+    opacity: 1.6;
+  }
+
+  .space-404-container[data-intensify="true"] .space-404-title {
+    text-shadow:
+      -2px 0 theme("colors.space.warn"),
+      2px 0 theme("colors.space.glow"),
+      0 0 16px rgba(124, 255, 74, 0.8),
+      0 0 42px rgba(124, 255, 74, 0.45);
+  }
+
+  /* Reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    .space-404-scanlines::after,
+    .space-404-title,
+    .space-404-led,
+    .space-404-warn,
+    .space-404-orbit-ring,
+    .space-404-ticker-cursor {
+      animation: none !important;
+    }
+  }
+
+  /* Ocean 404 — bioluminescent deep-sea variant */
+  .ocean-404-container {
+    @apply relative flex w-full flex-col items-center justify-center overflow-hidden;
+    min-height: calc(100vh - 4rem);
+    background:
+      radial-gradient(
+        ellipse at 50% 0%,
+        theme("colors.ocean.600") 0%,
+        theme("colors.ocean.800") 45%,
+        theme("colors.ocean.900") 100%
+      ),
+      theme("colors.ocean.900");
+    color: theme("colors.ocean.pearl");
+    isolation: isolate;
+  }
+
+  .ocean-404-caustics {
+    @apply pointer-events-none absolute inset-[-10%] -z-10;
+    background:
+      radial-gradient(
+        circle at 20% 10%,
+        rgba(126, 240, 255, 0.22),
+        transparent 45%
+      ),
+      radial-gradient(
+        circle at 80% 30%,
+        rgba(46, 196, 182, 0.18),
+        transparent 50%
+      ),
+      radial-gradient(
+        circle at 40% 80%,
+        rgba(14, 110, 143, 0.4),
+        transparent 60%
+      );
+    filter: blur(40px);
+    animation: caustic 14s ease-in-out infinite;
+  }
+
+  .ocean-404-vignette {
+    @apply pointer-events-none absolute inset-0 -z-10;
+    background: radial-gradient(
+      ellipse at center,
+      transparent 30%,
+      rgba(2, 17, 38, 0.65) 85%,
+      rgba(2, 17, 38, 0.95) 100%
+    );
+  }
+
+  .ocean-404-bubble-field {
+    @apply pointer-events-none absolute inset-0 overflow-hidden;
+  }
+
+  .ocean-404-bubble {
+    @apply pointer-events-auto absolute cursor-pointer rounded-full;
+    left: var(--bubble-x, 50%);
+    bottom: -60px;
+    width: var(--bubble-size, 14px);
+    height: var(--bubble-size, 14px);
+    background: radial-gradient(
+      circle at 30% 30%,
+      rgba(255, 255, 255, 0.9),
+      rgba(126, 240, 255, 0.35) 45%,
+      rgba(46, 196, 182, 0.12) 70%,
+      transparent 75%
+    );
+    box-shadow:
+      inset 0 0 6px rgba(255, 255, 255, 0.25),
+      0 0 8px rgba(126, 240, 255, 0.18);
+    animation: rise var(--bubble-duration, 12s) linear var(--bubble-delay, 0s)
+      infinite;
+    transition: filter 200ms ease;
+  }
+
+  .ocean-404-bubble:hover {
+    filter: brightness(1.5);
+  }
+
+  .ocean-404-bubble[data-popped="true"] {
+    animation: bubblePop 400ms ease-out forwards;
+    pointer-events: none;
+  }
+
+  .ocean-404-jellyfish {
+    @apply pointer-events-none absolute z-10;
+    width: var(--jelly-size, 120px);
+    left: var(--jelly-x, 70%);
+    top: var(--jelly-y, 30%);
+    animation: jellyBell var(--jelly-duration, 5s) ease-in-out
+      var(--jelly-delay, 0s) infinite;
+    filter: drop-shadow(0 0 14px rgba(126, 240, 255, 0.35));
+    opacity: 0.85;
+  }
+
+  .ocean-404-content {
+    @apply relative z-10 flex flex-col items-center gap-7 px-4 text-center;
+  }
+
+  .ocean-404-sonar {
+    @apply pointer-events-none absolute left-1/2 top-1/2 -z-10 h-[220px] w-[220px] -translate-x-1/2 -translate-y-1/2 rounded-full;
+    border: 1px solid rgba(126, 240, 255, 0.45);
+    animation: sonar 4.5s ease-out infinite;
+  }
+
+  .ocean-404-sonar::after {
+    content: "";
+    @apply absolute inset-0 rounded-full;
+    border: 1px solid rgba(126, 240, 255, 0.25);
+    animation: sonar 4.5s ease-out 1.5s infinite;
+  }
+
+  .ocean-404-title {
+    @apply font-space text-8xl font-light tracking-[0.25em] text-white md:text-9xl;
+    background: linear-gradient(
+      180deg,
+      theme("colors.ocean.pearl") 0%,
+      theme("colors.ocean.glow") 60%,
+      theme("colors.ocean.accent") 100%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shimmer 4.5s ease-in-out infinite;
+    user-select: none;
+  }
+
+  .ocean-404-eyebrow {
+    @apply font-mono text-xs uppercase tracking-[0.5em];
+    color: rgba(126, 240, 255, 0.7);
+  }
+
+  .ocean-404-subtitle {
+    @apply font-space text-lg font-light tracking-wide md:text-xl;
+    color: rgba(230, 255, 250, 0.75);
+    max-width: 34ch;
+  }
+
+  .ocean-404-button {
+    @apply font-space relative inline-flex items-center gap-3 rounded-full px-7 py-3 text-sm font-medium uppercase tracking-[0.35em] transition-all duration-300;
+    color: theme("colors.ocean.pearl");
+    border: 1px solid rgba(126, 240, 255, 0.45);
+    background: linear-gradient(
+      180deg,
+      rgba(46, 196, 182, 0.15),
+      rgba(10, 77, 110, 0.35)
+    );
+    box-shadow:
+      inset 0 0 0 1px rgba(255, 255, 255, 0.04),
+      0 0 18px rgba(126, 240, 255, 0.15);
+    backdrop-filter: blur(6px);
+  }
+
+  .ocean-404-button::before {
+    content: "";
+    @apply pointer-events-none absolute inset-0 rounded-full opacity-0 transition-opacity duration-300;
+    background: radial-gradient(
+      circle at 50% 50%,
+      rgba(126, 240, 255, 0.25),
+      transparent 70%
+    );
+  }
+
+  .ocean-404-button:hover {
+    border-color: rgba(126, 240, 255, 0.85);
+    box-shadow:
+      inset 0 0 0 1px rgba(255, 255, 255, 0.06),
+      0 0 32px rgba(126, 240, 255, 0.35);
+    transform: translateY(-1px);
+  }
+
+  .ocean-404-button:hover::before {
+    opacity: 1;
+  }
+
+  .ocean-404-depth {
+    @apply pointer-events-none absolute left-6 top-6 z-10 font-mono text-[11px] uppercase tracking-[0.3em];
+    color: rgba(126, 240, 255, 0.65);
+  }
+
+  .ocean-404-depth-value {
+    @apply text-white;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .ocean-404-coords {
+    @apply pointer-events-none absolute bottom-6 right-6 z-10 font-mono text-[10px] uppercase tracking-[0.3em];
+    color: rgba(126, 240, 255, 0.45);
+  }
+
+  .ocean-404-submarine {
+    @apply pointer-events-none absolute bottom-[12%] left-0 z-10;
+    width: 120px;
+    animation: subCruise 9s linear forwards;
+    filter: drop-shadow(0 6px 24px rgba(126, 240, 255, 0.4));
+  }
+
+  .ocean-404-angler {
+    @apply pointer-events-none absolute left-0 top-[62%] z-0;
+    width: 40px;
+    animation: anglerDrift 18s linear forwards;
+    filter: drop-shadow(0 0 12px rgba(126, 240, 255, 0.9));
+    opacity: 0.6;
+  }
+
+  /* Reduced motion: stills only */
+  @media (prefers-reduced-motion: reduce) {
+    .ocean-404-caustics,
+    .ocean-404-bubble,
+    .ocean-404-jellyfish,
+    .ocean-404-sonar,
+    .ocean-404-sonar::after,
+    .ocean-404-title,
+    .ocean-404-submarine,
+    .ocean-404-angler {
+      animation: none !important;
+    }
   }
 }
 

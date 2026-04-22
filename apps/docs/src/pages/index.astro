@@ -1,242 +1,509 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
+import { Space404, Ocean404 } from "@kripa006/404-ui/react";
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, "");
 ---
 
 <BaseLayout
-  title="404-UI | Animated 404 Pages for React, Vue, and JavaScript"
-  description="Install open-source animated 404 page components for React, Vue, and vanilla JavaScript. Browse templates, copy code, and customize with Tailwind CSS."
+  title="404-UI — design-forward 404 pages for React, Vue, and JavaScript"
+  description="A small library of carefully designed, animated 404 error pages. Drop them into any React, Vue, or Vanilla app. Handcrafted, not generated."
   keywords="404 UI, animated 404 page, React 404 page, Vue 404 page, JavaScript error page, not found component, Tailwind 404 template"
 >
-  <!-- Hero Section -->
-  <section class="relative overflow-hidden py-24 sm:py-32">
-    <!-- Background gradient -->
-    <div class="absolute inset-0 -z-10 bg-gradient-to-b from-space-900/5 to-transparent dark:from-space-900/20"></div>
-    
-    <div class="mx-auto max-w-7xl px-4 text-center sm:px-6 lg:px-8">
-      <!-- Badge -->
-      <div class="mb-8 inline-flex items-center gap-2 rounded-full border border-gray-200 bg-white px-4 py-2 text-sm dark:border-gray-700 dark:bg-gray-800">
-        <span class="animate-pulse text-green-500">●</span>
-        <span class="text-gray-600 dark:text-gray-300">Open source and ready for contributors</span>
-      </div>
+  <!-- ═════════════════════════ Hero ═════════════════════════ -->
+  <section class="relative overflow-hidden">
+    <div class="bg-grid absolute inset-0 -z-10"></div>
+    <!-- Phosphor bleed -->
+    <div
+      aria-hidden="true"
+      class="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[600px]"
+      style="background: radial-gradient(ellipse 70% 60% at 70% 20%, rgb(124 255 74 / 0.08), transparent 60%);"
+    ></div>
 
-      <!-- Title -->
-      <h1 class="font-space text-4xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-6xl lg:text-7xl">
-        Beautiful
-        <span class="bg-gradient-to-r from-space-accent to-space-glow bg-clip-text text-transparent">
-          404 Pages
-        </span>
-        <br />
-        for Modern Apps
-      </h1>
+    <div class="mx-auto grid max-w-6xl gap-10 px-4 pb-16 pt-12 sm:gap-12 sm:px-6 sm:pb-20 sm:pt-16 lg:grid-cols-[1.1fr_1fr] lg:gap-8 lg:px-8 lg:pt-24">
+      <!-- Copy column -->
+      <div class="flex flex-col justify-center">
+        <p class="eyebrow">
+          <span class="eyebrow-dot" aria-hidden="true"></span>
+          v0.1 · Open source · MIT
+        </p>
 
-      <!-- Subtitle -->
-      <p class="mx-auto mt-6 max-w-2xl text-lg text-gray-600 dark:text-gray-400 sm:text-xl">
-        A collection of stunning, animated 404 error pages. Available for React, Vue, and Vanilla JS. 
-        Built with Tailwind CSS for maximum customization.
-      </p>
+        <h1 class="mt-6 text-5xl font-semibold leading-[0.95] tracking-[-0.02em] text-balance sm:text-6xl lg:text-7xl xl:text-[6.25rem]">
+          <span>404 pages</span>
+          <br />
+          <span>with <span class="font-display text-accent">a point of view.</span></span>
+        </h1>
 
-      <!-- CTA Buttons -->
-      <div class="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
-        <a href="/404_lib/gallery" class="btn btn-primary px-8 py-3 text-lg">
-          View Gallery
-        </a>
-        <a href="#installation" class="btn btn-secondary px-8 py-3 text-lg">
-          Get Started
-        </a>
-      </div>
+        <p class="mt-6 max-w-xl text-pretty text-base text-paper-muted leading-relaxed sm:mt-7 sm:text-lg">
+          A tiny library of handcrafted, animated 404 templates for React, Vue,
+          and vanilla JS. No purple-gradient clichés. Small, accessible,
+          tree-shakeable, and full of hidden easter eggs that reward the
+          curious.
+        </p>
 
-      <!-- Install command -->
-      <div class="mx-auto mt-12 max-w-md">
-        <div class="flex items-center gap-2 rounded-lg border border-gray-200 bg-gray-100 px-4 py-3 dark:border-gray-700 dark:bg-gray-800">
-          <code class="flex-1 font-mono text-sm text-gray-800 dark:text-gray-200">
-            npm install @kripa006/404-ui
-          </code>
-          <button
-            id="copy-install"
-            class="text-gray-500 transition-colors hover:text-gray-700 dark:text-gray-400 dark:hover:text-white"
-            title="Copy to clipboard"
-          >
-            <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+        <!-- CTAs -->
+        <div class="mt-9 flex flex-wrap items-center gap-3">
+          <a href={`${base}/gallery`} class="btn btn-primary">
+            Browse templates
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="square" />
             </svg>
+          </a>
+          <a href={`${base}/demo/space`} class="btn btn-ghost">
+            Live demo
+          </a>
+          <button
+            id="hero-copy"
+            type="button"
+            class="group inline-flex items-center gap-2 px-3 py-2 font-mono text-xs text-paper-muted transition-colors hover:text-paper"
+            style="border: 1px solid rgb(245 244 240 / 0.12); background: rgb(245 244 240 / 0.03);"
+          >
+            <span class="text-accent">$</span>
+            <span>npm i @kripa006/404-ui</span>
+            <span id="hero-copy-state" class="text-paper-dim transition-colors group-hover:text-paper">⎘</span>
           </button>
         </div>
-      </div>
-    </div>
-  </section>
 
-  <!-- Features Section -->
-  <section class="py-24">
-    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-      <div class="grid gap-8 md:grid-cols-3">
-        <!-- Feature 1 -->
-        <div class="card card-hover p-6">
-          <div class="mb-4 text-4xl">⚡</div>
-          <h3 class="font-space text-xl font-semibold text-gray-900 dark:text-white">
-            Framework Agnostic
-          </h3>
-          <p class="mt-2 text-gray-600 dark:text-gray-400">
-            Works with React, Vue, and Vanilla JS. Use the same stunning designs in any project.
-          </p>
-        </div>
-
-        <!-- Feature 2 -->
-        <div class="card card-hover p-6">
-          <div class="mb-4 text-4xl">🎨</div>
-          <h3 class="font-space text-xl font-semibold text-gray-900 dark:text-white">
-            Tailwind Powered
-          </h3>
-          <p class="mt-2 text-gray-600 dark:text-gray-400">
-            Built with Tailwind CSS for easy customization. Modify colors, animations, and layouts effortlessly.
-          </p>
-        </div>
-
-        <!-- Feature 3 -->
-        <div class="card card-hover p-6">
-          <div class="mb-4 text-4xl">📦</div>
-          <h3 class="font-space text-xl font-semibold text-gray-900 dark:text-white">
-            Tree-Shakable
-          </h3>
-          <p class="mt-2 text-gray-600 dark:text-gray-400">
-            Import only what you need. Our library is optimized for minimal bundle size.
-          </p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Preview Section -->
-  <section id="preview" class="bg-gray-100 py-24 dark:bg-gray-900">
-    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-      <div class="text-center">
-        <h2 class="font-space text-3xl font-bold text-gray-900 dark:text-white sm:text-4xl">
-          Live Preview
-        </h2>
-        <p class="mt-4 text-lg text-gray-600 dark:text-gray-400">
-          See the Space 404 template in action
-        </p>
+        <!-- Meta strip -->
+        <dl class="mt-10 grid grid-cols-3 gap-4 border-t border-paper-faint pt-6 sm:mt-12 sm:gap-6">
+          <div>
+            <dt class="font-mono text-[9px] uppercase tracking-[0.3em] text-paper-dim sm:text-[10px]">Templates</dt>
+            <dd class="mt-1 font-serif text-2xl sm:text-3xl">2<span class="text-paper-dim">&nbsp;/ growing</span></dd>
+          </div>
+          <div>
+            <dt class="font-mono text-[9px] uppercase tracking-[0.3em] text-paper-dim sm:text-[10px]">Frameworks</dt>
+            <dd class="mt-1 font-serif text-2xl sm:text-3xl">3</dd>
+          </div>
+          <div>
+            <dt class="font-mono text-[9px] uppercase tracking-[0.3em] text-paper-dim sm:text-[10px]">Bundle (gzip)</dt>
+            <dd class="mt-1 font-serif text-2xl sm:text-3xl">~6 kB</dd>
+          </div>
+        </dl>
       </div>
 
-      <div class="mt-12 overflow-hidden rounded-2xl shadow-2xl">
-        <div class="preview-container" style="height: 500px;">
-          <!-- Live preview will be rendered here -->
-          <div class="space-404-container h-full">
-            <div id="stars-container" class="absolute inset-0 overflow-hidden"></div>
-            <div class="space-404-planet -left-16 -top-16"></div>
-            <div class="space-404-rocket right-8 top-1/4">🚀</div>
-            <div class="space-404-content">
-              <h1 class="space-404-title">404</h1>
-              <p class="space-404-subtitle">Lost in space...</p>
-              <button class="space-404-button">Return Home</button>
+      <!-- Live preview column -->
+      <div class="relative">
+        <!-- Window chrome -->
+        <div
+          class="relative"
+          style="border: 1px solid rgb(245 244 240 / 0.1); background: rgb(17 19 17);"
+        >
+          <div
+            class="flex items-center justify-between px-4 py-2 font-mono text-[10px] uppercase tracking-[0.3em] text-paper-dim"
+            style="border-bottom: 1px solid rgb(245 244 240 / 0.08);"
+          >
+            <div class="flex items-center gap-2">
+              <span class="dot-live" aria-hidden="true"></span>
+              <span>live preview</span>
             </div>
-            <div class="space-404-planet -bottom-20 -right-20 opacity-20" style="animation-delay: 2s;"></div>
+            <span class="hidden sm:inline">APOLLO-404.TSX</span>
+            <span class="text-accent">● running</span>
+          </div>
+          <div class="preview-surface h-[340px] sm:h-[400px] lg:h-[460px]">
+            <Space404
+              client:only="react"
+              title="404"
+              eyebrow="SIGNAL LOST · UPLINK DEGRADED"
+              headline="OFF-NOMINAL TRAJECTORY"
+              subtitle="The page you requested drifted outside the nominal envelope."
+              buttonText="RE-VECTOR"
+              missionId="APOLLO · LM-404"
+            />
+          </div>
+          <div
+            class="flex items-center justify-between px-4 py-2 font-mono text-[10px] uppercase tracking-[0.25em] text-paper-dim"
+            style="border-top: 1px solid rgb(245 244 240 / 0.08);"
+          >
+            <span>⏎ try ⇧ · type APOLLO · click the craft</span>
+            <span class="text-accent">Apollo 404</span>
           </div>
         </div>
+
+        <!-- Figure caption (below frame) -->
+        <p class="mt-3 text-right font-mono text-[10px] uppercase tracking-[0.35em] text-paper-dim">
+          fig. 01 — Apollo 404, rendered live
+        </p>
       </div>
     </div>
   </section>
 
-  <!-- Installation Section -->
-  <section id="installation" class="py-24">
-    <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-      <div class="text-center">
-        <h2 class="font-space text-3xl font-bold text-gray-900 dark:text-white sm:text-4xl">
-          How to Use
-        </h2>
-        <p class="mt-4 text-lg text-gray-600 dark:text-gray-400">
-          Get started in minutes with your favorite framework
+  <!-- ═════════════════ What you get strip ═════════════════ -->
+  <section class="border-y border-paper-faint">
+    <div class="mx-auto grid max-w-6xl grid-cols-2 md:grid-cols-5">
+      {[
+        { k: "01", label: "React · Vue · Vanilla", cls: "" },
+        { k: "02", label: "Tailwind preset included", cls: "border-l border-paper-faint" },
+        { k: "03", label: "Tree-shakeable ESM", cls: "border-t border-paper-faint md:border-t-0 md:border-l" },
+        { k: "04", label: "A11y + reduced-motion", cls: "border-l border-t border-paper-faint md:border-t-0" },
+        { k: "05", label: "Easter eggs by default", cls: "col-span-2 border-t border-paper-faint md:col-span-1 md:border-l md:border-t-0" },
+      ].map((f) => (
+        <div class={`px-4 py-5 sm:px-5 sm:py-6 ${f.cls}`}>
+          <p class="font-mono text-[10px] uppercase tracking-[0.3em] text-accent">{f.k}</p>
+          <p class="mt-2 text-sm text-paper">{f.label}</p>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <!-- ═══════════════════ Template showcase ═══════════════════ -->
+  <section class="relative mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
+    <div class="flex flex-col items-start gap-4 sm:flex-row sm:items-end sm:justify-between sm:gap-6">
+      <div>
+        <p class="eyebrow">
+          <span class="eyebrow-dot" aria-hidden="true"></span>
+          02 — the library
         </p>
+        <h2 class="mt-4 max-w-2xl text-4xl font-semibold tracking-[-0.01em] text-balance sm:text-5xl">
+          Two templates.<br />
+          <span class="font-display text-paper-muted">Each one an opinion.</span>
+        </h2>
       </div>
+      <a href={`${base}/gallery`} class="link-arrow">
+        <span>All templates</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="square" />
+        </svg>
+      </a>
+    </div>
 
-      <div class="mt-12 space-y-8">
-        <!-- React -->
-        <div class="card p-6">
-          <h3 class="mb-4 flex items-center gap-2 font-space text-xl font-semibold text-gray-900 dark:text-white">
-            <span class="text-2xl">⚛️</span> React
-          </h3>
-          <pre class="code-block"><code>{`// 1. Import the component
-import { Space404 } from '@kripa006/404-ui/react';
+    <div class="mt-12 grid gap-6 lg:grid-cols-2">
+      <!-- Apollo -->
+      <article class="plate">
+        <div class="plate-label">Fig. A</div>
+        <div class="plate-tag">MISSION CONTROL</div>
+        <div class="preview-surface h-[280px] sm:h-[320px] md:h-[360px] border-b border-paper-faint">
+          <Space404
+            client:only="react"
+            title="404"
+            eyebrow="SIGNAL LOST"
+            headline="OFF-NOMINAL TRAJECTORY"
+            subtitle="Drifted outside the nominal envelope."
+            buttonText="RE-VECTOR"
+            missionId="APOLLO · LM-404"
+          />
+        </div>
+        <div class="p-6">
+          <div class="flex items-center justify-between">
+            <h3 class="font-serif text-3xl text-paper">Apollo 404</h3>
+            <code class="code-inline text-[11px]">Space404</code>
+          </div>
+          <p class="mt-3 text-sm text-paper-muted text-pretty">
+            An Apollo-era mission-control console. CRT phosphor, live
+            telemetry rails, and an orbital diagnostic that shows the
+            off-nominal trajectory. Type <span class="text-paper">APOLLO</span>
+            to launch a rocket.
+          </p>
+          <ul class="mt-4 flex flex-wrap gap-2">
+            {["mission-control", "dark", "animated", "easter-eggs"].map((t) => (
+              <li class="font-mono text-[10px] uppercase tracking-[0.25em] text-paper-dim" style="border: 1px solid rgb(245 244 240 / 0.1); padding: 4px 8px;">
+                {t}
+              </li>
+            ))}
+          </ul>
+          <div class="mt-6 flex gap-3">
+            <a href={`${base}/demo/space`} class="btn btn-primary">Open demo</a>
+            <a href={`${base}/gallery`} class="btn btn-ghost">Copy code</a>
+          </div>
+        </div>
+      </article>
 
-function NotFoundPage() {
+      <!-- Ocean -->
+      <article class="plate">
+        <div class="plate-label">Fig. B</div>
+        <div class="plate-tag">DEEP SEA</div>
+        <div class="preview-surface h-[280px] sm:h-[320px] md:h-[360px] border-b border-paper-faint">
+          <Ocean404
+            client:only="react"
+            title="404"
+            eyebrow="Signal lost · 11,034m"
+            subtitle="You've drifted too deep."
+            buttonText="Return to surface"
+            bubbleCount={24}
+          />
+        </div>
+        <div class="p-6">
+          <div class="flex items-center justify-between">
+            <h3 class="font-serif text-3xl text-paper">Ocean 404</h3>
+            <code class="code-inline text-[11px]">Ocean404</code>
+          </div>
+          <p class="mt-3 text-sm text-paper-muted text-pretty">
+            A bioluminescent deep-sea drift. Rising bubbles you can pop, a
+            drifting jellyfish, a sonar ping, and a depth HUD that loops past
+            404m. The Konami code summons a submarine.
+          </p>
+          <ul class="mt-4 flex flex-wrap gap-2">
+            {["ocean", "dark", "animated", "easter-eggs"].map((t) => (
+              <li class="font-mono text-[10px] uppercase tracking-[0.25em] text-paper-dim" style="border: 1px solid rgb(245 244 240 / 0.1); padding: 4px 8px;">
+                {t}
+              </li>
+            ))}
+          </ul>
+          <div class="mt-6 flex gap-3">
+            <a href={`${base}/demo/ocean`} class="btn btn-primary">Open demo</a>
+            <a href={`${base}/gallery`} class="btn btn-ghost">Copy code</a>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ Install / Framework tabs ═══════════════════ -->
+  <section id="install" class="relative border-t border-paper-faint">
+    <div class="bg-grid-fine absolute inset-0 -z-10 opacity-60"></div>
+    <div class="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
+      <div class="grid gap-10 lg:grid-cols-[1fr_1.6fr] lg:gap-12">
+        <div>
+          <p class="eyebrow">
+            <span class="eyebrow-dot" aria-hidden="true"></span>
+            03 — install
+          </p>
+          <h2 class="mt-4 text-4xl font-semibold tracking-[-0.01em] text-balance sm:text-5xl">
+            Three files.<br />
+            <span class="font-display text-paper-muted">One import.</span>
+          </h2>
+          <p class="mt-6 max-w-md text-paper-muted text-pretty">
+            Pick your framework. Copy two lines. Ship a 404 page that
+            actually says something about your product.
+          </p>
+
+          <div class="mt-8 flex flex-col gap-3">
+            <div class="flex items-center gap-3">
+              <code class="code-inline flex-1 justify-between py-2 text-xs">
+                <span><span class="text-accent">$</span> npm i @kripa006/404-ui</span>
+                <button id="install-copy" type="button" class="text-paper-dim hover:text-paper" aria-label="Copy install command">⎘</button>
+              </code>
+            </div>
+            <p class="font-mono text-[10px] uppercase tracking-[0.3em] text-paper-dim">
+              Or — <span class="text-paper-muted">pnpm add @kripa006/404-ui</span>
+            </p>
+          </div>
+        </div>
+
+        <div>
+          <div class="mb-4 flex items-center gap-2">
+            <div
+              role="tablist"
+              aria-label="Framework"
+              class="framework-toggle"
+              id="install-tabs"
+            >
+              <button
+                role="tab"
+                type="button"
+                class="framework-toggle-btn framework-toggle-btn-active"
+                data-framework="react"
+                aria-selected="true"
+              >
+                React
+              </button>
+              <button
+                role="tab"
+                type="button"
+                class="framework-toggle-btn framework-toggle-btn-inactive"
+                data-framework="vue"
+                aria-selected="false"
+              >
+                Vue
+              </button>
+              <button
+                role="tab"
+                type="button"
+                class="framework-toggle-btn framework-toggle-btn-inactive"
+                data-framework="vanilla"
+                aria-selected="false"
+              >
+                Vanilla
+              </button>
+            </div>
+            <span class="ml-auto font-mono text-[10px] uppercase tracking-[0.3em] text-paper-dim">
+              NotFound.tsx
+            </span>
+          </div>
+
+          <pre id="install-react" class="code-block block"><code>{`// 1. Import
+import { Space404 } from "@kripa006/404-ui/react";
+import "@kripa006/404-ui/styles.css";
+
+// 2. Render it
+export default function NotFoundPage() {
   return (
-    // 2. Use it in your page
     <Space404
       title="404"
-      subtitle="Page not found"
-      buttonText="Go Home"
-      onButtonClick={() => window.location.href = '/'}
+      headline="OFF-NOMINAL TRAJECTORY DETECTED"
+      subtitle="The page you requested drifted outside the envelope."
+      buttonText="RE-VECTOR TO BASE"
+      missionId="APOLLO · LM-404"
+      onButtonClick={() => (window.location.href = "/")}
     />
   );
 }`}</code></pre>
-        </div>
 
-        <!-- Vue -->
-        <div class="card p-6">
-          <h3 class="mb-4 flex items-center gap-2 font-space text-xl font-semibold text-gray-900 dark:text-white">
-            <span class="text-2xl">💚</span> Vue
-          </h3>
-          <pre class="code-block"><code>{`<script setup>
-// 1. Import the component
-import { Space404 } from '@kripa006/404-ui/vue';
+          <pre id="install-vue" class="code-block hidden"><code>{`<script setup>
+import { Space404 } from "@kripa006/404-ui/vue";
+import "@kripa006/404-ui/styles.css";
 </script>
 
 <template>
-  <!-- 2. Use it in your template -->
   <Space404
     title="404"
-    subtitle="Page not found"
-    buttonText="Go Home"
+    headline="OFF-NOMINAL TRAJECTORY DETECTED"
+    subtitle="The page you requested drifted outside the envelope."
+    button-text="RE-VECTOR TO BASE"
+    mission-id="APOLLO · LM-404"
     @button-click="$router.push('/')"
   />
 </template>`}</code></pre>
+
+          <pre id="install-vanilla" class="code-block hidden"><code>{`import { createSpace404 } from "@kripa006/404-ui/vanilla";
+import "@kripa006/404-ui/styles.css";
+
+const app = document.getElementById("app");
+
+const space404 = createSpace404(app, {
+  title: "404",
+  headline: "OFF-NOMINAL TRAJECTORY DETECTED",
+  subtitle: "The page you requested drifted outside the envelope.",
+  buttonText: "RE-VECTOR TO BASE",
+  missionId: "APOLLO · LM-404",
+  onButtonClick: () => (window.location.href = "/"),
+});
+
+// space404.destroy(); // cleanup when unmounted`}</code></pre>
         </div>
+      </div>
+    </div>
+  </section>
 
-        <!-- Vanilla -->
-        <div class="card p-6">
-          <h3 class="mb-4 flex items-center gap-2 font-space text-xl font-semibold text-gray-900 dark:text-white">
-            <span class="text-2xl">🟨</span> Vanilla JS
-          </h3>
-          <pre class="code-block"><code>{`// 1. Import the function
-import { createSpace404 } from '@kripa006/404-ui/vanilla';
+  <!-- ═══════════════════ Philosophy ═══════════════════ -->
+  <section class="relative mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
+    <p class="eyebrow">
+      <span class="eyebrow-dot" aria-hidden="true"></span>
+      04 — the thinking
+    </p>
+    <h2 class="mt-4 max-w-3xl text-4xl font-semibold tracking-[-0.01em] text-balance sm:text-5xl">
+      A 404 is the last page a user ever asks for.
+      <span class="font-display text-paper-muted">Make it count.</span>
+    </h2>
 
-// 2. Target a container
-const container = document.getElementById('app');
+    <div class="mt-16 grid gap-10 md:grid-cols-3">
+      {[
+        {
+          k: "A",
+          h: "Design-forward",
+          p: "Each template has a point of view. No generic purple gradients. No stock emoji astronauts.",
+        },
+        {
+          k: "B",
+          h: "Framework-honest",
+          p: "React, Vue, and Vanilla get first-class treatment. Same API surface, same behavior, same bundle budget.",
+        },
+        {
+          k: "C",
+          h: "Hidden delights",
+          p: "Every template ships with small, ungated easter eggs. Reward the users who linger — they’re the ones who remember.",
+        },
+      ].map((x) => (
+        <article>
+          <div class="flex items-baseline gap-3">
+            <span class="font-mono text-[10px] uppercase tracking-[0.3em] text-accent">{x.k}</span>
+            <h3 class="font-serif text-2xl text-paper">{x.h}</h3>
+          </div>
+          <p class="mt-3 text-sm text-paper-muted leading-relaxed text-pretty">
+            {x.p}
+          </p>
+        </article>
+      ))}
+    </div>
+  </section>
 
-// 3. Initialize the 404 page
-createSpace404(container, {
-  title: '404',
-  subtitle: 'Page not found',
-  onButtonClick: () => window.location.href = '/'
-});`}</code></pre>
-        </div>
+  <!-- ═══════════════════ Final CTA ═══════════════════ -->
+  <section class="relative border-t border-paper-faint">
+    <div
+      aria-hidden="true"
+      class="pointer-events-none absolute inset-0 -z-10"
+      style="background: radial-gradient(ellipse 60% 80% at 50% 100%, rgb(124 255 74 / 0.06), transparent 60%);"
+    ></div>
+    <div class="mx-auto max-w-4xl px-4 py-16 text-center sm:px-6 sm:py-24 lg:px-8">
+      <p class="eyebrow justify-center">Ship it</p>
+      <h2 class="mt-6 text-4xl font-semibold leading-[1.05] tracking-[-0.02em] text-balance sm:text-5xl md:text-6xl lg:text-[5rem]">
+        Your next 404 is <span class="font-display text-accent">one import away.</span>
+      </h2>
+      <p class="mx-auto mt-6 max-w-xl text-paper-muted text-pretty">
+        Two templates today. More on the way. Open an issue if you want one
+        specific to your app — contributions welcome.
+      </p>
+      <div class="mt-10 flex flex-wrap justify-center gap-3">
+        <a href={`${base}/gallery`} class="btn btn-primary">Browse templates</a>
+        <a
+          href="https://github.com/kripa-sindhu-007/404_lib"
+          target="_blank"
+          rel="noopener"
+          class="btn btn-ghost"
+        >
+          Star on GitHub
+        </a>
       </div>
     </div>
   </section>
 </BaseLayout>
 
-<script>
-  // Copy to clipboard functionality
-  document.getElementById('copy-install')?.addEventListener('click', async () => {
-    await navigator.clipboard.writeText('npm install @kripa006/404-ui');
-    alert('Copied to clipboard!');
-  });
-
-  // Generate stars for preview
-  function generateStars(count: number) {
-    const container = document.getElementById('stars-container');
-    if (!container) return;
-
-    for (let i = 0; i < count; i++) {
-      const star = document.createElement('div');
-      star.className = 'space-404-star';
-      star.style.setProperty('--star-size', `${Math.random() * 2 + 1}px`);
-      star.style.setProperty('--star-x', `${Math.random() * 100}%`);
-      star.style.setProperty('--star-y', `${Math.random() * 100}%`);
-      star.style.setProperty('--star-duration', `${Math.random() * 3 + 2}s`);
-      star.style.setProperty('--star-delay', `${Math.random() * 3}s`);
-      container.appendChild(star);
+<script is:inline>
+  // Install-command copy (hero + install section)
+  async function copyInstall(stateEl) {
+    try {
+      await navigator.clipboard.writeText("npm install @kripa006/404-ui");
+      if (stateEl) {
+        const prev = stateEl.textContent;
+        stateEl.textContent = "✓ copied";
+        stateEl.style.color = "rgb(124 255 74)";
+        setTimeout(() => {
+          stateEl.textContent = prev;
+          stateEl.style.color = "";
+        }, 1400);
+      }
+    } catch {
+      /* clipboard unavailable */
     }
   }
 
-  generateStars(80);
+  const heroCopy = document.getElementById("hero-copy");
+  const heroCopyState = document.getElementById("hero-copy-state");
+  heroCopy?.addEventListener("click", () => copyInstall(heroCopyState));
+
+  const installCopy = document.getElementById("install-copy");
+  installCopy?.addEventListener("click", () => copyInstall(installCopy));
+
+  // Framework tabs
+  const tabs = document.querySelectorAll("#install-tabs [data-framework]");
+  const panes = {
+    react: document.getElementById("install-react"),
+    vue: document.getElementById("install-vue"),
+    vanilla: document.getElementById("install-vanilla"),
+  };
+
+  tabs.forEach((tab) => {
+    tab.addEventListener("click", () => {
+      const key = tab.dataset.framework;
+
+      tabs.forEach((t) => {
+        t.classList.remove("framework-toggle-btn-active");
+        t.classList.add("framework-toggle-btn-inactive");
+        t.setAttribute("aria-selected", "false");
+      });
+      tab.classList.remove("framework-toggle-btn-inactive");
+      tab.classList.add("framework-toggle-btn-active");
+      tab.setAttribute("aria-selected", "true");
+
+      Object.entries(panes).forEach(([k, el]) => {
+        if (!el) return;
+        if (k === key) {
+          el.classList.remove("hidden");
+          el.classList.add("block");
+        } else {
+          el.classList.add("hidden");
+          el.classList.remove("block");
+        }
+      });
+    });
+  });
 </script>

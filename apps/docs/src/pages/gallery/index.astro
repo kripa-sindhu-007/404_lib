@@ -1,15 +1,22 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import { Space404 } from "@kripa006/404-ui/react";
+import { Space404, Ocean404 } from "@kripa006/404-ui/react";
 
 // Template data
 const templates = [
   {
     id: "space",
-    name: "Space 404",
-    description: "A cosmic journey through the stars with a floating astronaut theme",
-    tags: ["animated", "dark", "space"],
-    preview: "🚀",
+    name: "Apollo 404",
+    description: "An Apollo-era mission-control console — CRT phosphor, telemetry rails, orbital diagnostic, and a handful of hidden easter eggs",
+    tags: ["animated", "dark", "mission-control"],
+    preview: "📡",
+  },
+  {
+    id: "ocean",
+    name: "Ocean 404",
+    description: "A bioluminescent deep-sea drift with rising bubbles, a sonar ping, and a few hidden easter eggs",
+    tags: ["animated", "dark", "ocean"],
+    preview: "🪼",
   },
   {
     id: "glitch",
@@ -17,14 +24,6 @@ const templates = [
     description: "A retro-futuristic glitch effect with cyberpunk vibes",
     tags: ["animated", "dark", "retro"],
     preview: "📺",
-    comingSoon: true,
-  },
-  {
-    id: "ocean",
-    name: "Ocean 404",
-    description: "Peaceful underwater scene with floating bubbles",
-    tags: ["animated", "calm", "blue"],
-    preview: "🌊",
     comingSoon: true,
   },
   {
@@ -44,28 +43,38 @@ const templates = [
   keywords="404 template gallery, animated 404 templates, React not found page, Vue not found page, JavaScript 404 template"
 >
   <section class="py-16">
-    <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
       <!-- Header -->
-      <div class="text-center">
-        <h1 class="font-space text-4xl font-bold text-gray-900 dark:text-white sm:text-5xl">
-          Template Gallery
+      <div>
+        <p class="eyebrow">
+          <span class="eyebrow-dot" aria-hidden="true"></span>
+          The library
+        </p>
+        <h1 class="mt-4 text-5xl font-semibold tracking-[-0.01em] text-balance sm:text-6xl">
+          Templates,
+          <span class="font-display text-paper-muted">one at a time.</span>
         </h1>
-        <p class="mt-4 text-xl text-gray-600 dark:text-gray-400">
-          Browse our collection of beautiful 404 page templates
+        <p class="mt-5 max-w-2xl text-paper-muted text-pretty">
+          Every 404 page here is handcrafted and animated. Click a preview to
+          see it fullscreen, or copy the code for your framework of choice.
+          More templates are on the way — contributions welcome.
         </p>
       </div>
 
       <!-- Framework Toggle -->
-      <div class="mt-12 flex justify-center">
+      <div class="mt-12 flex flex-wrap items-center justify-between gap-4 border-b border-paper-faint pb-6">
+        <p class="font-mono text-[10px] uppercase tracking-[0.3em] text-paper-dim">
+          Framework
+        </p>
         <div class="framework-toggle">
           <button class="framework-toggle-btn framework-toggle-btn-active" data-framework="react">
-            ⚛️ React
+            React
           </button>
           <button class="framework-toggle-btn framework-toggle-btn-inactive" data-framework="vue">
-            💚 Vue
+            Vue
           </button>
           <button class="framework-toggle-btn framework-toggle-btn-inactive" data-framework="vanilla">
-            🟨 Vanilla
+            Vanilla
           </button>
         </div>
       </div>
@@ -75,29 +84,35 @@ const templates = [
         {templates.map((template) => (
           <div class="card card-hover overflow-hidden">
             <!-- Preview -->
-            <div class="preview-container relative overflow-hidden bg-gray-100 dark:bg-gray-800" style="height: 320px;">
+            <div class="preview-surface h-[240px] sm:h-[280px] md:h-[320px]" style="background: rgb(17 19 17);">
               {template.comingSoon ? (
                 <div class="flex h-full items-center justify-center">
                   <div class="text-center">
                     <span class="text-6xl">{template.preview}</span>
-                    <p class="mt-4 font-space text-lg font-medium text-gray-500 dark:text-gray-400">
+                    <p class="mt-4 font-mono text-[10px] uppercase tracking-[0.3em] text-paper-dim">
                       Coming Soon
                     </p>
                   </div>
                 </div>
+              ) : template.id === "ocean" ? (
+                <Ocean404
+                  client:only="react"
+                  title="404"
+                  eyebrow="Signal lost · 11,034m"
+                  subtitle="You've drifted too deep."
+                  buttonText="Return to surface"
+                  bubbleCount={18}
+                />
               ) : (
-                <div class="absolute inset-0" style="transform: scale(0.6); transform-origin: center center;">
-                  <div style="width: 166.67%; height: 166.67%; margin-left: -33.33%; margin-top: -33.33%;">
-                    <Space404
-                      client:load
-                      title="404"
-                      subtitle="Lost in space..."
-                      buttonText="Go Home"
-                      starCount={50}
-                      showAstronaut={true}
-                    />
-                  </div>
-                </div>
+                <Space404
+                  client:only="react"
+                  title="404"
+                  eyebrow="SIGNAL LOST"
+                  headline="OFF-NOMINAL TRAJECTORY"
+                  subtitle="The page you requested drifted outside the nominal envelope."
+                  buttonText="RE-VECTOR"
+                  missionId="APOLLO · LM-404"
+                />
               )}
             </div>
 
@@ -197,10 +212,19 @@ const templates = [
   const codeSnippets = {
     space: {
       react:
-        "import { Space404 } from '@kripa006/404-ui/react';\n\nfunction NotFoundPage() {\n  return (\n    <Space404\n      title=\"404\"\n      subtitle=\"Lost in space...\"\n      buttonText=\"Return Home\"\n      onButtonClick={() => window.location.href = '/'}\n      starCount={100}\n      showRocket={true}\n      showPlanet={true}\n    />\n  );\n}\n\nexport default NotFoundPage;",
-      vue: "<script setup>\nimport { Space404 } from '@kripa006/404-ui/vue';\n\nfunction handleClick() {\n  window.location.href = '/';\n}\n<\\/script>\n\n<template>\n  <Space404\n    title=\"404\"\n    subtitle=\"Lost in space...\"\n    button-text=\"Return Home\"\n    :star-count=\"100\"\n    :show-rocket=\"true\"\n    :show-planet=\"true\"\n    @button-click=\"handleClick\"\n  />\n</template>",
+        "import { Space404 } from '@kripa006/404-ui/react';\n\nfunction NotFoundPage() {\n  return (\n    <Space404\n      title=\"404\"\n      eyebrow=\"SIGNAL LOST · UPLINK DEGRADED\"\n      headline=\"OFF-NOMINAL TRAJECTORY DETECTED\"\n      subtitle=\"The page you requested has drifted outside the nominal envelope.\"\n      buttonText=\"RE-VECTOR TO BASE\"\n      missionId=\"APOLLO · LM-404\"\n      showOrbit={true}\n      onButtonClick={() => window.location.href = '/'}\n    />\n  );\n}\n\nexport default NotFoundPage;",
+      vue:
+        "<script setup>\nimport { Space404 } from '@kripa006/404-ui/vue';\n\nfunction handleClick() {\n  window.location.href = '/';\n}\n<\\/script>\n\n<template>\n  <Space404\n    title=\"404\"\n    eyebrow=\"SIGNAL LOST · UPLINK DEGRADED\"\n    headline=\"OFF-NOMINAL TRAJECTORY DETECTED\"\n    subtitle=\"The page you requested has drifted outside the nominal envelope.\"\n    button-text=\"RE-VECTOR TO BASE\"\n    mission-id=\"APOLLO · LM-404\"\n    :show-orbit=\"true\"\n    @button-click=\"handleClick\"\n  />\n</template>",
       vanilla:
-        "import { createSpace404 } from '@kripa006/404-ui/vanilla';\n\nconst container = document.getElementById('app');\n\nconst space404 = createSpace404(container, {\n  title: '404',\n  subtitle: 'Lost in space...',\n  buttonText: 'Return Home',\n  starCount: 100,\n  showRocket: true,\n  showPlanet: true,\n  onButtonClick: () => {\n    window.location.href = '/';\n  }\n});\n\n// Cleanup when needed\n// space404.destroy();",
+        "import { createSpace404 } from '@kripa006/404-ui/vanilla';\n\nconst container = document.getElementById('app');\n\nconst space404 = createSpace404(container, {\n  title: '404',\n  eyebrow: 'SIGNAL LOST · UPLINK DEGRADED',\n  headline: 'OFF-NOMINAL TRAJECTORY DETECTED',\n  subtitle: 'The page you requested has drifted outside the nominal envelope.',\n  buttonText: 'RE-VECTOR TO BASE',\n  missionId: 'APOLLO · LM-404',\n  showOrbit: true,\n  onButtonClick: () => {\n    window.location.href = '/';\n  }\n});\n\n// Cleanup when needed\n// space404.destroy();",
+    },
+    ocean: {
+      react:
+        "import { Ocean404 } from '@kripa006/404-ui/react';\n\nfunction NotFoundPage() {\n  return (\n    <Ocean404\n      title=\"404\"\n      eyebrow=\"Signal lost · 11,034m\"\n      subtitle=\"You've drifted too deep. The surface is waiting.\"\n      buttonText=\"Return to surface\"\n      bubbleCount={28}\n      showJellyfish={true}\n      onButtonClick={() => window.location.href = '/'}\n    />\n  );\n}\n\nexport default NotFoundPage;",
+      vue:
+        "<script setup>\nimport { Ocean404 } from '@kripa006/404-ui/vue';\n\nfunction handleClick() {\n  window.location.href = '/';\n}\n<\\/script>\n\n<template>\n  <Ocean404\n    title=\"404\"\n    eyebrow=\"Signal lost · 11,034m\"\n    subtitle=\"You've drifted too deep. The surface is waiting.\"\n    button-text=\"Return to surface\"\n    :bubble-count=\"28\"\n    :show-jellyfish=\"true\"\n    @button-click=\"handleClick\"\n  />\n</template>",
+      vanilla:
+        "import { createOcean404 } from '@kripa006/404-ui/vanilla';\n\nconst container = document.getElementById('app');\n\nconst ocean404 = createOcean404(container, {\n  title: '404',\n  eyebrow: 'Signal lost · 11,034m',\n  subtitle: \"You've drifted too deep. The surface is waiting.\",\n  buttonText: 'Return to surface',\n  bubbleCount: 28,\n  showJellyfish: true,\n  onButtonClick: () => {\n    window.location.href = '/';\n  }\n});\n\n// Cleanup when needed\n// ocean404.destroy();",
     },
   };
 

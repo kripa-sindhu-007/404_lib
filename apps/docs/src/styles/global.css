@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap");
 
 @tailwind base;
 @tailwind components;
@@ -6,79 +6,388 @@
 
 @layer base {
   :root {
-    --color-primary: 99, 102, 241;
-    --color-primary-light: 129, 140, 248;
+    /* Editorial palette — mostly monochrome with one chroma pop. */
+    --ink: 10 11 9; /* near-black with a hint of green */
+    --ink-2: 17 19 17;
+    --ink-3: 26 29 26;
+    --paper: 245 244 240; /* warm off-white */
+    --paper-2: 236 235 230;
+    --paper-3: 215 214 208;
+    --rule: 124 255 74; /* phosphor, used only at low alpha as rules */
+    --accent: 124 255 74; /* phosphor green (from Apollo 404) */
+    --accent-ink: 10 11 9; /* high-contrast text on accent fills */
+    --accent-dim: 58 122 36;
   }
 
   html {
     @apply scroll-smooth;
+    color-scheme: dark;
+    /* Prevent layout shift when vertical scrollbar appears — the scrollbar
+       gutter is always reserved, so `vw` stays stable and the hero heading
+       doesn't reflow on hydration. */
+    scrollbar-gutter: stable;
   }
 
   body {
-    @apply bg-gray-50 font-sans text-gray-900 antialiased dark:bg-gray-950 dark:text-gray-100;
+    background-color: rgb(var(--ink));
+    color: rgb(var(--paper));
+    font-family: "Space Grotesk", "Inter", system-ui, sans-serif;
+    font-feature-settings: "ss01", "ss02";
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    background: rgb(var(--accent) / 0.35);
+    color: rgb(var(--paper));
   }
 }
 
 @layer components {
-  /* Navigation */
+  /* ── Typography ─────────────────────────────────────────────────────── */
+  .font-serif {
+    font-family:
+      "Instrument Serif", "Iowan Old Style", "Apple Garamond", Georgia, serif;
+    font-feature-settings: "liga", "kern";
+  }
+
+  .font-display {
+    font-family:
+      "Instrument Serif", "Iowan Old Style", "Apple Garamond", Georgia, serif;
+    font-style: italic;
+    font-weight: 400;
+  }
+
+  .font-mono,
+  .font-tele {
+    font-family:
+      "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-feature-settings: "ss01", "ss02", "tnum";
+  }
+
+  .eyebrow {
+    @apply inline-flex items-center gap-2 text-[10px] uppercase;
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    letter-spacing: 0.35em;
+    color: rgb(var(--paper) / 0.6);
+  }
+
+  .eyebrow-dot {
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-radius: 999px;
+    background: rgb(var(--accent));
+    box-shadow: 0 0 10px rgb(var(--accent) / 0.8);
+  }
+
+  /* ── Navigation ─────────────────────────────────────────────────────── */
   .nav-link {
-    @apply text-gray-600 transition-colors hover:text-gray-900 dark:text-gray-400 dark:hover:text-white;
+    @apply relative text-sm transition-colors duration-200;
+    color: rgb(var(--paper) / 0.65);
   }
 
+  .nav-link:hover {
+    color: rgb(var(--paper));
+  }
+
+  .nav-link[aria-current="page"],
   .nav-link-active {
-    @apply text-space-accent dark:text-space-glow;
+    color: rgb(var(--paper));
   }
 
-  /* Buttons */
+  .nav-link-active::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -22px;
+    height: 2px;
+    background: rgb(var(--accent));
+  }
+
+  /* ── Buttons ────────────────────────────────────────────────────────── */
   .btn {
-    @apply inline-flex items-center justify-center rounded-lg px-4 py-2 font-medium transition-all duration-200;
+    @apply relative inline-flex items-center justify-center gap-2 rounded-none px-4 py-2 text-sm font-medium transition-all duration-200;
+    letter-spacing: 0.01em;
   }
 
   .btn-primary {
-    @apply bg-space-accent hover:bg-space-glow text-white;
+    background: rgb(var(--accent));
+    color: rgb(var(--accent-ink));
+    box-shadow:
+      0 0 0 1px rgb(var(--accent)) inset,
+      0 0 24px rgb(var(--accent) / 0.25);
   }
 
-  .btn-secondary {
-    @apply border border-gray-300 bg-white text-gray-700 hover:bg-gray-50 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700;
+  .btn-primary:hover {
+    background: rgb(var(--paper));
+    color: rgb(var(--ink));
+    box-shadow:
+      0 0 0 1px rgb(var(--paper)) inset,
+      0 0 32px rgb(var(--accent) / 0.4);
   }
 
   .btn-ghost {
-    @apply text-gray-600 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-800;
+    color: rgb(var(--paper));
+    border: 1px solid rgb(var(--paper) / 0.2);
+    background: rgb(var(--paper) / 0.02);
   }
 
-  /* Cards */
+  .btn-ghost:hover {
+    border-color: rgb(var(--paper) / 0.45);
+    background: rgb(var(--paper) / 0.04);
+  }
+
+  .btn-secondary {
+    @apply btn-ghost;
+  }
+
+  /* ── Cards / exhibit plates ─────────────────────────────────────────── */
+  .plate {
+    @apply relative overflow-hidden;
+    background: rgb(var(--ink-2));
+    border: 1px solid rgb(var(--paper) / 0.08);
+  }
+
+  .plate::before {
+    content: "";
+    @apply pointer-events-none absolute inset-0;
+    background-image:
+      linear-gradient(rgb(var(--paper) / 0.02) 1px, transparent 1px),
+      linear-gradient(90deg, rgb(var(--paper) / 0.02) 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+
+  .plate > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  .plate-label {
+    @apply absolute left-4 top-4 z-10 font-mono text-[10px] uppercase;
+    letter-spacing: 0.3em;
+    color: rgb(var(--paper) / 0.5);
+  }
+
+  .plate-tag {
+    @apply absolute right-4 top-4 z-10 font-mono text-[10px] uppercase;
+    letter-spacing: 0.25em;
+    color: rgb(var(--accent));
+  }
+
   .card {
-    @apply rounded-xl border border-gray-200 bg-white shadow-sm dark:border-gray-800 dark:bg-gray-900;
+    @apply relative overflow-hidden;
+    background: rgb(var(--ink-2));
+    border: 1px solid rgb(var(--paper) / 0.08);
   }
 
   .card-hover {
-    @apply hover:shadow-space-accent/10 transition-all duration-300 hover:shadow-lg;
+    @apply transition-colors duration-200;
   }
 
-  /* Code blocks */
+  .card-hover:hover {
+    border-color: rgb(var(--paper) / 0.25);
+  }
+
+  /* ── Code surfaces ──────────────────────────────────────────────────── */
   .code-block {
-    @apply overflow-x-auto rounded-lg bg-gray-900 p-4 font-mono text-sm text-gray-100;
+    @apply overflow-x-auto p-5 font-mono text-[13px] leading-relaxed;
+    background: rgb(var(--ink-2));
+    border: 1px solid rgb(var(--paper) / 0.08);
+    color: rgb(var(--paper) / 0.9);
   }
 
-  /* Preview container */
+  .code-inline {
+    @apply inline-flex items-center rounded-none px-1.5 py-0.5 font-mono text-[0.85em];
+    background: rgb(var(--paper) / 0.06);
+    border: 1px solid rgb(var(--paper) / 0.08);
+    color: rgb(var(--paper));
+  }
+
+  .kbd {
+    @apply inline-flex h-5 min-w-[1.25rem] items-center justify-center rounded-[4px] px-1 font-mono text-[10px];
+    background: rgb(var(--paper) / 0.08);
+    border: 1px solid rgb(var(--paper) / 0.18);
+    color: rgb(var(--paper) / 0.85);
+    box-shadow: inset 0 -1px 0 rgb(0 0 0 / 0.35);
+  }
+
+  /* ── Preview container ──────────────────────────────────────────────── */
   .preview-container {
-    @apply relative aspect-video overflow-hidden rounded-lg border border-gray-200 dark:border-gray-800;
+    @apply relative aspect-video overflow-hidden;
+    background: rgb(var(--ink-2));
+    border: 1px solid rgb(var(--paper) / 0.08);
   }
 
-  /* Framework toggle */
+  /* A frame that hosts a live Space404 / Ocean404 at whatever height we set.
+     Overrides the component's `min-height: calc(100vh - 4rem)` so content
+     fills the frame instead of overflowing and requiring `transform: scale`
+     workarounds. */
+  .preview-surface {
+    @apply relative overflow-hidden;
+  }
+
+  .preview-surface .space-404-container,
+  .preview-surface .ocean-404-container {
+    min-height: 0 !important;
+    height: 100%;
+  }
+
+  /* ── Background textures ────────────────────────────────────────────── */
+  .bg-grid {
+    background-image:
+      linear-gradient(rgb(var(--paper) / 0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgb(var(--paper) / 0.04) 1px, transparent 1px);
+    background-size: 48px 48px;
+  }
+
+  .bg-grid-fine {
+    background-image:
+      linear-gradient(rgb(var(--paper) / 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgb(var(--paper) / 0.03) 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+
+  .bg-noise {
+    position: relative;
+  }
+
+  .bg-noise::after {
+    content: "";
+    @apply pointer-events-none absolute inset-0 z-0;
+    background-image: radial-gradient(
+      rgb(var(--paper) / 0.04) 1px,
+      transparent 1px
+    );
+    background-size: 3px 3px;
+    mix-blend-mode: overlay;
+  }
+
+  /* ── Dividers ───────────────────────────────────────────────────────── */
+  .rule {
+    background: rgb(var(--paper) / 0.08);
+    height: 1px;
+    width: 100%;
+    border: 0;
+  }
+
+  .rule-accent {
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgb(var(--accent) / 0.5),
+      transparent
+    );
+    height: 1px;
+    width: 100%;
+    border: 0;
+  }
+
+  /* ── Framework toggle ───────────────────────────────────────────────── */
   .framework-toggle {
-    @apply inline-flex rounded-lg border border-gray-200 p-1 dark:border-gray-700;
+    @apply inline-flex p-0;
+    border: 1px solid rgb(var(--paper) / 0.12);
   }
 
   .framework-toggle-btn {
-    @apply rounded-md px-3 py-1.5 text-sm font-medium transition-all;
+    @apply px-3 py-1.5 font-mono text-[11px] uppercase tracking-[0.25em] transition-colors;
+    color: rgb(var(--paper) / 0.55);
+    background: transparent;
   }
 
   .framework-toggle-btn-active {
-    @apply bg-space-accent text-white;
+    background: rgb(var(--accent));
+    color: rgb(var(--accent-ink));
   }
 
-  .framework-toggle-btn-inactive {
-    @apply text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white;
+  .framework-toggle-btn-inactive:hover {
+    color: rgb(var(--paper));
+  }
+
+  /* ── Small micro-UI ─────────────────────────────────────────────────── */
+  .dot-live {
+    display: inline-block;
+    width: 7px;
+    height: 7px;
+    border-radius: 999px;
+    background: rgb(var(--accent));
+    box-shadow: 0 0 8px rgb(var(--accent));
+    animation: dotPulse 2.2s ease-in-out infinite;
+  }
+
+  @keyframes dotPulse {
+    0%,
+    100% {
+      transform: scale(1);
+      opacity: 1;
+    }
+    50% {
+      transform: scale(1.4);
+      opacity: 0.55;
+    }
+  }
+
+  .link-arrow {
+    @apply inline-flex items-center gap-1 text-sm transition-colors;
+    color: rgb(var(--paper) / 0.7);
+  }
+
+  .link-arrow:hover {
+    color: rgb(var(--accent));
+  }
+
+  .link-arrow svg {
+    transition: transform 200ms ease;
+  }
+
+  .link-arrow:hover svg {
+    transform: translateX(3px);
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .text-pretty {
+    text-wrap: pretty;
+  }
+
+  .text-accent {
+    color: rgb(var(--accent));
+  }
+
+  .text-paper {
+    color: rgb(var(--paper));
+  }
+
+  .text-paper-muted {
+    color: rgb(var(--paper) / 0.65);
+  }
+
+  .text-paper-dim {
+    color: rgb(var(--paper) / 0.45);
+  }
+
+  .bg-ink {
+    background-color: rgb(var(--ink));
+  }
+
+  .bg-ink-2 {
+    background-color: rgb(var(--ink-2));
+  }
+
+  .bg-ink-3 {
+    background-color: rgb(var(--ink-3));
+  }
+
+  .border-paper-faint {
+    border-color: rgb(var(--paper) / 0.08);
+  }
+
+  .border-paper-soft {
+    border-color: rgb(var(--paper) / 0.16);
   }
 }
