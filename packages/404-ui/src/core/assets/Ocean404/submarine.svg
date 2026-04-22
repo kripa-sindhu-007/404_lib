@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 80" fill="none" aria-hidden="true">
+  <defs>
+    <linearGradient id="oc-sub-body" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#e6fffa" stop-opacity="0.95" />
+      <stop offset="60%" stop-color="#2ec4b6" />
+      <stop offset="100%" stop-color="#0a4d6e" />
+    </linearGradient>
+  </defs>
+  <!-- Hull -->
+  <path
+    d="M10 42 Q10 28 34 28 L126 28 Q156 28 156 50 Q156 62 130 62 L34 62 Q10 62 10 50 Z"
+    fill="url(#oc-sub-body)"
+    stroke="rgba(230,255,250,0.6)"
+    stroke-width="1"
+  />
+  <!-- Conning tower -->
+  <rect x="66" y="10" width="28" height="20" rx="4" fill="url(#oc-sub-body)" stroke="rgba(230,255,250,0.6)" />
+  <!-- Periscope -->
+  <line x1="80" y1="10" x2="80" y2="2" stroke="#e6fffa" stroke-width="1.4" stroke-linecap="round" />
+  <!-- Porthole -->
+  <circle cx="108" cy="45" r="7" fill="#021126" stroke="#7ef0ff" stroke-width="1.4" />
+  <circle cx="108" cy="45" r="3" fill="#7ef0ff" opacity="0.8" />
+  <!-- Propeller -->
+  <circle cx="14" cy="45" r="6" fill="none" stroke="#7ef0ff" stroke-width="1.2" />
+  <line x1="8" y1="45" x2="20" y2="45" stroke="#7ef0ff" stroke-width="1.2" />
+  <line x1="14" y1="39" x2="14" y2="51" stroke="#7ef0ff" stroke-width="1.2" />
+  <!-- Bubble trail -->
+  <g fill="#e6fffa" opacity="0.7">
+    <circle cx="2" cy="38" r="2" />
+    <circle cx="-6" cy="32" r="1.2" />
+    <circle cx="-12" cy="42" r="0.9" />
+  </g>
+</svg>

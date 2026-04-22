@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 34 80" fill="none" aria-hidden="true">
+  <!-- Narrow Apollo-style rocket silhouette in phosphor + amber -->
+  <defs>
+    <linearGradient id="sp-rocket-flame" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#ffb547" />
+      <stop offset="60%" stop-color="#ff3d3d" stop-opacity="0.8" />
+      <stop offset="100%" stop-color="#ff3d3d" stop-opacity="0" />
+    </linearGradient>
+  </defs>
+  <!-- Flame -->
+  <path d="M12 58 L17 78 L22 58 Q20 62 17 66 Q14 62 12 58 Z" fill="url(#sp-rocket-flame)">
+    <animate attributeName="opacity" values="0.7;1;0.7" dur="100ms" repeatCount="indefinite" />
+  </path>
+  <!-- Body -->
+  <path d="M11 20 Q11 6 17 2 Q23 6 23 20 L23 50 L11 50 Z" fill="#0b0d0a" stroke="#7cff4a" stroke-width="1" />
+  <!-- Porthole -->
+  <circle cx="17" cy="22" r="2.5" fill="#0b0d0a" stroke="#7cff4a" stroke-width="1" />
+  <!-- Fins -->
+  <path d="M11 44 L4 56 L11 56 Z" fill="#0b0d0a" stroke="#7cff4a" stroke-width="1" />
+  <path d="M23 44 L30 56 L23 56 Z" fill="#0b0d0a" stroke="#7cff4a" stroke-width="1" />
+  <!-- Nose accent -->
+  <line x1="17" y1="2" x2="17" y2="10" stroke="#ffb547" stroke-width="1" />
+  <!-- Band -->
+  <line x1="11" y1="34" x2="23" y2="34" stroke="#7cff4a" stroke-width="0.7" stroke-dasharray="2 2" />
+</svg>

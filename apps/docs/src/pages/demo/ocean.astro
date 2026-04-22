@@ -1,0 +1,21 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { Ocean404 } from "@kripa006/404-ui/react";
+---
+
+<BaseLayout
+  title="Ocean 404 Demo | 404-UI"
+  description="Preview the Ocean 404 bioluminescent deep-sea not-found page from 404-UI, available for React, Vue, and vanilla JavaScript."
+  keywords="Ocean 404 demo, bioluminescent 404, deep sea 404, underwater 404, React 404 demo, Vue 404 demo, 404-UI template"
+>
+  <div style="height: calc(100vh - 64px);">
+    <Ocean404
+      client:only="react"
+      title="404"
+      eyebrow="Signal lost · 11,034m"
+      subtitle="You've drifted too deep. The surface is waiting."
+      buttonText="Return to surface"
+      onButtonClick={() => window.location.href = '/404_lib/'}
+    />
+  </div>
+</BaseLayout>

@@ -1,3 +1,5 @@
-import astronautSvg from "./astronaut.svg";
+import orbitSvg from "./orbit.svg";
+import rocketSvg from "./rocket.svg";
 
-export const ASTRONAUT_SVG = astronautSvg;
+export const ORBIT_SVG = orbitSvg;
+export const ROCKET_SVG = rocketSvg;

@@ -1,8 +1,15 @@
 // React Components
 export { Space404, type Space404Props } from "./Space404";
+export { Ocean404, type Ocean404Props } from "./Ocean404";
 
 // Re-export core utilities for convenience
-export { generateStars, randomBetween } from "../core/utils";
+export {
+  generateStars,
+  randomBetween,
+  generateBubbles,
+  createKonamiMatcher,
+  KONAMI_SEQUENCE,
+} from "../core/utils";
 export {
   defaultAnimations,
   applyAnimation,

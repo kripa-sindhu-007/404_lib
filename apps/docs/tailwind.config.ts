@@ -8,8 +8,15 @@ const config: Config = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ["Inter", "system-ui", "sans-serif"],
-        mono: ["'JetBrains Mono'", "monospace"],
+        sans: ["'Space Grotesk'", "Inter", "system-ui", "sans-serif"],
+        serif: [
+          "'Instrument Serif'",
+          "'Iowan Old Style'",
+          "'Apple Garamond'",
+          "Georgia",
+          "serif",
+        ],
+        mono: ["'JetBrains Mono'", "ui-monospace", "Menlo", "monospace"],
       },
     },
   },
