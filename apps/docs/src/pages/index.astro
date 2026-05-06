@@ -210,6 +210,66 @@ const marqueeItems = [
             <span class="hero-thumb-label">Forest · soon</span>
           </button>
         </div>
+
+        <!-- Meta strip -->
+        <dl class="mt-10 grid grid-cols-3 gap-4 border-t border-paper-faint pt-6 sm:mt-12 sm:gap-6">
+          <div>
+            <dt class="font-mono text-[9px] uppercase tracking-[0.3em] text-paper-dim sm:text-[10px]">Templates</dt>
+            <dd class="mt-1 font-serif text-2xl sm:text-3xl">2<span class="text-paper-dim">&nbsp;/ growing</span></dd>
+          </div>
+          <div>
+            <dt class="font-mono text-[9px] uppercase tracking-[0.3em] text-paper-dim sm:text-[10px]">Frameworks</dt>
+            <dd class="mt-1 font-serif text-2xl sm:text-3xl">3</dd>
+          </div>
+          <div>
+            <dt class="font-mono text-[9px] uppercase tracking-[0.3em] text-paper-dim sm:text-[10px]">Bundle (gzip)</dt>
+            <dd class="mt-1 font-serif text-2xl sm:text-3xl">~6 kB</dd>
+          </div>
+        </dl>
+      </div>
+
+      <!-- Live preview column -->
+      <div class="relative">
+        <!-- Window chrome -->
+        <div
+          class="relative"
+          style="border: 1px solid rgb(245 244 240 / 0.1); background: rgb(17 19 17);"
+        >
+          <div
+            class="flex items-center justify-between px-4 py-2 font-mono text-[10px] uppercase tracking-[0.3em] text-paper-dim"
+            style="border-bottom: 1px solid rgb(245 244 240 / 0.08);"
+          >
+            <div class="flex items-center gap-2">
+              <span class="dot-live" aria-hidden="true"></span>
+              <span>live preview</span>
+            </div>
+            <span class="hidden sm:inline">APOLLO-404.TSX</span>
+            <span class="text-accent">● running</span>
+          </div>
+          <div class="preview-surface h-[340px] sm:h-[400px] lg:h-[460px]">
+            <Space404
+              client:only="react"
+              title="404"
+              eyebrow="SIGNAL LOST · UPLINK DEGRADED"
+              headline="OFF-NOMINAL TRAJECTORY"
+              subtitle="The page you requested drifted outside the nominal envelope."
+              buttonText="RE-VECTOR"
+              missionId="APOLLO · LM-404"
+            />
+          </div>
+          <div
+            class="flex items-center justify-between px-4 py-2 font-mono text-[10px] uppercase tracking-[0.25em] text-paper-dim"
+            style="border-top: 1px solid rgb(245 244 240 / 0.08);"
+          >
+            <span>⏎ try ⇧ · type APOLLO · click the craft</span>
+            <span class="text-accent">Apollo 404</span>
+          </div>
+        </div>
+
+        <!-- Figure caption (below frame) -->
+        <p class="mt-3 text-right font-mono text-[10px] uppercase tracking-[0.35em] text-paper-dim">
+          fig. 01 — Apollo 404, rendered live
+        </p>
       </div>
     </div>
   </section>

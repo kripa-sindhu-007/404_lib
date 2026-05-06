@@ -24,6 +24,13 @@ export {
   KONAMI_SEQUENCE,
 } from "../core/utils";
 export {
+  generateStars,
+  randomBetween,
+  generateBubbles,
+  createKonamiMatcher,
+  KONAMI_SEQUENCE,
+} from "../core/utils";
+export {
   defaultAnimations,
   applyAnimation,
   type AnimationConfig,

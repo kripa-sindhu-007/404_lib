@@ -17,6 +17,17 @@ const templates = [
     description: "A bioluminescent deep-sea drift with rising bubbles, a sonar ping, and a few hidden easter eggs",
     tags: ["animated", "dark", "ocean"],
     preview: "🪼",
+    name: "Apollo 404",
+    description: "An Apollo-era mission-control console — CRT phosphor, telemetry rails, orbital diagnostic, and a handful of hidden easter eggs",
+    tags: ["animated", "dark", "mission-control"],
+    preview: "📡",
+  },
+  {
+    id: "ocean",
+    name: "Ocean 404",
+    description: "A bioluminescent deep-sea drift with rising bubbles, a sonar ping, and a few hidden easter eggs",
+    tags: ["animated", "dark", "ocean"],
+    preview: "🪼",
   },
   {
     id: "glitch",
@@ -43,7 +54,16 @@ const templates = [
 >
   <section class="py-16">
     <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+    <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
       <!-- Header -->
+      <div>
+        <p class="eyebrow">
+          <span class="eyebrow-dot" aria-hidden="true"></span>
+          The library
+        </p>
+        <h1 class="mt-4 text-5xl font-semibold tracking-[-0.01em] text-balance sm:text-6xl">
+          Templates,
+          <span class="font-display text-paper-muted">one at a time.</span>
       <div>
         <p class="eyebrow">
           <span class="eyebrow-dot" aria-hidden="true"></span>
@@ -57,6 +77,10 @@ const templates = [
           Every 404 page here is handcrafted and animated. Click a preview to
           see it fullscreen, or copy the code for your framework of choice.
           More templates are on the way — contributions welcome.
+        <p class="mt-5 max-w-2xl text-paper-muted text-pretty">
+          Every 404 page here is handcrafted and animated. Click a preview to
+          see it fullscreen, or copy the code for your framework of choice.
+          More templates are on the way — contributions welcome.
         </p>
       </div>
 
@@ -66,10 +90,12 @@ const templates = [
           <div class="card card-hover overflow-hidden">
             <!-- Preview -->
             <div class="preview-surface h-[240px] sm:h-[280px] md:h-[320px]" style="background: rgb(17 19 17);">
+            <div class="preview-surface h-[240px] sm:h-[280px] md:h-[320px]" style="background: rgb(17 19 17);">
               {template.comingSoon ? (
                 <div class="flex h-full items-center justify-center">
                   <div class="text-center">
                     <span class="text-6xl">{template.preview}</span>
+                    <p class="mt-4 font-mono text-[10px] uppercase tracking-[0.3em] text-paper-dim">
                     <p class="mt-4 font-mono text-[10px] uppercase tracking-[0.3em] text-paper-dim">
                       Coming Soon
                     </p>
