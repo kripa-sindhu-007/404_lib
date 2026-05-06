@@ -14,19 +14,19 @@ export {
   Glitch404Element,
   type Glitch404Options,
 } from "./Glitch404";
+export {
+  createForest404,
+  Forest404Element,
+  type Forest404Options,
+} from "./Forest404";
 
 // Re-export core utilities for convenience
 export {
   generateStars,
   randomBetween,
   generateBubbles,
-  createKonamiMatcher,
-  KONAMI_SEQUENCE,
-} from "../core/utils";
-export {
-  generateStars,
-  randomBetween,
-  generateBubbles,
+  generateFireflies,
+  generateLeaves,
   createKonamiMatcher,
   KONAMI_SEQUENCE,
 } from "../core/utils";

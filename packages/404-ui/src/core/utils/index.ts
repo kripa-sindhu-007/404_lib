@@ -91,6 +91,79 @@ export function generateBubbles(count: number): Array<{
 }
 
 /**
+ * Generates CSS custom properties for a Forest404 firefly.
+ */
+export function generateFireflyStyles(): Record<string, string> {
+  const size = randomBetween(4, 9);
+  const x = randomBetween(4, 96);
+  const y = randomBetween(8, 92);
+  const duration = randomBetween(3.5, 7);
+  const delay = randomBetween(0, 5);
+  const driftX = randomBetween(-10, 10);
+  const driftY = randomBetween(-14, -4);
+
+  return {
+    "--ff-size": `${size}px`,
+    "--ff-x": `${x}%`,
+    "--ff-y": `${y}%`,
+    "--ff-duration": `${duration}s`,
+    "--ff-delay": `${delay}s`,
+    "--ff-drift-x": `${driftX}px`,
+    "--ff-drift-y": `${driftY}px`,
+  };
+}
+
+/**
+ * Generates an array of firefly configurations for Forest404.
+ */
+export function generateFireflies(count: number): Array<{
+  id: number;
+  styles: Record<string, string>;
+}> {
+  return Array.from({ length: count }, (_, i) => ({
+    id: i,
+    styles: generateFireflyStyles(),
+  }));
+}
+
+/**
+ * Generates CSS custom properties for a Forest404 falling leaf.
+ */
+export function generateLeafStyles(): Record<string, string> {
+  const size = randomBetween(12, 26);
+  const x = randomBetween(2, 98);
+  const duration = randomBetween(11, 22);
+  const delay = randomBetween(-15, 0);
+  const drift = randomBetween(-80, 80);
+  const spin = randomBetween(360, 900) * (Math.random() < 0.5 ? -1 : 1);
+  const tints = ["#d6a04a", "#b85a2c", "#9fb878", "#f1e8d4"];
+  const tint = tints[Math.floor(Math.random() * tints.length)];
+
+  return {
+    "--leaf-size": `${size}px`,
+    "--leaf-x": `${x}%`,
+    "--leaf-duration": `${duration}s`,
+    "--leaf-delay": `${delay}s`,
+    "--leaf-drift": `${drift}px`,
+    "--leaf-spin": `${spin}deg`,
+    "--leaf-tint": tint,
+  };
+}
+
+/**
+ * Generates an array of leaf configurations for Forest404.
+ */
+export function generateLeaves(count: number): Array<{
+  id: number;
+  styles: Record<string, string>;
+}> {
+  return Array.from({ length: count }, (_, i) => ({
+    id: i,
+    styles: generateLeafStyles(),
+  }));
+}
+
+/**
  * Canonical Konami sequence (case-insensitive).
  */
 export const KONAMI_SEQUENCE = [

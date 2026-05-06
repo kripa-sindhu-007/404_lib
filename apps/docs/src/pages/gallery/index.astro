@@ -1,22 +1,18 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import { Space404, Ocean404, Glitch404 } from "@kripa006/404-ui/react";
+import { Space404, Ocean404, Glitch404, Forest404 } from "@kripa006/404-ui/react";
 
 // Template data
-const templates = [
+const templates: Array<{
+  id: string;
+  name: string;
+  description: string;
+  tags: string[];
+  preview: string;
+  comingSoon?: boolean;
+}> = [
   {
     id: "space",
-    name: "Apollo 404",
-    description: "An Apollo-era mission-control console — CRT phosphor, telemetry rails, orbital diagnostic, and a handful of hidden easter eggs",
-    tags: ["animated", "dark", "mission-control"],
-    preview: "📡",
-  },
-  {
-    id: "ocean",
-    name: "Ocean 404",
-    description: "A bioluminescent deep-sea drift with rising bubbles, a sonar ping, and a few hidden easter eggs",
-    tags: ["animated", "dark", "ocean"],
-    preview: "🪼",
     name: "Apollo 404",
     description: "An Apollo-era mission-control console — CRT phosphor, telemetry rails, orbital diagnostic, and a handful of hidden easter eggs",
     tags: ["animated", "dark", "mission-control"],
@@ -39,10 +35,9 @@ const templates = [
   {
     id: "forest",
     name: "Forest 404",
-    description: "A serene forest scene with falling leaves",
-    tags: ["animated", "nature", "green"],
+    description: "An old-growth rainforest at twilight — drifting fog, swaying canopies, fireflies, falling birch leaves, and a wobbling ranger compass. Type MOSS for a spring bloom.",
+    tags: ["animated", "dark", "nature"],
     preview: "🌲",
-    comingSoon: true,
   },
 ];
 ---
@@ -54,16 +49,7 @@ const templates = [
 >
   <section class="py-16">
     <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-    <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
       <!-- Header -->
-      <div>
-        <p class="eyebrow">
-          <span class="eyebrow-dot" aria-hidden="true"></span>
-          The library
-        </p>
-        <h1 class="mt-4 text-5xl font-semibold tracking-[-0.01em] text-balance sm:text-6xl">
-          Templates,
-          <span class="font-display text-paper-muted">one at a time.</span>
       <div>
         <p class="eyebrow">
           <span class="eyebrow-dot" aria-hidden="true"></span>
@@ -77,10 +63,6 @@ const templates = [
           Every 404 page here is handcrafted and animated. Click a preview to
           see it fullscreen, or copy the code for your framework of choice.
           More templates are on the way — contributions welcome.
-        <p class="mt-5 max-w-2xl text-paper-muted text-pretty">
-          Every 404 page here is handcrafted and animated. Click a preview to
-          see it fullscreen, or copy the code for your framework of choice.
-          More templates are on the way — contributions welcome.
         </p>
       </div>
 
@@ -90,12 +72,10 @@ const templates = [
           <div class="card card-hover overflow-hidden">
             <!-- Preview -->
             <div class="preview-surface h-[240px] sm:h-[280px] md:h-[320px]" style="background: rgb(17 19 17);">
-            <div class="preview-surface h-[240px] sm:h-[280px] md:h-[320px]" style="background: rgb(17 19 17);">
               {template.comingSoon ? (
                 <div class="flex h-full items-center justify-center">
                   <div class="text-center">
                     <span class="text-6xl">{template.preview}</span>
-                    <p class="mt-4 font-mono text-[10px] uppercase tracking-[0.3em] text-paper-dim">
                     <p class="mt-4 font-mono text-[10px] uppercase tracking-[0.3em] text-paper-dim">
                       Coming Soon
                     </p>
@@ -119,6 +99,18 @@ const templates = [
                   subtitle="The signal carrying this page has been lost."
                   buttonText="Retune"
                   channelId="04"
+                />
+              ) : template.id === "forest" ? (
+                <Forest404
+                  client:only="react"
+                  title="404"
+                  eyebrow="Trail uncharted"
+                  headline="The path forks here."
+                  subtitle="You've wandered off the map."
+                  buttonText="Find your bearings"
+                  fireflyCount={14}
+                  leafCount={9}
+                  showNote={false}
                 />
               ) : (
                 <Space404
@@ -278,6 +270,14 @@ const templates = [
         "<script setup>\nimport { Glitch404 } from '@kripa006/404-ui/vue';\n\nfunction handleClick() {\n  window.location.href = '/';\n}\n<\\/script>\n\n<template>\n  <Glitch404\n    title=\"404\"\n    eyebrow=\"Transmission interrupted\"\n    headline=\"Page corrupted\"\n    subtitle=\"The signal carrying this page has been lost in transit. Retune.\"\n    button-text=\"Retune\"\n    channel-id=\"04\"\n    :show-no-signal=\"true\"\n    @button-click=\"handleClick\"\n  />\n</template>",
       vanilla:
         "import { createGlitch404 } from '@kripa006/404-ui/vanilla';\n\nconst container = document.getElementById('app');\n\nconst glitch404 = createGlitch404(container, {\n  title: '404',\n  eyebrow: 'Transmission interrupted',\n  headline: 'Page corrupted',\n  subtitle: 'The signal carrying this page has been lost in transit. Retune.',\n  buttonText: 'Retune',\n  channelId: '04',\n  showNoSignal: true,\n  onButtonClick: () => {\n    window.location.href = '/';\n  }\n});\n\n// Cleanup when needed\n// glitch404.destroy();",
+    },
+    forest: {
+      react:
+        "import { Forest404 } from '@kripa006/404-ui/react';\n\nfunction NotFoundPage() {\n  return (\n    <Forest404\n      title=\"404\"\n      eyebrow=\"Trail uncharted\"\n      headline=\"The path forks here.\"\n      subtitle=\"You've wandered off the map. The grove is quiet, the moss is patient — find your bearings and head back.\"\n      buttonText=\"Find your bearings\"\n      coordinates=\"47°23′N · 122°02′W\"\n      fireflyCount={22}\n      leafCount={14}\n      onButtonClick={() => window.location.href = '/'}\n    />\n  );\n}\n\nexport default NotFoundPage;",
+      vue:
+        "<script setup>\nimport { Forest404 } from '@kripa006/404-ui/vue';\n\nfunction handleClick() {\n  window.location.href = '/';\n}\n<\\/script>\n\n<template>\n  <Forest404\n    title=\"404\"\n    eyebrow=\"Trail uncharted\"\n    headline=\"The path forks here.\"\n    subtitle=\"You've wandered off the map. The grove is quiet, the moss is patient — find your bearings and head back.\"\n    button-text=\"Find your bearings\"\n    coordinates=\"47°23′N · 122°02′W\"\n    :firefly-count=\"22\"\n    :leaf-count=\"14\"\n    @button-click=\"handleClick\"\n  />\n</template>",
+      vanilla:
+        "import { createForest404 } from '@kripa006/404-ui/vanilla';\n\nconst container = document.getElementById('app');\n\nconst forest404 = createForest404(container, {\n  title: '404',\n  eyebrow: 'Trail uncharted',\n  headline: 'The path forks here.',\n  subtitle: \"You've wandered off the map. The grove is quiet, the moss is patient — find your bearings and head back.\",\n  buttonText: 'Find your bearings',\n  coordinates: '47°23′N · 122°02′W',\n  fireflyCount: 22,\n  leafCount: 14,\n  onButtonClick: () => {\n    window.location.href = '/';\n  }\n});\n\n// Cleanup when needed\n// forest404.destroy();",
     },
   };
 

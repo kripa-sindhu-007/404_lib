@@ -54,6 +54,27 @@ export const spaceColors = {
     glow: "#7ef0ff",
     pearl: "#e6fffa",
   },
+  // Old-growth temperate-rainforest palette for Forest404.
+  // pine* — deep canopy and forest floor.
+  // moss/bark — mid-tones for trunks and underbrush.
+  // mist/parchment — soft highlights for fog and serif type.
+  // ember/firefly — warm lantern + insect glow accents.
+  forest: {
+    900: "#070d09",
+    800: "#0d1812",
+    700: "#13251c",
+    600: "#1c3a28",
+    500: "#2a4d2f",
+    moss: "#5d7a3f",
+    "moss-soft": "#9fb878",
+    bark: "#3a2d1f",
+    "bark-light": "#5a4633",
+    parchment: "#f1e8d4",
+    mist: "#cddccd",
+    ember: "#d6a04a",
+    firefly: "#f7e57f",
+    rust: "#b85a2c",
+  },
 } as const;
 
 /**
@@ -154,6 +175,94 @@ export const animationKeyframes = {
     "0%": { transform: "scale(1)", opacity: "0.8" },
     "100%": { transform: "scale(2.2)", opacity: "0" },
   },
+  // Forest404 — twilight grove
+  canopySway: {
+    "0%, 100%": { transform: "translate3d(-1%, 0, 0) rotate(-0.4deg)" },
+    "50%": { transform: "translate3d(1%, -0.4%, 0) rotate(0.4deg)" },
+  },
+  fogDrift: {
+    "0%, 100%": {
+      transform: "translate3d(-6%, 0, 0)",
+      opacity: "0.45",
+    },
+    "50%": {
+      transform: "translate3d(6%, -1%, 0)",
+      opacity: "0.7",
+    },
+  },
+  fireflyPulse: {
+    "0%, 100%": {
+      transform: "translate3d(0, 0, 0) scale(0.85)",
+      opacity: "0.15",
+      filter: "blur(0.4px)",
+    },
+    "40%": {
+      transform:
+        "translate3d(var(--ff-drift-x, 4px), var(--ff-drift-y, -6px), 0) scale(1.15)",
+      opacity: "1",
+      filter: "blur(0.2px)",
+    },
+    "70%": {
+      transform:
+        "translate3d(calc(var(--ff-drift-x, 4px) * -0.6), var(--ff-drift-y, -6px), 0) scale(1)",
+      opacity: "0.55",
+    },
+  },
+  leafFall: {
+    "0%": {
+      transform: "translate3d(0, -10vh, 0) rotate(0deg)",
+      opacity: "0",
+    },
+    "10%": { opacity: "0.95" },
+    "90%": { opacity: "0.9" },
+    "100%": {
+      transform:
+        "translate3d(var(--leaf-drift, 30px), 110vh, 0) rotate(var(--leaf-spin, 540deg))",
+      opacity: "0",
+    },
+  },
+  compassWobble: {
+    "0%, 100%": { transform: "rotate(-4deg)" },
+    "25%": { transform: "rotate(2.5deg)" },
+    "55%": { transform: "rotate(-1.5deg)" },
+    "80%": { transform: "rotate(1deg)" },
+  },
+  emberBreathe: {
+    "0%, 100%": {
+      textShadow:
+        "0 0 14px rgba(214, 160, 74, 0.18), 0 0 28px rgba(247, 229, 127, 0.06)",
+    },
+    "50%": {
+      textShadow:
+        "0 0 22px rgba(214, 160, 74, 0.32), 0 0 48px rgba(247, 229, 127, 0.12)",
+    },
+  },
+  foxTrot: {
+    "0%": { transform: "translateX(-12vw)", opacity: "0" },
+    "12%, 88%": { opacity: "1" },
+    "100%": { transform: "translateX(112vw)", opacity: "0" },
+  },
+  mothFlutter: {
+    "0%": {
+      transform: "translate3d(-15vw, 30vh, 0) rotate(-6deg)",
+      opacity: "0",
+    },
+    "15%, 85%": { opacity: "1" },
+    "30%": {
+      transform: "translate3d(25vw, 20vh, 0) rotate(8deg)",
+    },
+    "60%": {
+      transform: "translate3d(60vw, 38vh, 0) rotate(-4deg)",
+    },
+    "100%": {
+      transform: "translate3d(115vw, 22vh, 0) rotate(6deg)",
+      opacity: "0",
+    },
+  },
+  fireflyBurst: {
+    "0%": { transform: "scale(1)", opacity: "1" },
+    "100%": { transform: "scale(3.6)", opacity: "0" },
+  },
 } as const;
 
 /**
@@ -178,6 +287,18 @@ export const animationUtilities = {
   "sub-cruise": "subCruise 9s linear forwards",
   "angler-drift": "anglerDrift 14s linear forwards",
   pop: "pop 400ms ease-out forwards",
+  // Forest404
+  "canopy-sway": "canopySway 11s ease-in-out infinite",
+  "fog-drift": "fogDrift 18s ease-in-out infinite",
+  "firefly-pulse":
+    "fireflyPulse var(--ff-duration, 5s) ease-in-out var(--ff-delay, 0s) infinite",
+  "leaf-fall":
+    "leafFall var(--leaf-duration, 14s) linear var(--leaf-delay, 0s) infinite",
+  "compass-wobble": "compassWobble 7s ease-in-out infinite",
+  "ember-breathe": "emberBreathe 5.5s ease-in-out infinite",
+  "fox-trot": "foxTrot 11s linear forwards",
+  "moth-flutter": "mothFlutter 14s ease-in-out forwards",
+  "firefly-burst": "fireflyBurst 600ms ease-out forwards",
 } as const;
 
 /**
@@ -195,6 +316,18 @@ export const spaceFontFamily = {
     "Menlo",
     "Consolas",
     "monospace",
+  ],
+  // Old-growth serif stack for Forest404 — picks up Fraunces / Caudex / Cormorant
+  // when consumers load them, falls back to crisp print serifs.
+  grove: [
+    "'Fraunces'",
+    "'Caudex'",
+    "'Cormorant Garamond'",
+    "'Iowan Old Style'",
+    "'Apple Garamond'",
+    "Georgia",
+    "ui-serif",
+    "serif",
   ],
 };
 

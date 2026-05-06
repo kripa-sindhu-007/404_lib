@@ -731,1038 +731,1701 @@
   .space-404-rail-val {
     color: theme("colors.space.phosphor");
     font-variant-numeric: tabular-nums;
-    /* Main stage */
+  }
+
+  /* Main stage */
+  .space-404-stage {
+    @apply relative z-10 grid w-full flex-1;
+    grid-template-columns: minmax(0, 220px) minmax(0, 1fr) minmax(0, 220px);
+    gap: 0;
+  }
+
+  /* Adapt to the component's own container width rather than the viewport.
+   This lets narrow preview frames on the docs/gallery hide the rails
+   automatically without brittle transform-scale hacks.
+   The doubled `.space-404-rail` class bumps specificity above the plain
+   `.space-404-rail { display: flex }` declaration that follows. */
+  @container space404 (max-width: 900px) {
     .space-404-stage {
-      @apply relative z-10 grid w-full flex-1;
-      grid-template-columns: minmax(0, 220px) minmax(0, 1fr) minmax(0, 220px);
-      gap: 0;
+      grid-template-columns: 1fr;
     }
-
-    /* Adapt to the component's own container width rather than the viewport.
-     This lets narrow preview frames on the docs/gallery hide the rails
-     automatically without brittle transform-scale hacks.
-     The doubled `.space-404-rail` class bumps specificity above the plain
-     `.space-404-rail { display: flex }` declaration that follows. */
-    @container space404 (max-width: 900px) {
-      .space-404-stage {
-        grid-template-columns: 1fr;
-      }
-      .space-404-rail.space-404-rail--left,
-      .space-404-rail.space-404-rail--right {
-        display: none;
-      }
+    .space-404-rail.space-404-rail--left,
+    .space-404-rail.space-404-rail--right {
+      display: none;
     }
+  }
 
-    /* Telemetry rails */
-    .space-404-rail {
-      @apply relative flex flex-col gap-3 px-5 py-6 text-[11px];
-      border-color: rgba(124, 255, 74, 0.15);
-      color: rgba(124, 255, 74, 0.75);
-      letter-spacing: 0.1em;
+  /* Telemetry rails */
+  .space-404-rail {
+    @apply relative flex flex-col gap-3 px-5 py-6 text-[11px];
+    border-color: rgba(124, 255, 74, 0.15);
+    color: rgba(124, 255, 74, 0.75);
+    letter-spacing: 0.1em;
+  }
+
+  .space-404-rail--left {
+    border-right: 1px solid rgba(124, 255, 74, 0.15);
+  }
+
+  .space-404-rail--right {
+    border-left: 1px solid rgba(124, 255, 74, 0.15);
+    text-align: right;
+  }
+
+  .space-404-rail-heading {
+    @apply mb-2 text-[10px] uppercase;
+    letter-spacing: 0.35em;
+    color: theme("colors.space.amber");
+  }
+
+  .space-404-rail-row {
+    @apply flex items-baseline justify-between gap-3;
+  }
+
+  .space-404-rail-row--right {
+    flex-direction: row-reverse;
+  }
+
+  .space-404-rail-key {
+    color: rgba(124, 255, 74, 0.55);
+    text-transform: uppercase;
+    font-size: 9px;
+    letter-spacing: 0.3em;
+  }
+
+  .space-404-rail-val {
+    color: theme("colors.space.phosphor");
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* Center stage */
+  /* Center stage */
+  .space-404-content {
+    @apply relative flex flex-col items-center justify-center gap-6 px-6 py-10 text-center;
+  }
+
+  .space-404-eyebrow {
+    @apply text-[10px] uppercase;
+    letter-spacing: 0.5em;
+    color: theme("colors.space.amber");
+    @apply relative flex flex-col items-center justify-center gap-6 px-6 py-10 text-center;
+  }
+
+  .space-404-eyebrow {
+    @apply text-[10px] uppercase;
+    letter-spacing: 0.5em;
+    color: theme("colors.space.amber");
+  }
+
+  .space-404-title {
+    @apply relative text-[clamp(6rem,22vw,16rem)] font-black leading-none;
+    font-family: theme("fontFamily.telemetry");
+    letter-spacing: 0.08em;
+    color: theme("colors.space.phosphor");
+    @apply relative text-[clamp(6rem,22vw,16rem)] font-black leading-none;
+    font-family: theme("fontFamily.telemetry");
+    letter-spacing: 0.08em;
+    color: theme("colors.space.phosphor");
+    text-shadow:
+      0 0 8px rgba(124, 255, 74, 0.7),
+      0 0 22px rgba(124, 255, 74, 0.35),
+      0 0 48px rgba(124, 255, 74, 0.18);
+    animation: crtGlitch 9s steps(1, end) infinite;
+    user-select: none;
+  }
+
+  .space-404-title::before,
+  .space-404-title::after {
+    content: attr(data-text);
+    @apply pointer-events-none absolute inset-0;
+    mix-blend-mode: screen;
+  }
+
+  .space-404-title::before {
+    color: theme("colors.space.warn");
+    transform: translate(-1px, 0);
+    opacity: 0.35;
+  }
+
+  .space-404-title::after {
+    color: theme("colors.space.glow");
+    transform: translate(1px, 0);
+    opacity: 0.2;
+  }
+
+  .space-404-headline {
+    @apply text-base font-normal uppercase;
+    letter-spacing: 0.45em;
+    color: theme("colors.space.phosphor");
+    text-shadow:
+      0 0 8px rgba(124, 255, 74, 0.7),
+      0 0 22px rgba(124, 255, 74, 0.35),
+      0 0 48px rgba(124, 255, 74, 0.18);
+    animation: crtGlitch 9s steps(1, end) infinite;
+    user-select: none;
+  }
+
+  .space-404-title::before,
+  .space-404-title::after {
+    content: attr(data-text);
+    @apply pointer-events-none absolute inset-0;
+    mix-blend-mode: screen;
+  }
+
+  .space-404-title::before {
+    color: theme("colors.space.warn");
+    transform: translate(-1px, 0);
+    opacity: 0.35;
+  }
+
+  .space-404-title::after {
+    color: theme("colors.space.glow");
+    transform: translate(1px, 0);
+    opacity: 0.2;
+  }
+
+  .space-404-headline {
+    @apply text-base font-normal uppercase;
+    letter-spacing: 0.45em;
+    color: theme("colors.space.phosphor");
+  }
+
+  .space-404-subtitle {
+    @apply max-w-md text-sm;
+    color: rgba(124, 255, 74, 0.72);
+    letter-spacing: 0.05em;
+    line-height: 1.6;
+  }
+
+  /* Orbital diagnostic */
+  .space-404-orbit {
+    @apply pointer-events-none relative my-2;
+    width: min(320px, 60%);
+    aspect-ratio: 16 / 9;
+  }
+
+  .space-404-orbit svg {
+    @apply h-full w-full;
+    filter: drop-shadow(0 0 10px rgba(124, 255, 74, 0.35));
+  }
+
+  .space-404-orbit-ring {
+    animation: orbitSpin var(--orbit-duration, 36s) linear infinite;
+    transform-origin: 50% 50%;
+  }
+
+  .space-404-orbit-ring--fast {
+    --orbit-duration: 22s;
+    animation-direction: reverse;
+  }
+
+  .space-404-craft {
+    @apply pointer-events-auto cursor-pointer;
+    transform-origin: 50% 50%;
+  }
+
+  .space-404-craft circle {
+    transition: r 200ms ease;
+    @apply max-w-md text-sm;
+    color: rgba(124, 255, 74, 0.72);
+    letter-spacing: 0.05em;
+    line-height: 1.6;
+  }
+
+  /* Orbital diagnostic */
+  .space-404-orbit {
+    @apply pointer-events-none relative my-2;
+    width: min(320px, 60%);
+    aspect-ratio: 16 / 9;
+  }
+
+  .space-404-orbit svg {
+    @apply h-full w-full;
+    filter: drop-shadow(0 0 10px rgba(124, 255, 74, 0.35));
+  }
+
+  .space-404-orbit-ring {
+    animation: orbitSpin var(--orbit-duration, 36s) linear infinite;
+    transform-origin: 50% 50%;
+  }
+
+  .space-404-orbit-ring--fast {
+    --orbit-duration: 22s;
+    animation-direction: reverse;
+  }
+
+  .space-404-craft {
+    @apply pointer-events-auto cursor-pointer;
+    transform-origin: 50% 50%;
+  }
+
+  .space-404-craft circle {
+    transition: r 200ms ease;
+  }
+
+  .space-404-craft:hover circle {
+    r: 7;
+  }
+
+  /* Primary action */
+  .space-404-craft:hover circle {
+    r: 7;
+  }
+
+  /* Primary action */
+  .space-404-button {
+    @apply relative inline-flex items-center gap-3 rounded-none border px-6 py-3 text-[11px] uppercase transition-all duration-200;
+    font-family: theme("fontFamily.telemetry");
+    letter-spacing: 0.4em;
+    color: theme("colors.space.phosphor");
+    border-color: rgba(124, 255, 74, 0.5);
+    background: linear-gradient(
+      180deg,
+      rgba(124, 255, 74, 0.06),
+      rgba(20, 23, 18, 0.5)
+    );
+    box-shadow: 0 0 0 1px rgba(124, 255, 74, 0.05) inset;
+  }
+
+  .space-404-button:hover {
+    color: theme("colors.space.hull");
+    background: theme("colors.space.phosphor");
+    border-color: theme("colors.space.phosphor");
+    box-shadow:
+      0 0 18px rgba(124, 255, 74, 0.45),
+      0 0 40px rgba(124, 255, 74, 0.15);
+  }
+
+  .space-404-button:focus-visible {
+    outline: 2px solid theme("colors.space.amber");
+    outline-offset: 2px;
+  }
+
+  .space-404-button-bracket {
+    color: theme("colors.space.amber");
+  }
+
+  /* Transmission ticker */
+  .space-404-ticker {
+    @apply relative z-10 flex items-center gap-3 border-t px-6 py-3 text-[11px];
+    border-color: rgba(124, 255, 74, 0.18);
+    background: linear-gradient(
+      180deg,
+      rgba(20, 23, 18, 0.4),
+      rgba(124, 255, 74, 0.04)
+    );
+    color: rgba(124, 255, 74, 0.85);
+    min-height: 44px;
+  }
+
+  .space-404-ticker-prompt {
+    color: theme("colors.space.amber");
+  }
+
+  .space-404-ticker-text {
+    @apply flex-1 overflow-hidden whitespace-nowrap;
+    letter-spacing: 0.08em;
+  }
+
+  .space-404-ticker-cursor {
+    display: inline-block;
+    width: 8px;
+    height: 14px;
+    margin-left: 2px;
+    background: theme("colors.space.phosphor");
+    vertical-align: text-bottom;
+    animation: cursorBlink 1s steps(1, end) infinite;
+  }
+
+  /* Morse burst — easter egg */
+  .space-404-morse {
+    @apply pointer-events-none absolute left-1/2 top-1/2 z-20 -translate-x-1/2 -translate-y-1/2 font-bold;
+    font-family: theme("fontFamily.telemetry");
+    font-size: clamp(2rem, 6vw, 4rem);
+    letter-spacing: 0.6em;
+    color: theme("colors.space.warn");
+    text-shadow:
+      0 0 12px rgba(255, 61, 61, 0.8),
+      0 0 32px rgba(255, 61, 61, 0.4);
+    animation: morseFlash 900ms ease-out forwards;
+  }
+
+  /* Launched rocket — APOLLO easter egg */
+  .space-404-rocket {
+    @apply pointer-events-none absolute bottom-0 z-20;
+    left: var(--rocket-x, 50%);
+    width: 34px;
+    height: 80px;
+    transform-origin: 50% 100%;
+    animation: rocketLaunch 2.2s ease-in forwards;
+    filter: drop-shadow(0 0 12px rgba(255, 181, 71, 0.8));
+  }
+
+  /* CRT intensify — Shift-hold easter egg */
+  .space-404-container[data-intensify="true"] .space-404-scanlines {
+    opacity: 1.6;
+  }
+
+  .space-404-container[data-intensify="true"] .space-404-title {
+    text-shadow:
+      -2px 0 theme("colors.space.warn"),
+      2px 0 theme("colors.space.glow"),
+      0 0 16px rgba(124, 255, 74, 0.8),
+      0 0 42px rgba(124, 255, 74, 0.45);
+  }
+
+  /* Reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    .space-404-scanlines::after,
+    .space-404-title,
+    .space-404-led,
+    .space-404-warn,
+    .space-404-orbit-ring,
+    .space-404-ticker-cursor {
+      animation: none !important;
     }
+  }
 
-    .space-404-rail--left {
-      border-right: 1px solid rgba(124, 255, 74, 0.15);
+  /* Ocean 404 — bioluminescent deep-sea variant */
+  .ocean-404-container {
+    @apply relative flex w-full flex-col items-center justify-center overflow-hidden;
+    min-height: calc(100vh - 4rem);
+    background:
+      radial-gradient(
+        ellipse at 50% 0%,
+        theme("colors.ocean.600") 0%,
+        theme("colors.ocean.800") 45%,
+        theme("colors.ocean.900") 100%
+      ),
+      theme("colors.ocean.900");
+    color: theme("colors.ocean.pearl");
+    isolation: isolate;
+  }
+
+  .ocean-404-caustics {
+    @apply pointer-events-none absolute inset-[-10%] -z-10;
+    background:
+      radial-gradient(
+        circle at 20% 10%,
+        rgba(126, 240, 255, 0.22),
+        transparent 45%
+      ),
+      radial-gradient(
+        circle at 80% 30%,
+        rgba(46, 196, 182, 0.18),
+        transparent 50%
+      ),
+      radial-gradient(
+        circle at 40% 80%,
+        rgba(14, 110, 143, 0.4),
+        transparent 60%
+      );
+    filter: blur(40px);
+    animation: caustic 14s ease-in-out infinite;
+  }
+
+  .ocean-404-vignette {
+    @apply pointer-events-none absolute inset-0 -z-10;
+    background: radial-gradient(
+      ellipse at center,
+      transparent 30%,
+      rgba(2, 17, 38, 0.65) 85%,
+      rgba(2, 17, 38, 0.95) 100%
+    );
+  }
+
+  .ocean-404-bubble-field {
+    @apply pointer-events-none absolute inset-0 overflow-hidden;
+  }
+
+  .ocean-404-bubble {
+    @apply pointer-events-auto absolute cursor-pointer rounded-full;
+    left: var(--bubble-x, 50%);
+    bottom: -60px;
+    width: var(--bubble-size, 14px);
+    height: var(--bubble-size, 14px);
+    background: radial-gradient(
+      circle at 30% 30%,
+      rgba(255, 255, 255, 0.9),
+      rgba(126, 240, 255, 0.35) 45%,
+      rgba(46, 196, 182, 0.12) 70%,
+      transparent 75%
+    );
+    box-shadow:
+      inset 0 0 6px rgba(255, 255, 255, 0.25),
+      0 0 8px rgba(126, 240, 255, 0.18);
+    animation: rise var(--bubble-duration, 12s) linear var(--bubble-delay, 0s)
+      infinite;
+    transition: filter 200ms ease;
+  }
+
+  .ocean-404-bubble:hover {
+    filter: brightness(1.5);
+  }
+
+  .ocean-404-bubble[data-popped="true"] {
+    animation: bubblePop 400ms ease-out forwards;
+    pointer-events: none;
+  }
+
+  .ocean-404-jellyfish {
+    @apply pointer-events-none absolute z-10;
+    width: var(--jelly-size, 120px);
+    left: var(--jelly-x, 70%);
+    top: var(--jelly-y, 30%);
+    animation: jellyBell var(--jelly-duration, 5s) ease-in-out
+      var(--jelly-delay, 0s) infinite;
+    filter: drop-shadow(0 0 14px rgba(126, 240, 255, 0.35));
+    opacity: 0.85;
+  }
+
+  .ocean-404-content {
+    @apply relative z-10 flex flex-col items-center gap-7 px-4 text-center;
+  }
+
+  .ocean-404-sonar {
+    @apply pointer-events-none absolute left-1/2 top-1/2 -z-10 h-[220px] w-[220px] -translate-x-1/2 -translate-y-1/2 rounded-full;
+    border: 1px solid rgba(126, 240, 255, 0.45);
+    animation: sonar 4.5s ease-out infinite;
+  }
+
+  .ocean-404-sonar::after {
+    content: "";
+    @apply absolute inset-0 rounded-full;
+    border: 1px solid rgba(126, 240, 255, 0.25);
+    animation: sonar 4.5s ease-out 1.5s infinite;
+  }
+
+  .ocean-404-title {
+    @apply font-space text-8xl font-light tracking-[0.25em] text-white md:text-9xl;
+    background: linear-gradient(
+      180deg,
+      theme("colors.ocean.pearl") 0%,
+      theme("colors.ocean.glow") 60%,
+      theme("colors.ocean.accent") 100%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shimmer 4.5s ease-in-out infinite;
+    user-select: none;
+  }
+
+  .ocean-404-eyebrow {
+    @apply font-mono text-xs uppercase tracking-[0.5em];
+    color: rgba(126, 240, 255, 0.7);
+  }
+
+  .ocean-404-subtitle {
+    @apply font-space text-lg font-light tracking-wide md:text-xl;
+    color: rgba(230, 255, 250, 0.75);
+    max-width: 34ch;
+  }
+
+  .ocean-404-button {
+    @apply font-space relative inline-flex items-center gap-3 rounded-full px-7 py-3 text-sm font-medium uppercase tracking-[0.35em] transition-all duration-300;
+    color: theme("colors.ocean.pearl");
+    border: 1px solid rgba(126, 240, 255, 0.45);
+    background: linear-gradient(
+      180deg,
+      rgba(46, 196, 182, 0.15),
+      rgba(10, 77, 110, 0.35)
+    );
+    box-shadow:
+      inset 0 0 0 1px rgba(255, 255, 255, 0.04),
+      0 0 18px rgba(126, 240, 255, 0.15);
+    backdrop-filter: blur(6px);
+  }
+
+  .ocean-404-button::before {
+    content: "";
+    @apply pointer-events-none absolute inset-0 rounded-full opacity-0 transition-opacity duration-300;
+    background: radial-gradient(
+      circle at 50% 50%,
+      rgba(126, 240, 255, 0.25),
+      transparent 70%
+    );
+  }
+
+  .ocean-404-button:hover {
+    border-color: rgba(126, 240, 255, 0.85);
+    box-shadow:
+      inset 0 0 0 1px rgba(255, 255, 255, 0.06),
+      0 0 32px rgba(126, 240, 255, 0.35);
+    transform: translateY(-1px);
+  }
+
+  .ocean-404-button:hover::before {
+    opacity: 1;
+  }
+
+  .ocean-404-depth {
+    @apply pointer-events-none absolute left-6 top-6 z-10 font-mono text-[11px] uppercase tracking-[0.3em];
+    color: rgba(126, 240, 255, 0.65);
+  }
+
+  .ocean-404-depth-value {
+    @apply text-white;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .ocean-404-coords {
+    @apply pointer-events-none absolute bottom-6 right-6 z-10 font-mono text-[10px] uppercase tracking-[0.3em];
+    color: rgba(126, 240, 255, 0.45);
+  }
+
+  .ocean-404-submarine {
+    @apply pointer-events-none absolute bottom-[12%] left-0 z-10;
+    width: 120px;
+    animation: subCruise 9s linear forwards;
+    filter: drop-shadow(0 6px 24px rgba(126, 240, 255, 0.4));
+  }
+
+  .ocean-404-angler {
+    @apply pointer-events-none absolute left-0 top-[62%] z-0;
+    width: 40px;
+    animation: anglerDrift 18s linear forwards;
+    filter: drop-shadow(0 0 12px rgba(126, 240, 255, 0.9));
+    opacity: 0.6;
+  }
+
+  /* Reduced motion: stills only */
+  @media (prefers-reduced-motion: reduce) {
+    .ocean-404-caustics,
+    .ocean-404-bubble,
+    .ocean-404-jellyfish,
+    .ocean-404-sonar,
+    .ocean-404-sonar::after,
+    .ocean-404-title,
+    .ocean-404-submarine,
+    .ocean-404-angler {
+      animation: none !important;
     }
+  }
 
-    .space-404-rail--right {
-      border-left: 1px solid rgba(124, 255, 74, 0.15);
-      text-align: right;
-    }
+  /* ─────────────────────────────────────────────────────────────────────────
+   Glitch 404 — corrupted broadcast / dying CRT
+   ───────────────────────────────────────────────────────────────────────── */
+  .glitch-404-container {
+    @apply relative flex w-full flex-col overflow-hidden;
+    min-height: calc(100vh - 4rem);
+    container-type: inline-size;
+    container-name: glitch404;
+    background:
+      radial-gradient(
+        ellipse 70% 80% at 50% 50%,
+        rgba(255, 45, 138, 0.1) 0%,
+        rgba(0, 245, 255, 0.04) 35%,
+        rgba(4, 2, 10, 0) 70%
+      ),
+      linear-gradient(180deg, #06030d 0%, #04020a 60%, #0a0414 100%);
+    color: #f0eef5;
+    font-family:
+      "VT323", "JetBrains Mono", "IBM Plex Mono", ui-monospace, SFMono-Regular,
+      Menlo, monospace;
+    isolation: isolate;
+    animation: glitchHueDrift 11s ease-in-out infinite;
+  }
 
-    .space-404-rail-heading {
-      @apply mb-2 text-[10px] uppercase;
-      letter-spacing: 0.35em;
-      color: theme("colors.space.amber");
-    }
+  /* Animated static noise — two layered radial dot grids that shift */
+  .glitch-404-static {
+    @apply pointer-events-none absolute inset-0;
+    z-index: 1;
+    background-image:
+      radial-gradient(rgba(240, 238, 245, 0.18) 1px, transparent 1px),
+      radial-gradient(rgba(255, 45, 138, 0.1) 1px, transparent 1px);
+    background-size:
+      3px 3px,
+      5px 5px;
+    background-position:
+      0 0,
+      1px 2px;
+    mix-blend-mode: screen;
+    opacity: 0.6;
+    animation: glitchStaticShift 220ms steps(1, end) infinite;
+  }
 
-    .space-404-rail-row {
-      @apply flex items-baseline justify-between gap-3;
-    }
+  /* Scanlines crawling slowly */
+  .glitch-404-scanlines {
+    @apply pointer-events-none absolute inset-0;
+    z-index: 2;
+    background: repeating-linear-gradient(
+      to bottom,
+      rgba(0, 245, 255, 0.05) 0px,
+      rgba(0, 245, 255, 0.05) 1px,
+      transparent 2px,
+      transparent 3px
+    );
+    mix-blend-mode: overlay;
+  }
 
-    .space-404-rail-row--right {
-      flex-direction: row-reverse;
-    }
+  .glitch-404-scanlines::after {
+    content: "";
+    @apply absolute inset-x-0;
+    top: 0;
+    height: 26%;
+    background: linear-gradient(
+      180deg,
+      transparent 0%,
+      rgba(255, 45, 138, 0.08) 35%,
+      rgba(0, 245, 255, 0.1) 50%,
+      rgba(255, 45, 138, 0.08) 65%,
+      transparent 100%
+    );
+    animation: glitchScanCrawl 7.5s linear infinite;
+  }
 
-    .space-404-rail-key {
-      color: rgba(124, 255, 74, 0.55);
-      text-transform: uppercase;
+  /* Sync bar — a sweep of horizontal distortion every cycle */
+  .glitch-404-syncbar {
+    @apply pointer-events-none absolute inset-x-0;
+    z-index: 3;
+    top: 0;
+    height: 18%;
+    background: linear-gradient(
+      180deg,
+      transparent 0%,
+      rgba(0, 245, 255, 0.18) 12%,
+      rgba(240, 238, 245, 0.55) 50%,
+      rgba(255, 45, 138, 0.22) 88%,
+      transparent 100%
+    );
+    mix-blend-mode: screen;
+    filter: blur(0.5px);
+    animation: glitchSyncBar 9s ease-out infinite;
+    animation-delay: 1.4s;
+  }
+
+  /* CRT vignette + tube curve */
+  .glitch-404-vignette {
+    @apply pointer-events-none absolute inset-0;
+    z-index: 4;
+    background: radial-gradient(
+      ellipse 90% 100% at center,
+      transparent 50%,
+      rgba(4, 2, 10, 0.4) 78%,
+      rgba(4, 2, 10, 0.92) 100%
+    );
+    box-shadow: inset 0 0 200px rgba(0, 0, 0, 0.7);
+  }
+
+  /* Top broadcast HUD bar */
+  .glitch-404-hud {
+    @apply relative z-10 flex flex-wrap items-center gap-4 px-6 py-3 text-[11px] uppercase;
+    letter-spacing: 0.32em;
+    border-bottom: 1px solid rgba(255, 45, 138, 0.22);
+    background: linear-gradient(
+      180deg,
+      rgba(255, 45, 138, 0.06),
+      rgba(4, 2, 10, 0.4)
+    );
+    color: rgba(240, 238, 245, 0.85);
+  }
+
+  .glitch-404-rec {
+    @apply inline-flex items-center gap-2;
+    color: #ff2d8a;
+  }
+
+  .glitch-404-rec-dot {
+    display: inline-block;
+    width: 9px;
+    height: 9px;
+    border-radius: 999px;
+    background: #ff2d8a;
+    box-shadow: 0 0 12px rgba(255, 45, 138, 0.9);
+    animation: glitchNoSignalBlink 1.5s steps(1, end) infinite;
+  }
+
+  .glitch-404-hud-key {
+    color: rgba(0, 245, 255, 0.85);
+    letter-spacing: 0.4em;
+  }
+
+  .glitch-404-hud-val {
+    color: #f0eef5;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .glitch-404-hud-spacer {
+    flex: 1;
+  }
+
+  .glitch-404-timecode {
+    color: rgba(255, 253, 0, 0.85);
+    font-variant-numeric: tabular-nums;
+    animation: glitchTimecode 1.4s ease-in-out infinite;
+  }
+
+  /* Center stage */
+  .glitch-404-stage {
+    @apply relative z-10 flex flex-1 flex-col items-center justify-center gap-7 px-6 py-12 text-center;
+  }
+
+  .glitch-404-eyebrow {
+    @apply inline-flex items-center gap-3 text-[10px] uppercase;
+    letter-spacing: 0.55em;
+    color: rgba(0, 245, 255, 0.85);
+  }
+
+  .glitch-404-eyebrow::before,
+  .glitch-404-eyebrow::after {
+    content: "";
+    width: 24px;
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(0, 245, 255, 0.7),
+      transparent
+    );
+  }
+
+  /* The headline 404 — chromatic aberration + glitch slices */
+  .glitch-404-title-wrap {
+    @apply relative;
+    line-height: 0.9;
+    isolation: isolate;
+  }
+
+  .glitch-404-title {
+    @apply relative font-black uppercase;
+    font-size: clamp(7rem, 26vw, 22rem);
+    line-height: 0.85;
+    letter-spacing: 0.06em;
+    color: #f7f5fa;
+    text-shadow:
+      -3px 0 0 rgba(255, 45, 138, 0.85),
+      3px 0 0 rgba(0, 245, 255, 0.85),
+      0 0 28px rgba(255, 45, 138, 0.25);
+    animation:
+      glitchAberrate 4.6s steps(1, end) infinite,
+      glitchShakeX 2.8s steps(2, end) infinite;
+    user-select: none;
+  }
+
+  /* Two duplicate layers slicing horizontal bands across the title */
+  .glitch-404-title-slice {
+    @apply pointer-events-none absolute inset-0;
+    color: #f7f5fa;
+    text-shadow:
+      -3px 0 0 rgba(255, 45, 138, 0.95),
+      3px 0 0 rgba(0, 245, 255, 0.95);
+    mix-blend-mode: screen;
+  }
+
+  .glitch-404-title-slice--a {
+    animation: glitchSlice1 4.2s steps(1, end) infinite;
+  }
+
+  .glitch-404-title-slice--b {
+    animation: glitchSlice2 5.6s steps(1, end) infinite;
+    animation-delay: 1.1s;
+    color: rgba(255, 253, 0, 0.65);
+    text-shadow:
+      -2px 0 0 rgba(255, 45, 138, 0.65),
+      2px 0 0 rgba(0, 245, 255, 0.65);
+  }
+
+  .glitch-404-headline {
+    @apply text-base font-medium uppercase;
+    letter-spacing: 0.42em;
+    color: #f0eef5;
+  }
+
+  .glitch-404-subtitle {
+    @apply max-w-md text-sm;
+    color: rgba(240, 238, 245, 0.7);
+    letter-spacing: 0.05em;
+    line-height: 1.65;
+  }
+
+  .glitch-404-subtitle .glitch-404-subtitle-mark {
+    color: rgba(255, 253, 0, 0.95);
+    background: rgba(255, 45, 138, 0.18);
+    padding: 0 6px;
+    border-radius: 1px;
+  }
+
+  .glitch-404-cursor {
+    display: inline-block;
+    width: 10px;
+    height: 1em;
+    margin-left: 4px;
+    background: #f0eef5;
+    vertical-align: text-bottom;
+    animation: glitchCursorBlock 1s steps(1, end) infinite;
+  }
+
+  /* "NO SIGNAL" callout in the corner */
+  .glitch-404-nosignal {
+    @apply absolute z-10 flex items-center gap-2 px-3 py-1.5 font-bold uppercase;
+    top: 28%;
+    right: 6%;
+    font-size: 12px;
+    letter-spacing: 0.42em;
+    color: #ffaa1f;
+    border: 1.5px solid #ffaa1f;
+    background: rgba(20, 8, 0, 0.6);
+    box-shadow:
+      inset 0 0 0 1px rgba(255, 170, 31, 0.15),
+      0 0 24px rgba(255, 170, 31, 0.25);
+    transform: rotate(-2deg);
+    animation: glitchNoSignalBlink 1.6s steps(1, end) infinite;
+  }
+
+  .glitch-404-nosignal::before {
+    content: "";
+    width: 7px;
+    height: 7px;
+    border-radius: 999px;
+    background: #ffaa1f;
+    box-shadow: 0 0 10px #ffaa1f;
+  }
+
+  /* Action button — "RETUNE" */
+  .glitch-404-button {
+    @apply relative inline-flex items-center gap-3 px-7 py-3 text-[11px] font-bold uppercase transition-all duration-200;
+    letter-spacing: 0.45em;
+    color: #f7f5fa;
+    border: 1px solid rgba(0, 245, 255, 0.55);
+    background: linear-gradient(
+      180deg,
+      rgba(0, 245, 255, 0.12),
+      rgba(255, 45, 138, 0.08)
+    );
+    box-shadow:
+      inset 0 0 0 1px rgba(255, 45, 138, 0.18),
+      0 0 18px rgba(0, 245, 255, 0.18);
+    text-shadow:
+      -1px 0 0 rgba(255, 45, 138, 0.7),
+      1px 0 0 rgba(0, 245, 255, 0.7);
+  }
+
+  .glitch-404-button::before,
+  .glitch-404-button::after {
+    content: "";
+    @apply absolute;
+    width: 8px;
+    height: 8px;
+    border: 1.5px solid rgba(0, 245, 255, 0.85);
+  }
+
+  .glitch-404-button::before {
+    top: -3px;
+    left: -3px;
+    border-right: 0;
+    border-bottom: 0;
+  }
+
+  .glitch-404-button::after {
+    bottom: -3px;
+    right: -3px;
+    border-left: 0;
+    border-top: 0;
+  }
+
+  .glitch-404-button:hover {
+    color: #04020a;
+    background: linear-gradient(
+      180deg,
+      rgba(0, 245, 255, 0.95),
+      rgba(255, 45, 138, 0.95)
+    );
+    text-shadow: none;
+    box-shadow:
+      0 0 28px rgba(0, 245, 255, 0.45),
+      0 0 48px rgba(255, 45, 138, 0.35);
+    transform: translateY(-1px);
+  }
+
+  .glitch-404-button:focus-visible {
+    outline: 2px solid #ffaa1f;
+    outline-offset: 3px;
+  }
+
+  .glitch-404-button-arrow {
+    color: rgba(255, 253, 0, 0.95);
+    animation: glitchNoSignalBlink 1.2s steps(1, end) infinite;
+  }
+
+  /* Bottom telemetry strip */
+  .glitch-404-footer {
+    @apply relative z-10 flex flex-wrap items-center gap-4 px-6 py-3 text-[10px] uppercase;
+    letter-spacing: 0.32em;
+    border-top: 1px solid rgba(0, 245, 255, 0.18);
+    background: linear-gradient(
+      180deg,
+      rgba(4, 2, 10, 0.4),
+      rgba(0, 245, 255, 0.05)
+    );
+    color: rgba(240, 238, 245, 0.7);
+  }
+
+  .glitch-404-footer-warn {
+    color: #ff2d8a;
+    animation: glitchNoSignalBlink 1.4s steps(1, end) infinite;
+  }
+
+  /* Meltdown overlay (GLITCH easter egg) */
+  .glitch-404-container[data-meltdown="true"] {
+    animation:
+      glitchHueDrift 11s ease-in-out infinite,
+      glitchMeltdown 1.6s ease-in-out forwards;
+  }
+
+  .glitch-404-container[data-meltdown="true"] .glitch-404-static {
+    opacity: 1;
+    mix-blend-mode: difference;
+  }
+
+  /* Channel-flip easter egg (Konami) — palette swap */
+  .glitch-404-container[data-channel="alt"] {
+    background:
+      radial-gradient(
+        ellipse 70% 80% at 50% 50%,
+        rgba(124, 255, 74, 0.1) 0%,
+        rgba(255, 220, 0, 0.04) 35%,
+        rgba(2, 10, 4, 0) 70%
+      ),
+      linear-gradient(180deg, #061008 0%, #04080a 60%, #0a1410 100%);
+  }
+
+  .glitch-404-container[data-channel="alt"] .glitch-404-title {
+    text-shadow:
+      -3px 0 0 rgba(124, 255, 74, 0.85),
+      3px 0 0 rgba(255, 61, 61, 0.85),
+      0 0 28px rgba(255, 220, 0, 0.25);
+  }
+
+  .glitch-404-container[data-channel="alt"] .glitch-404-eyebrow {
+    color: rgba(255, 220, 0, 0.9);
+  }
+
+  .glitch-404-container[data-channel="alt"] .glitch-404-rec,
+  .glitch-404-container[data-channel="alt"] .glitch-404-rec-dot {
+    color: #7cff4a;
+    background: #7cff4a;
+  }
+
+  /* Container queries — tighter padding when embedded in narrow preview frames */
+  @container glitch404 (max-width: 720px) {
+    .glitch-404-hud,
+    .glitch-404-footer {
+      gap: 10px;
+      padding: 8px 14px;
       font-size: 9px;
+      letter-spacing: 0.22em;
+    }
+    .glitch-404-stage {
+      gap: 18px;
+      padding: 18px 12px;
+    }
+    .glitch-404-nosignal {
+      top: 16%;
+      right: 4%;
+      font-size: 9px;
+      padding: 4px 8px;
       letter-spacing: 0.3em;
     }
+  }
 
-    .space-404-rail-val {
-      color: theme("colors.space.phosphor");
-      font-variant-numeric: tabular-nums;
+  @container glitch404 (max-width: 560px) {
+    .glitch-404-headline {
+      font-size: 11px;
+      letter-spacing: 0.32em;
     }
-
-    /* Center stage */
-    /* Center stage */
-    .space-404-content {
-      @apply relative flex flex-col items-center justify-center gap-6 px-6 py-10 text-center;
-    }
-
-    .space-404-eyebrow {
-      @apply text-[10px] uppercase;
-      letter-spacing: 0.5em;
-      color: theme("colors.space.amber");
-      @apply relative flex flex-col items-center justify-center gap-6 px-6 py-10 text-center;
-    }
-
-    .space-404-eyebrow {
-      @apply text-[10px] uppercase;
-      letter-spacing: 0.5em;
-      color: theme("colors.space.amber");
-    }
-
-    .space-404-title {
-      @apply relative text-[clamp(6rem,22vw,16rem)] font-black leading-none;
-      font-family: theme("fontFamily.telemetry");
-      letter-spacing: 0.08em;
-      color: theme("colors.space.phosphor");
-      @apply relative text-[clamp(6rem,22vw,16rem)] font-black leading-none;
-      font-family: theme("fontFamily.telemetry");
-      letter-spacing: 0.08em;
-      color: theme("colors.space.phosphor");
-      text-shadow:
-        0 0 8px rgba(124, 255, 74, 0.7),
-        0 0 22px rgba(124, 255, 74, 0.35),
-        0 0 48px rgba(124, 255, 74, 0.18);
-      animation: crtGlitch 9s steps(1, end) infinite;
-      user-select: none;
-    }
-
-    .space-404-title::before,
-    .space-404-title::after {
-      content: attr(data-text);
-      @apply pointer-events-none absolute inset-0;
-      mix-blend-mode: screen;
-    }
-
-    .space-404-title::before {
-      color: theme("colors.space.warn");
-      transform: translate(-1px, 0);
-      opacity: 0.35;
-    }
-
-    .space-404-title::after {
-      color: theme("colors.space.glow");
-      transform: translate(1px, 0);
-      opacity: 0.2;
-    }
-
-    .space-404-headline {
-      @apply text-base font-normal uppercase;
-      letter-spacing: 0.45em;
-      color: theme("colors.space.phosphor");
-      text-shadow:
-        0 0 8px rgba(124, 255, 74, 0.7),
-        0 0 22px rgba(124, 255, 74, 0.35),
-        0 0 48px rgba(124, 255, 74, 0.18);
-      animation: crtGlitch 9s steps(1, end) infinite;
-      user-select: none;
-    }
-
-    .space-404-title::before,
-    .space-404-title::after {
-      content: attr(data-text);
-      @apply pointer-events-none absolute inset-0;
-      mix-blend-mode: screen;
-    }
-
-    .space-404-title::before {
-      color: theme("colors.space.warn");
-      transform: translate(-1px, 0);
-      opacity: 0.35;
-    }
-
-    .space-404-title::after {
-      color: theme("colors.space.glow");
-      transform: translate(1px, 0);
-      opacity: 0.2;
-    }
-
-    .space-404-headline {
-      @apply text-base font-normal uppercase;
-      letter-spacing: 0.45em;
-      color: theme("colors.space.phosphor");
-    }
-
-    .space-404-subtitle {
-      @apply max-w-md text-sm;
-      color: rgba(124, 255, 74, 0.72);
-      letter-spacing: 0.05em;
-      line-height: 1.6;
-    }
-
-    /* Orbital diagnostic */
-    .space-404-orbit {
-      @apply pointer-events-none relative my-2;
-      width: min(320px, 60%);
-      aspect-ratio: 16 / 9;
-    }
-
-    .space-404-orbit svg {
-      @apply h-full w-full;
-      filter: drop-shadow(0 0 10px rgba(124, 255, 74, 0.35));
-    }
-
-    .space-404-orbit-ring {
-      animation: orbitSpin var(--orbit-duration, 36s) linear infinite;
-      transform-origin: 50% 50%;
-    }
-
-    .space-404-orbit-ring--fast {
-      --orbit-duration: 22s;
-      animation-direction: reverse;
-    }
-
-    .space-404-craft {
-      @apply pointer-events-auto cursor-pointer;
-      transform-origin: 50% 50%;
-    }
-
-    .space-404-craft circle {
-      transition: r 200ms ease;
-      @apply max-w-md text-sm;
-      color: rgba(124, 255, 74, 0.72);
-      letter-spacing: 0.05em;
-      line-height: 1.6;
-    }
-
-    /* Orbital diagnostic */
-    .space-404-orbit {
-      @apply pointer-events-none relative my-2;
-      width: min(320px, 60%);
-      aspect-ratio: 16 / 9;
-    }
-
-    .space-404-orbit svg {
-      @apply h-full w-full;
-      filter: drop-shadow(0 0 10px rgba(124, 255, 74, 0.35));
-    }
-
-    .space-404-orbit-ring {
-      animation: orbitSpin var(--orbit-duration, 36s) linear infinite;
-      transform-origin: 50% 50%;
-    }
-
-    .space-404-orbit-ring--fast {
-      --orbit-duration: 22s;
-      animation-direction: reverse;
-    }
-
-    .space-404-craft {
-      @apply pointer-events-auto cursor-pointer;
-      transform-origin: 50% 50%;
-    }
-
-    .space-404-craft circle {
-      transition: r 200ms ease;
-    }
-
-    .space-404-craft:hover circle {
-      r: 7;
-    }
-
-    /* Primary action */
-    .space-404-craft:hover circle {
-      r: 7;
-    }
-
-    /* Primary action */
-    .space-404-button {
-      @apply relative inline-flex items-center gap-3 rounded-none border px-6 py-3 text-[11px] uppercase transition-all duration-200;
-      font-family: theme("fontFamily.telemetry");
+    .glitch-404-eyebrow {
+      font-size: 9px;
       letter-spacing: 0.4em;
-      color: theme("colors.space.phosphor");
-      border-color: rgba(124, 255, 74, 0.5);
-      background: linear-gradient(
-        180deg,
-        rgba(124, 255, 74, 0.06),
-        rgba(20, 23, 18, 0.5)
-      );
-      box-shadow: 0 0 0 1px rgba(124, 255, 74, 0.05) inset;
     }
-
-    .space-404-button:hover {
-      color: theme("colors.space.hull");
-      background: theme("colors.space.phosphor");
-      border-color: theme("colors.space.phosphor");
-      box-shadow:
-        0 0 18px rgba(124, 255, 74, 0.45),
-        0 0 40px rgba(124, 255, 74, 0.15);
+    .glitch-404-hud-meta--hide-sm {
+      display: none;
     }
+  }
 
-    .space-404-button:focus-visible {
-      outline: 2px solid theme("colors.space.amber");
-      outline-offset: 2px;
+  /* Reduced motion: keep static look, kill scrolls and shakes */
+  @media (prefers-reduced-motion: reduce) {
+    .glitch-404-container,
+    .glitch-404-static,
+    .glitch-404-scanlines::after,
+    .glitch-404-syncbar,
+    .glitch-404-title,
+    .glitch-404-title-slice--a,
+    .glitch-404-title-slice--b,
+    .glitch-404-rec-dot,
+    .glitch-404-nosignal,
+    .glitch-404-timecode,
+    .glitch-404-cursor,
+    .glitch-404-button-arrow,
+    .glitch-404-footer-warn {
+      animation: none !important;
     }
-
-    .space-404-button-bracket {
-      color: theme("colors.space.amber");
-    }
-
-    /* Transmission ticker */
-    .space-404-ticker {
-      @apply relative z-10 flex items-center gap-3 border-t px-6 py-3 text-[11px];
-      border-color: rgba(124, 255, 74, 0.18);
-      background: linear-gradient(
-        180deg,
-        rgba(20, 23, 18, 0.4),
-        rgba(124, 255, 74, 0.04)
-      );
-      color: rgba(124, 255, 74, 0.85);
-      min-height: 44px;
-    }
-
-    .space-404-ticker-prompt {
-      color: theme("colors.space.amber");
-    }
-
-    .space-404-ticker-text {
-      @apply flex-1 overflow-hidden whitespace-nowrap;
-      letter-spacing: 0.08em;
-    }
-
-    .space-404-ticker-cursor {
-      display: inline-block;
-      width: 8px;
-      height: 14px;
-      margin-left: 2px;
-      background: theme("colors.space.phosphor");
-      vertical-align: text-bottom;
-      animation: cursorBlink 1s steps(1, end) infinite;
-    }
-
-    /* Morse burst — easter egg */
-    .space-404-morse {
-      @apply pointer-events-none absolute left-1/2 top-1/2 z-20 -translate-x-1/2 -translate-y-1/2 font-bold;
-      font-family: theme("fontFamily.telemetry");
-      font-size: clamp(2rem, 6vw, 4rem);
-      letter-spacing: 0.6em;
-      color: theme("colors.space.warn");
+    .glitch-404-title {
       text-shadow:
-        0 0 12px rgba(255, 61, 61, 0.8),
-        0 0 32px rgba(255, 61, 61, 0.4);
-      animation: morseFlash 900ms ease-out forwards;
+        -2px 0 0 rgba(255, 45, 138, 0.85),
+        2px 0 0 rgba(0, 245, 255, 0.85);
     }
+  }
+}
 
-    /* Launched rocket — APOLLO easter egg */
-    .space-404-rocket {
-      @apply pointer-events-none absolute bottom-0 z-20;
-      left: var(--rocket-x, 50%);
-      width: 34px;
-      height: 80px;
-      transform-origin: 50% 100%;
-      animation: rocketLaunch 2.2s ease-in forwards;
-      filter: drop-shadow(0 0 12px rgba(255, 181, 71, 0.8));
-    }
+/* Forest404 keyframes ─ ancient temperate rainforest at twilight */
+@keyframes canopySway {
+  0%,
+  100% {
+    transform: translate3d(-1%, 0, 0) rotate(-0.4deg);
+  }
+  50% {
+    transform: translate3d(1%, -0.4%, 0) rotate(0.4deg);
+  }
+}
 
-    /* CRT intensify — Shift-hold easter egg */
-    .space-404-container[data-intensify="true"] .space-404-scanlines {
-      opacity: 1.6;
-    }
+@keyframes fogDrift {
+  0%,
+  100% {
+    transform: translate3d(-6%, 0, 0);
+    opacity: 0.45;
+  }
+  50% {
+    transform: translate3d(6%, -1%, 0);
+    opacity: 0.7;
+  }
+}
 
-    .space-404-container[data-intensify="true"] .space-404-title {
-      text-shadow:
-        -2px 0 theme("colors.space.warn"),
-        2px 0 theme("colors.space.glow"),
-        0 0 16px rgba(124, 255, 74, 0.8),
-        0 0 42px rgba(124, 255, 74, 0.45);
-    }
+@keyframes fireflyPulse {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(0.85);
+    opacity: 0.15;
+    filter: blur(0.4px);
+  }
+  40% {
+    transform: translate3d(var(--ff-drift-x, 4px), var(--ff-drift-y, -6px), 0)
+      scale(1.15);
+    opacity: 1;
+    filter: blur(0.2px);
+  }
+  70% {
+    transform: translate3d(
+        calc(var(--ff-drift-x, 4px) * -0.6),
+        var(--ff-drift-y, -6px),
+        0
+      )
+      scale(1);
+    opacity: 0.55;
+  }
+}
 
-    /* Reduced motion */
-    @media (prefers-reduced-motion: reduce) {
-      .space-404-scanlines::after,
-      .space-404-title,
-      .space-404-led,
-      .space-404-warn,
-      .space-404-orbit-ring,
-      .space-404-ticker-cursor {
-        animation: none !important;
-      }
-    }
+@keyframes leafFall {
+  0% {
+    transform: translate3d(0, -10vh, 0) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.95;
+  }
+  90% {
+    opacity: 0.9;
+  }
+  100% {
+    transform: translate3d(var(--leaf-drift, 30px), 110vh, 0)
+      rotate(var(--leaf-spin, 540deg));
+    opacity: 0;
+  }
+}
 
-    /* Ocean 404 — bioluminescent deep-sea variant */
-    .ocean-404-container {
-      @apply relative flex w-full flex-col items-center justify-center overflow-hidden;
-      min-height: calc(100vh - 4rem);
-      background:
+@keyframes compassWobble {
+  0%,
+  100% {
+    transform: rotate(-4deg);
+  }
+  25% {
+    transform: rotate(2.5deg);
+  }
+  55% {
+    transform: rotate(-1.5deg);
+  }
+  80% {
+    transform: rotate(1deg);
+  }
+}
+
+@keyframes emberBreathe {
+  0%,
+  100% {
+    text-shadow:
+      0 0 14px rgba(214, 160, 74, 0.18),
+      0 0 28px rgba(247, 229, 127, 0.06);
+  }
+  50% {
+    text-shadow:
+      0 0 22px rgba(214, 160, 74, 0.32),
+      0 0 48px rgba(247, 229, 127, 0.12);
+  }
+}
+
+@keyframes foxTrot {
+  0% {
+    transform: translateX(-12vw);
+    opacity: 0;
+  }
+  12%,
+  88% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(112vw);
+    opacity: 0;
+  }
+}
+
+@keyframes mothFlutter {
+  0% {
+    transform: translate3d(-15vw, 30vh, 0) rotate(-6deg);
+    opacity: 0;
+  }
+  15%,
+  85% {
+    opacity: 1;
+  }
+  30% {
+    transform: translate3d(25vw, 20vh, 0) rotate(8deg);
+  }
+  60% {
+    transform: translate3d(60vw, 38vh, 0) rotate(-4deg);
+  }
+  100% {
+    transform: translate3d(115vw, 22vh, 0) rotate(6deg);
+    opacity: 0;
+  }
+}
+
+@keyframes fireflyBurst {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(3.6);
+    opacity: 0;
+  }
+}
+
+@keyframes mossPulse {
+  0%,
+  100% {
+    box-shadow:
+      inset 0 0 0 1px rgba(159, 184, 120, 0.12),
+      0 0 24px rgba(159, 184, 120, 0.05);
+  }
+  50% {
+    box-shadow:
+      inset 0 0 0 1px rgba(159, 184, 120, 0.22),
+      0 0 36px rgba(159, 184, 120, 0.18);
+  }
+}
+
+@layer components {
+  /* ─────────────────────────────────────────────────────────────────────────
+     Forest 404 — Old-growth temperate rainforest at twilight
+     ───────────────────────────────────────────────────────────────────────── */
+  .forest-404-container {
+    @apply relative flex w-full flex-col overflow-hidden;
+    min-height: calc(100vh - 4rem);
+    container-type: inline-size;
+    container-name: forest404;
+    color: theme("colors.forest.parchment");
+    background:
+      /* drifting twilight haze through canopy */
+      radial-gradient(
+        ellipse 80% 60% at 50% 18%,
+        rgba(214, 160, 74, 0.18) 0%,
+        rgba(214, 160, 74, 0.06) 30%,
+        transparent 60%
+      ),
+      radial-gradient(
+        ellipse 60% 50% at 80% 12%,
+        rgba(247, 229, 127, 0.08) 0%,
+        transparent 55%
+      ),
+      /* moss-floor wash */
         radial-gradient(
-          ellipse at 50% 0%,
-          theme("colors.ocean.600") 0%,
-          theme("colors.ocean.800") 45%,
-          theme("colors.ocean.900") 100%
+          ellipse 90% 60% at 50% 100%,
+          rgba(45, 80, 50, 0.55) 0%,
+          rgba(13, 24, 18, 0) 65%
         ),
-        theme("colors.ocean.900");
-      color: theme("colors.ocean.pearl");
-      isolation: isolate;
-    }
-
-    .ocean-404-caustics {
-      @apply pointer-events-none absolute inset-[-10%] -z-10;
-      background:
-        radial-gradient(
-          circle at 20% 10%,
-          rgba(126, 240, 255, 0.22),
-          transparent 45%
-        ),
-        radial-gradient(
-          circle at 80% 30%,
-          rgba(46, 196, 182, 0.18),
-          transparent 50%
-        ),
-        radial-gradient(
-          circle at 40% 80%,
-          rgba(14, 110, 143, 0.4),
-          transparent 60%
+      /* deep canopy gradient */
+        linear-gradient(
+          180deg,
+          theme("colors.forest.900") 0%,
+          theme("colors.forest.800") 45%,
+          theme("colors.forest.700") 100%
         );
-      filter: blur(40px);
-      animation: caustic 14s ease-in-out infinite;
-    }
+    font-family: theme("fontFamily.grove");
+    isolation: isolate;
+  }
 
-    .ocean-404-vignette {
-      @apply pointer-events-none absolute inset-0 -z-10;
-      background: radial-gradient(
-        ellipse at center,
-        transparent 30%,
-        rgba(2, 17, 38, 0.65) 85%,
-        rgba(2, 17, 38, 0.95) 100%
-      );
-    }
-
-    .ocean-404-bubble-field {
-      @apply pointer-events-none absolute inset-0 overflow-hidden;
-    }
-
-    .ocean-404-bubble {
-      @apply pointer-events-auto absolute cursor-pointer rounded-full;
-      left: var(--bubble-x, 50%);
-      bottom: -60px;
-      width: var(--bubble-size, 14px);
-      height: var(--bubble-size, 14px);
-      background: radial-gradient(
-        circle at 30% 30%,
-        rgba(255, 255, 255, 0.9),
-        rgba(126, 240, 255, 0.35) 45%,
-        rgba(46, 196, 182, 0.12) 70%,
-        transparent 75%
-      );
-      box-shadow:
-        inset 0 0 6px rgba(255, 255, 255, 0.25),
-        0 0 8px rgba(126, 240, 255, 0.18);
-      animation: rise var(--bubble-duration, 12s) linear var(--bubble-delay, 0s)
-        infinite;
-      transition: filter 200ms ease;
-    }
-
-    .ocean-404-bubble:hover {
-      filter: brightness(1.5);
-    }
-
-    .ocean-404-bubble[data-popped="true"] {
-      animation: bubblePop 400ms ease-out forwards;
-      pointer-events: none;
-    }
-
-    .ocean-404-jellyfish {
-      @apply pointer-events-none absolute z-10;
-      width: var(--jelly-size, 120px);
-      left: var(--jelly-x, 70%);
-      top: var(--jelly-y, 30%);
-      animation: jellyBell var(--jelly-duration, 5s) ease-in-out
-        var(--jelly-delay, 0s) infinite;
-      filter: drop-shadow(0 0 14px rgba(126, 240, 255, 0.35));
-      opacity: 0.85;
-    }
-
-    .ocean-404-content {
-      @apply relative z-10 flex flex-col items-center gap-7 px-4 text-center;
-    }
-
-    .ocean-404-sonar {
-      @apply pointer-events-none absolute left-1/2 top-1/2 -z-10 h-[220px] w-[220px] -translate-x-1/2 -translate-y-1/2 rounded-full;
-      border: 1px solid rgba(126, 240, 255, 0.45);
-      animation: sonar 4.5s ease-out infinite;
-    }
-
-    .ocean-404-sonar::after {
-      content: "";
-      @apply absolute inset-0 rounded-full;
-      border: 1px solid rgba(126, 240, 255, 0.25);
-      animation: sonar 4.5s ease-out 1.5s infinite;
-    }
-
-    .ocean-404-title {
-      @apply font-space text-8xl font-light tracking-[0.25em] text-white md:text-9xl;
-      background: linear-gradient(
-        180deg,
-        theme("colors.ocean.pearl") 0%,
-        theme("colors.ocean.glow") 60%,
-        theme("colors.ocean.accent") 100%
-      );
-      -webkit-background-clip: text;
-      background-clip: text;
-      -webkit-text-fill-color: transparent;
-      animation: shimmer 4.5s ease-in-out infinite;
-      user-select: none;
-    }
-
-    .ocean-404-eyebrow {
-      @apply font-mono text-xs uppercase tracking-[0.5em];
-      color: rgba(126, 240, 255, 0.7);
-    }
-
-    .ocean-404-subtitle {
-      @apply font-space text-lg font-light tracking-wide md:text-xl;
-      color: rgba(230, 255, 250, 0.75);
-      max-width: 34ch;
-    }
-
-    .ocean-404-button {
-      @apply font-space relative inline-flex items-center gap-3 rounded-full px-7 py-3 text-sm font-medium uppercase tracking-[0.35em] transition-all duration-300;
-      color: theme("colors.ocean.pearl");
-      border: 1px solid rgba(126, 240, 255, 0.45);
-      background: linear-gradient(
-        180deg,
-        rgba(46, 196, 182, 0.15),
-        rgba(10, 77, 110, 0.35)
-      );
-      box-shadow:
-        inset 0 0 0 1px rgba(255, 255, 255, 0.04),
-        0 0 18px rgba(126, 240, 255, 0.15);
-      backdrop-filter: blur(6px);
-    }
-
-    .ocean-404-button::before {
-      content: "";
-      @apply pointer-events-none absolute inset-0 rounded-full opacity-0 transition-opacity duration-300;
-      background: radial-gradient(
-        circle at 50% 50%,
-        rgba(126, 240, 255, 0.25),
+  /* Layered fog, drifting horizontally just above the floor */
+  .forest-404-fog {
+    @apply pointer-events-none absolute inset-0 z-[2];
+    background:
+      radial-gradient(
+        ellipse 70% 22% at 30% 78%,
+        rgba(205, 220, 205, 0.18),
+        transparent 70%
+      ),
+      radial-gradient(
+        ellipse 60% 20% at 75% 88%,
+        rgba(205, 220, 205, 0.14),
         transparent 70%
       );
-    }
+    filter: blur(28px);
+    animation: fogDrift 18s ease-in-out infinite;
+    mix-blend-mode: screen;
+  }
 
-    .ocean-404-button:hover {
-      border-color: rgba(126, 240, 255, 0.85);
-      box-shadow:
-        inset 0 0 0 1px rgba(255, 255, 255, 0.06),
-        0 0 32px rgba(126, 240, 255, 0.35);
-      transform: translateY(-1px);
-    }
+  /* Vignette + edge falloff that frames the grove */
+  .forest-404-vignette {
+    @apply pointer-events-none absolute inset-0 z-[3];
+    background: radial-gradient(
+      ellipse 95% 100% at center,
+      transparent 38%,
+      rgba(7, 13, 9, 0.55) 80%,
+      rgba(7, 13, 9, 0.95) 100%
+    );
+    box-shadow: inset 0 0 220px rgba(0, 0, 0, 0.7);
+  }
 
-    .ocean-404-button:hover::before {
-      opacity: 1;
-    }
+  /* Tree-silhouette flanks — birch + pine, container-driven so they collapse on narrow widths */
+  .forest-404-treeline {
+    @apply pointer-events-none absolute inset-y-0 z-[1];
+    width: 20%;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    opacity: 0.8;
+    animation: canopySway 11s ease-in-out infinite;
+    transform-origin: 50% 100%;
+  }
 
-    .ocean-404-depth {
-      @apply pointer-events-none absolute left-6 top-6 z-10 font-mono text-[11px] uppercase tracking-[0.3em];
-      color: rgba(126, 240, 255, 0.65);
-    }
+  .forest-404-treeline--left {
+    left: 0;
+    background-image:
+      linear-gradient(90deg, rgba(7, 13, 9, 0.88) 0%, rgba(7, 13, 9, 0) 100%),
+      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 600' preserveAspectRatio='none'><g fill='%230d1812' stroke='%2313251c' stroke-width='1'><path d='M-10 600 L-10 220 L4 200 L-2 180 L8 160 L-2 140 L10 100 L-4 70 L4 40 L-6 0 L40 0 L40 600 Z'/><path d='M30 600 L30 260 L42 240 L34 220 L46 200 L40 180 L52 160 L44 130 L54 100 L48 60 L60 0 L92 0 L92 600 Z'/><path d='M82 600 L82 300 L94 280 L88 260 L100 240 L94 220 L106 190 L98 160 L108 130 L102 90 L114 60 L120 0 L160 0 L160 600 Z'/><path d='M150 600 L150 320 L162 300 L156 280 L168 260 L162 240 L172 210 L164 180 L174 150 L168 110 L180 70 L184 0 L210 0 L210 600 Z'/></g></svg>");
+  }
 
-    .ocean-404-depth-value {
-      @apply text-white;
-      font-variant-numeric: tabular-nums;
-    }
+  .forest-404-treeline--right {
+    right: 0;
+    transform: scaleX(-1);
+    background-image:
+      linear-gradient(90deg, rgba(7, 13, 9, 0.88) 0%, rgba(7, 13, 9, 0) 100%),
+      url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 600' preserveAspectRatio='none'><g fill='%230d1812' stroke='%2313251c' stroke-width='1'><path d='M-10 600 L-10 220 L4 200 L-2 180 L8 160 L-2 140 L10 100 L-4 70 L4 40 L-6 0 L40 0 L40 600 Z'/><path d='M30 600 L30 260 L42 240 L34 220 L46 200 L40 180 L52 160 L44 130 L54 100 L48 60 L60 0 L92 0 L92 600 Z'/><path d='M82 600 L82 300 L94 280 L88 260 L100 240 L94 220 L106 190 L98 160 L108 130 L102 90 L114 60 L120 0 L160 0 L160 600 Z'/><path d='M150 600 L150 320 L162 300 L156 280 L168 260 L162 240 L172 210 L164 180 L174 150 L168 110 L180 70 L184 0 L210 0 L210 600 Z'/></g></svg>");
+  }
 
-    .ocean-404-coords {
-      @apply pointer-events-none absolute bottom-6 right-6 z-10 font-mono text-[10px] uppercase tracking-[0.3em];
-      color: rgba(126, 240, 255, 0.45);
+  @container forest404 (max-width: 720px) {
+    .forest-404-treeline {
+      width: 14%;
+      opacity: 0.55;
     }
+  }
 
-    .ocean-404-submarine {
-      @apply pointer-events-none absolute bottom-[12%] left-0 z-10;
-      width: 120px;
-      animation: subCruise 9s linear forwards;
-      filter: drop-shadow(0 6px 24px rgba(126, 240, 255, 0.4));
-    }
+  /* Trail HUD — top status row with compass */
+  .forest-404-statusbar {
+    @apply relative z-10 flex flex-wrap items-center gap-4 px-6 py-3 text-[10px] uppercase;
+    letter-spacing: 0.32em;
+    border-bottom: 1px solid rgba(159, 184, 120, 0.18);
+    background: linear-gradient(
+      180deg,
+      rgba(13, 24, 18, 0.55),
+      rgba(7, 13, 9, 0.2)
+    );
+    color: rgba(241, 232, 212, 0.78);
+  }
 
-    .ocean-404-angler {
-      @apply pointer-events-none absolute left-0 top-[62%] z-0;
-      width: 40px;
-      animation: anglerDrift 18s linear forwards;
-      filter: drop-shadow(0 0 12px rgba(126, 240, 255, 0.9));
-      opacity: 0.6;
-    }
+  .forest-404-trailmark {
+    @apply inline-flex items-center gap-2;
+    color: theme("colors.forest.ember");
+  }
 
-    /* Reduced motion: stills only */
-    @media (prefers-reduced-motion: reduce) {
-      .ocean-404-caustics,
-      .ocean-404-bubble,
-      .ocean-404-jellyfish,
-      .ocean-404-sonar,
-      .ocean-404-sonar::after,
-      .ocean-404-title,
-      .ocean-404-submarine,
-      .ocean-404-angler {
-        animation: none !important;
-      }
-    }
+  .forest-404-trailmark::before {
+    content: "";
+    width: 8px;
+    height: 8px;
+    border-radius: 999px;
+    background: theme("colors.forest.firefly");
+    box-shadow: 0 0 12px rgba(247, 229, 127, 0.7);
+  }
 
-    /* ─────────────────────────────────────────────────────────────────────────
-     Glitch 404 — corrupted broadcast / dying CRT
-     ───────────────────────────────────────────────────────────────────────── */
-    .glitch-404-container {
-      @apply relative flex w-full flex-col overflow-hidden;
-      min-height: calc(100vh - 4rem);
-      container-type: inline-size;
-      container-name: glitch404;
-      background:
-        radial-gradient(
-          ellipse 70% 80% at 50% 50%,
-          rgba(255, 45, 138, 0.1) 0%,
-          rgba(0, 245, 255, 0.04) 35%,
-          rgba(4, 2, 10, 0) 70%
-        ),
-        linear-gradient(180deg, #06030d 0%, #04020a 60%, #0a0414 100%);
-      color: #f0eef5;
-      font-family:
-        "VT323", "JetBrains Mono", "IBM Plex Mono", ui-monospace,
-        SFMono-Regular, Menlo, monospace;
-      isolation: isolate;
-      animation: glitchHueDrift 11s ease-in-out infinite;
-    }
+  .forest-404-status-key {
+    color: rgba(159, 184, 120, 0.85);
+    letter-spacing: 0.4em;
+  }
 
-    /* Animated static noise — two layered radial dot grids that shift */
-    .glitch-404-static {
-      @apply pointer-events-none absolute inset-0;
-      z-index: 1;
-      background-image:
-        radial-gradient(rgba(240, 238, 245, 0.18) 1px, transparent 1px),
-        radial-gradient(rgba(255, 45, 138, 0.1) 1px, transparent 1px);
-      background-size:
-        3px 3px,
-        5px 5px;
-      background-position:
-        0 0,
-        1px 2px;
-      mix-blend-mode: screen;
-      opacity: 0.6;
-      animation: glitchStaticShift 220ms steps(1, end) infinite;
-    }
+  .forest-404-status-val {
+    color: theme("colors.forest.parchment");
+    font-variant-numeric: tabular-nums;
+    letter-spacing: 0.18em;
+  }
 
-    /* Scanlines crawling slowly */
-    .glitch-404-scanlines {
-      @apply pointer-events-none absolute inset-0;
-      z-index: 2;
-      background: repeating-linear-gradient(
-        to bottom,
-        rgba(0, 245, 255, 0.05) 0px,
-        rgba(0, 245, 255, 0.05) 1px,
-        transparent 2px,
-        transparent 3px
-      );
-      mix-blend-mode: overlay;
-    }
+  .forest-404-status-spacer {
+    flex: 1;
+  }
 
-    .glitch-404-scanlines::after {
-      content: "";
-      @apply absolute inset-x-0;
-      top: 0;
-      height: 26%;
-      background: linear-gradient(
+  /* Center stage */
+  .forest-404-stage {
+    @apply relative z-10 flex flex-1 flex-col items-center justify-center gap-7 px-6 py-12 text-center;
+  }
+
+  /* Ranger compass — hand-illustrated, gently wobbling */
+  .forest-404-compass {
+    @apply pointer-events-none relative;
+    width: clamp(72px, 8vw, 96px);
+    aspect-ratio: 1;
+    filter: drop-shadow(0 4px 18px rgba(0, 0, 0, 0.55))
+      drop-shadow(0 0 14px rgba(214, 160, 74, 0.25));
+  }
+
+  .forest-404-compass-needle {
+    transform-origin: 50% 50%;
+    animation: compassWobble 7s ease-in-out infinite;
+  }
+
+  /* Eyebrow — small caps over a hand-drawn rule */
+  .forest-404-eyebrow {
+    @apply inline-flex items-center gap-3 text-[11px] uppercase;
+    font-family: theme("fontFamily.telemetry");
+    letter-spacing: 0.55em;
+    color: rgba(214, 160, 74, 0.95);
+  }
+
+  .forest-404-eyebrow::before,
+  .forest-404-eyebrow::after {
+    content: "";
+    width: 32px;
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(214, 160, 74, 0.65),
+      transparent
+    );
+  }
+
+  /* Headline — layered serif "404" with golden ember glow */
+  .forest-404-title-wrap {
+    @apply relative;
+    line-height: 0.9;
+    isolation: isolate;
+  }
+
+  .forest-404-title {
+    @apply relative font-light;
+    font-family: theme("fontFamily.grove");
+    font-size: clamp(7rem, 24vw, 18rem);
+    line-height: 0.85;
+    letter-spacing: 0.04em;
+    color: theme("colors.forest.parchment");
+    font-feature-settings:
+      "liga" 1,
+      "dlig" 1;
+    background: linear-gradient(
+      180deg,
+      rgba(241, 232, 212, 1) 0%,
+      rgba(214, 160, 74, 0.92) 55%,
+      rgba(184, 90, 44, 0.85) 100%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: emberBreathe 5.5s ease-in-out infinite;
+    user-select: none;
+  }
+
+  /* Drop shadow ghost layer — softens the type into the canopy */
+  .forest-404-title-shadow {
+    @apply pointer-events-none absolute inset-0 select-none;
+    font-family: theme("fontFamily.grove");
+    font-size: clamp(7rem, 24vw, 18rem);
+    line-height: 0.85;
+    letter-spacing: 0.04em;
+    font-weight: 300;
+    color: rgba(7, 13, 9, 0.9);
+    transform: translate(2px, 4px);
+    z-index: -1;
+    filter: blur(2px);
+  }
+
+  .forest-404-headline {
+    @apply text-base font-medium;
+    font-family: theme("fontFamily.grove");
+    font-style: italic;
+    letter-spacing: 0.06em;
+    color: rgba(241, 232, 212, 0.92);
+  }
+
+  .forest-404-subtitle {
+    @apply max-w-md text-base;
+    font-family: theme("fontFamily.grove");
+    color: rgba(205, 220, 205, 0.78);
+    line-height: 1.7;
+    letter-spacing: 0.01em;
+  }
+
+  /* Primary action — wax-stamp button with compass arrow */
+  .forest-404-button {
+    @apply relative inline-flex items-center gap-3 rounded-full px-7 py-3 text-[11px] font-medium uppercase transition-all duration-300;
+    font-family: theme("fontFamily.telemetry");
+    letter-spacing: 0.42em;
+    color: theme("colors.forest.parchment");
+    border: 1px solid rgba(214, 160, 74, 0.45);
+    background:
+      radial-gradient(
+        circle at 30% 20%,
+        rgba(214, 160, 74, 0.18),
+        transparent 60%
+      ),
+      linear-gradient(
         180deg,
-        transparent 0%,
-        rgba(255, 45, 138, 0.08) 35%,
-        rgba(0, 245, 255, 0.1) 50%,
-        rgba(255, 45, 138, 0.08) 65%,
-        transparent 100%
+        rgba(28, 58, 40, 0.7) 0%,
+        rgba(13, 24, 18, 0.85) 100%
       );
-      animation: glitchScanCrawl 7.5s linear infinite;
-    }
+    box-shadow:
+      inset 0 0 0 1px rgba(241, 232, 212, 0.05),
+      0 1px 0 rgba(241, 232, 212, 0.08),
+      0 12px 28px rgba(0, 0, 0, 0.55);
+  }
 
-    /* Sync bar — a sweep of horizontal distortion every cycle */
-    .glitch-404-syncbar {
-      @apply pointer-events-none absolute inset-x-0;
-      z-index: 3;
-      top: 0;
-      height: 18%;
-      background: linear-gradient(
+  .forest-404-button::before {
+    content: "";
+    @apply pointer-events-none absolute inset-0 rounded-full opacity-0 transition-opacity duration-300;
+    background: radial-gradient(
+      circle at 50% 50%,
+      rgba(247, 229, 127, 0.22),
+      transparent 70%
+    );
+  }
+
+  .forest-404-button:hover {
+    color: theme("colors.forest.900");
+    border-color: rgba(247, 229, 127, 0.95);
+    background: linear-gradient(
+      180deg,
+      rgba(247, 229, 127, 0.95),
+      rgba(214, 160, 74, 0.95)
+    );
+    box-shadow:
+      0 0 28px rgba(214, 160, 74, 0.45),
+      0 0 56px rgba(247, 229, 127, 0.25);
+    transform: translateY(-1px);
+  }
+
+  .forest-404-button:hover::before {
+    opacity: 1;
+  }
+
+  .forest-404-button:focus-visible {
+    outline: 2px solid theme("colors.forest.firefly");
+    outline-offset: 3px;
+  }
+
+  .forest-404-button-arrow {
+    display: inline-flex;
+    transition: transform 400ms ease;
+  }
+
+  .forest-404-button:hover .forest-404-button-arrow {
+    transform: rotate(45deg);
+  }
+
+  /* Hidden grove note — pinned to the top-right under the canopy */
+  .forest-404-note {
+    @apply pointer-events-none absolute z-10 max-w-[180px] text-right text-[10px];
+    top: 28%;
+    right: 6%;
+    font-family: theme("fontFamily.grove");
+    font-style: italic;
+    letter-spacing: 0.04em;
+    color: rgba(205, 220, 205, 0.55);
+    line-height: 1.5;
+    transform: rotate(2deg);
+  }
+
+  .forest-404-note::before {
+    content: "";
+    display: block;
+    width: 28px;
+    height: 1px;
+    margin: 0 0 6px auto;
+    background: rgba(214, 160, 74, 0.4);
+  }
+
+  /* Firefly field — clickable pulsing motes */
+  .forest-404-firefly-field {
+    @apply pointer-events-none absolute inset-0 z-[4];
+  }
+
+  .forest-404-firefly {
+    @apply pointer-events-auto absolute cursor-pointer rounded-full;
+    left: var(--ff-x, 50%);
+    top: var(--ff-y, 50%);
+    width: var(--ff-size, 6px);
+    height: var(--ff-size, 6px);
+    background: radial-gradient(
+      circle at 40% 40%,
+      rgba(255, 252, 200, 1) 0%,
+      rgba(247, 229, 127, 0.85) 35%,
+      rgba(214, 160, 74, 0.25) 70%,
+      transparent 80%
+    );
+    box-shadow:
+      0 0 10px rgba(247, 229, 127, 0.85),
+      0 0 22px rgba(214, 160, 74, 0.45);
+    animation: fireflyPulse var(--ff-duration, 5s) ease-in-out
+      var(--ff-delay, 0s) infinite;
+    transition: filter 200ms ease;
+  }
+
+  .forest-404-firefly:hover {
+    filter: brightness(1.6);
+  }
+
+  .forest-404-firefly[data-burst="true"] {
+    animation: fireflyBurst 600ms ease-out forwards;
+    pointer-events: none;
+  }
+
+  /* Falling birch leaves */
+  .forest-404-leaf-field {
+    @apply pointer-events-none absolute inset-0 z-[5] overflow-hidden;
+  }
+
+  .forest-404-leaf {
+    @apply absolute;
+    left: var(--leaf-x, 50%);
+    top: 0;
+    width: var(--leaf-size, 18px);
+    height: auto;
+    color: var(--leaf-tint, theme("colors.forest.ember"));
+    animation: leafFall var(--leaf-duration, 14s) linear var(--leaf-delay, 0s)
+      infinite;
+    filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.35));
+    opacity: 0.95;
+    will-change: transform;
+  }
+
+  /* Rare visitors — fox + moth */
+  .forest-404-fox {
+    @apply pointer-events-none absolute z-[6];
+    bottom: 8%;
+    left: 0;
+    width: 110px;
+    animation: foxTrot 11s linear forwards;
+    filter: drop-shadow(0 4px 10px rgba(184, 90, 44, 0.45));
+  }
+
+  .forest-404-moth {
+    @apply pointer-events-none absolute z-[6];
+    width: 38px;
+    top: 0;
+    left: 0;
+    animation: mothFlutter 14s ease-in-out forwards;
+    filter: drop-shadow(0 0 12px rgba(247, 229, 127, 0.55));
+  }
+
+  /* Bottom telemetry: latitude / altitude / wind */
+  .forest-404-footer {
+    @apply relative z-10 flex flex-wrap items-center gap-4 px-6 py-3 text-[10px] uppercase;
+    letter-spacing: 0.32em;
+    border-top: 1px solid rgba(159, 184, 120, 0.18);
+    background: linear-gradient(
+      180deg,
+      rgba(7, 13, 9, 0.2),
+      rgba(13, 24, 18, 0.55)
+    );
+    color: rgba(205, 220, 205, 0.65);
+  }
+
+  .forest-404-footer-warn {
+    color: theme("colors.forest.rust");
+  }
+
+  /* Spring-bloom easter egg — type "MOSS" → palette gets fresher */
+  .forest-404-container[data-bloom="true"] {
+    background:
+      radial-gradient(
+        ellipse 80% 60% at 50% 18%,
+        rgba(247, 229, 127, 0.28) 0%,
+        rgba(214, 160, 74, 0.12) 30%,
+        transparent 60%
+      ),
+      radial-gradient(
+        ellipse 90% 60% at 50% 100%,
+        rgba(93, 122, 63, 0.45) 0%,
+        rgba(13, 24, 18, 0) 65%
+      ),
+      linear-gradient(
         180deg,
-        transparent 0%,
-        rgba(0, 245, 255, 0.18) 12%,
-        rgba(240, 238, 245, 0.55) 50%,
-        rgba(255, 45, 138, 0.22) 88%,
-        transparent 100%
+        theme("colors.forest.700") 0%,
+        theme("colors.forest.500") 100%
       );
-      mix-blend-mode: screen;
-      filter: blur(0.5px);
-      animation: glitchSyncBar 9s ease-out infinite;
-      animation-delay: 1.4s;
-    }
+  }
 
-    /* CRT vignette + tube curve */
-    .glitch-404-vignette {
-      @apply pointer-events-none absolute inset-0;
-      z-index: 4;
-      background: radial-gradient(
-        ellipse 90% 100% at center,
-        transparent 50%,
-        rgba(4, 2, 10, 0.4) 78%,
-        rgba(4, 2, 10, 0.92) 100%
-      );
-      box-shadow: inset 0 0 200px rgba(0, 0, 0, 0.7);
-    }
+  .forest-404-container[data-bloom="true"] .forest-404-title {
+    background: linear-gradient(
+      180deg,
+      theme("colors.forest.parchment") 0%,
+      theme("colors.forest.firefly") 50%,
+      theme("colors.forest.moss") 100%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+  }
 
-    /* Top broadcast HUD bar */
-    .glitch-404-hud {
-      @apply relative z-10 flex flex-wrap items-center gap-4 px-6 py-3 text-[11px] uppercase;
-      letter-spacing: 0.32em;
-      border-bottom: 1px solid rgba(255, 45, 138, 0.22);
-      background: linear-gradient(
-        180deg,
-        rgba(255, 45, 138, 0.06),
-        rgba(4, 2, 10, 0.4)
-      );
-      color: rgba(240, 238, 245, 0.85);
+  /* Container queries — tighten the HUD on narrow embeds */
+  @container forest404 (max-width: 720px) {
+    .forest-404-statusbar,
+    .forest-404-footer {
+      gap: 10px;
+      padding: 8px 14px;
+      font-size: 9px;
+      letter-spacing: 0.22em;
     }
-
-    .glitch-404-rec {
-      @apply inline-flex items-center gap-2;
-      color: #ff2d8a;
+    .forest-404-stage {
+      gap: 18px;
+      padding: 18px 12px;
     }
-
-    .glitch-404-rec-dot {
-      display: inline-block;
-      width: 9px;
-      height: 9px;
-      border-radius: 999px;
-      background: #ff2d8a;
-      box-shadow: 0 0 12px rgba(255, 45, 138, 0.9);
-      animation: glitchNoSignalBlink 1.5s steps(1, end) infinite;
+    .forest-404-note {
+      display: none;
     }
+    .forest-404-status-meta--hide-sm {
+      display: none;
+    }
+  }
 
-    .glitch-404-hud-key {
-      color: rgba(0, 245, 255, 0.85);
+  @container forest404 (max-width: 480px) {
+    .forest-404-eyebrow {
+      font-size: 9px;
       letter-spacing: 0.4em;
     }
-
-    .glitch-404-hud-val {
-      color: #f0eef5;
-      font-variant-numeric: tabular-nums;
+    .forest-404-eyebrow::before,
+    .forest-404-eyebrow::after {
+      width: 16px;
     }
-
-    .glitch-404-hud-spacer {
-      flex: 1;
+    .forest-404-compass {
+      width: 56px;
     }
+  }
 
-    .glitch-404-timecode {
-      color: rgba(255, 253, 0, 0.85);
-      font-variant-numeric: tabular-nums;
-      animation: glitchTimecode 1.4s ease-in-out infinite;
-    }
-
-    /* Center stage */
-    .glitch-404-stage {
-      @apply relative z-10 flex flex-1 flex-col items-center justify-center gap-7 px-6 py-12 text-center;
-    }
-
-    .glitch-404-eyebrow {
-      @apply inline-flex items-center gap-3 text-[10px] uppercase;
-      letter-spacing: 0.55em;
-      color: rgba(0, 245, 255, 0.85);
-    }
-
-    .glitch-404-eyebrow::before,
-    .glitch-404-eyebrow::after {
-      content: "";
-      width: 24px;
-      height: 1px;
-      background: linear-gradient(
-        90deg,
-        transparent,
-        rgba(0, 245, 255, 0.7),
-        transparent
-      );
-    }
-
-    /* The headline 404 — chromatic aberration + glitch slices */
-    .glitch-404-title-wrap {
-      @apply relative;
-      line-height: 0.9;
-      isolation: isolate;
-    }
-
-    .glitch-404-title {
-      @apply relative font-black uppercase;
-      font-size: clamp(7rem, 26vw, 22rem);
-      line-height: 0.85;
-      letter-spacing: 0.06em;
-      color: #f7f5fa;
-      text-shadow:
-        -3px 0 0 rgba(255, 45, 138, 0.85),
-        3px 0 0 rgba(0, 245, 255, 0.85),
-        0 0 28px rgba(255, 45, 138, 0.25);
-      animation:
-        glitchAberrate 4.6s steps(1, end) infinite,
-        glitchShakeX 2.8s steps(2, end) infinite;
-      user-select: none;
-    }
-
-    /* Two duplicate layers slicing horizontal bands across the title */
-    .glitch-404-title-slice {
-      @apply pointer-events-none absolute inset-0;
-      color: #f7f5fa;
-      text-shadow:
-        -3px 0 0 rgba(255, 45, 138, 0.95),
-        3px 0 0 rgba(0, 245, 255, 0.95);
-      mix-blend-mode: screen;
-    }
-
-    .glitch-404-title-slice--a {
-      animation: glitchSlice1 4.2s steps(1, end) infinite;
-    }
-
-    .glitch-404-title-slice--b {
-      animation: glitchSlice2 5.6s steps(1, end) infinite;
-      animation-delay: 1.1s;
-      color: rgba(255, 253, 0, 0.65);
-      text-shadow:
-        -2px 0 0 rgba(255, 45, 138, 0.65),
-        2px 0 0 rgba(0, 245, 255, 0.65);
-    }
-
-    .glitch-404-headline {
-      @apply text-base font-medium uppercase;
-      letter-spacing: 0.42em;
-      color: #f0eef5;
-    }
-
-    .glitch-404-subtitle {
-      @apply max-w-md text-sm;
-      color: rgba(240, 238, 245, 0.7);
-      letter-spacing: 0.05em;
-      line-height: 1.65;
-    }
-
-    .glitch-404-subtitle .glitch-404-subtitle-mark {
-      color: rgba(255, 253, 0, 0.95);
-      background: rgba(255, 45, 138, 0.18);
-      padding: 0 6px;
-      border-radius: 1px;
-    }
-
-    .glitch-404-cursor {
-      display: inline-block;
-      width: 10px;
-      height: 1em;
-      margin-left: 4px;
-      background: #f0eef5;
-      vertical-align: text-bottom;
-      animation: glitchCursorBlock 1s steps(1, end) infinite;
-    }
-
-    /* "NO SIGNAL" callout in the corner */
-    .glitch-404-nosignal {
-      @apply absolute z-10 flex items-center gap-2 px-3 py-1.5 font-bold uppercase;
-      top: 28%;
-      right: 6%;
-      font-size: 12px;
-      letter-spacing: 0.42em;
-      color: #ffaa1f;
-      border: 1.5px solid #ffaa1f;
-      background: rgba(20, 8, 0, 0.6);
-      box-shadow:
-        inset 0 0 0 1px rgba(255, 170, 31, 0.15),
-        0 0 24px rgba(255, 170, 31, 0.25);
-      transform: rotate(-2deg);
-      animation: glitchNoSignalBlink 1.6s steps(1, end) infinite;
-    }
-
-    .glitch-404-nosignal::before {
-      content: "";
-      width: 7px;
-      height: 7px;
-      border-radius: 999px;
-      background: #ffaa1f;
-      box-shadow: 0 0 10px #ffaa1f;
-    }
-
-    /* Action button — "RETUNE" */
-    .glitch-404-button {
-      @apply relative inline-flex items-center gap-3 px-7 py-3 text-[11px] font-bold uppercase transition-all duration-200;
-      letter-spacing: 0.45em;
-      color: #f7f5fa;
-      border: 1px solid rgba(0, 245, 255, 0.55);
-      background: linear-gradient(
-        180deg,
-        rgba(0, 245, 255, 0.12),
-        rgba(255, 45, 138, 0.08)
-      );
-      box-shadow:
-        inset 0 0 0 1px rgba(255, 45, 138, 0.18),
-        0 0 18px rgba(0, 245, 255, 0.18);
-      text-shadow:
-        -1px 0 0 rgba(255, 45, 138, 0.7),
-        1px 0 0 rgba(0, 245, 255, 0.7);
-    }
-
-    .glitch-404-button::before,
-    .glitch-404-button::after {
-      content: "";
-      @apply absolute;
-      width: 8px;
-      height: 8px;
-      border: 1.5px solid rgba(0, 245, 255, 0.85);
-    }
-
-    .glitch-404-button::before {
-      top: -3px;
-      left: -3px;
-      border-right: 0;
-      border-bottom: 0;
-    }
-
-    .glitch-404-button::after {
-      bottom: -3px;
-      right: -3px;
-      border-left: 0;
-      border-top: 0;
-    }
-
-    .glitch-404-button:hover {
-      color: #04020a;
-      background: linear-gradient(
-        180deg,
-        rgba(0, 245, 255, 0.95),
-        rgba(255, 45, 138, 0.95)
-      );
-      text-shadow: none;
-      box-shadow:
-        0 0 28px rgba(0, 245, 255, 0.45),
-        0 0 48px rgba(255, 45, 138, 0.35);
-      transform: translateY(-1px);
-    }
-
-    .glitch-404-button:focus-visible {
-      outline: 2px solid #ffaa1f;
-      outline-offset: 3px;
-    }
-
-    .glitch-404-button-arrow {
-      color: rgba(255, 253, 0, 0.95);
-      animation: glitchNoSignalBlink 1.2s steps(1, end) infinite;
-    }
-
-    /* Bottom telemetry strip */
-    .glitch-404-footer {
-      @apply relative z-10 flex flex-wrap items-center gap-4 px-6 py-3 text-[10px] uppercase;
-      letter-spacing: 0.32em;
-      border-top: 1px solid rgba(0, 245, 255, 0.18);
-      background: linear-gradient(
-        180deg,
-        rgba(4, 2, 10, 0.4),
-        rgba(0, 245, 255, 0.05)
-      );
-      color: rgba(240, 238, 245, 0.7);
-    }
-
-    .glitch-404-footer-warn {
-      color: #ff2d8a;
-      animation: glitchNoSignalBlink 1.4s steps(1, end) infinite;
-    }
-
-    /* Meltdown overlay (GLITCH easter egg) */
-    .glitch-404-container[data-meltdown="true"] {
-      animation:
-        glitchHueDrift 11s ease-in-out infinite,
-        glitchMeltdown 1.6s ease-in-out forwards;
-    }
-
-    .glitch-404-container[data-meltdown="true"] .glitch-404-static {
-      opacity: 1;
-      mix-blend-mode: difference;
-    }
-
-    /* Channel-flip easter egg (Konami) — palette swap */
-    .glitch-404-container[data-channel="alt"] {
-      background:
-        radial-gradient(
-          ellipse 70% 80% at 50% 50%,
-          rgba(124, 255, 74, 0.1) 0%,
-          rgba(255, 220, 0, 0.04) 35%,
-          rgba(2, 10, 4, 0) 70%
-        ),
-        linear-gradient(180deg, #061008 0%, #04080a 60%, #0a1410 100%);
-    }
-
-    .glitch-404-container[data-channel="alt"] .glitch-404-title {
-      text-shadow:
-        -3px 0 0 rgba(124, 255, 74, 0.85),
-        3px 0 0 rgba(255, 61, 61, 0.85),
-        0 0 28px rgba(255, 220, 0, 0.25);
-    }
-
-    .glitch-404-container[data-channel="alt"] .glitch-404-eyebrow {
-      color: rgba(255, 220, 0, 0.9);
-    }
-
-    .glitch-404-container[data-channel="alt"] .glitch-404-rec,
-    .glitch-404-container[data-channel="alt"] .glitch-404-rec-dot {
-      color: #7cff4a;
-      background: #7cff4a;
-    }
-
-    /* Container queries — tighter padding when embedded in narrow preview frames */
-    @container glitch404 (max-width: 720px) {
-      .glitch-404-hud,
-      .glitch-404-footer {
-        gap: 10px;
-        padding: 8px 14px;
-        font-size: 9px;
-        letter-spacing: 0.22em;
-      }
-      .glitch-404-stage {
-        gap: 18px;
-        padding: 18px 12px;
-      }
-      .glitch-404-nosignal {
-        top: 16%;
-        right: 4%;
-        font-size: 9px;
-        padding: 4px 8px;
-        letter-spacing: 0.3em;
-      }
-    }
-
-    @container glitch404 (max-width: 560px) {
-      .glitch-404-headline {
-        font-size: 11px;
-        letter-spacing: 0.32em;
-      }
-      .glitch-404-eyebrow {
-        font-size: 9px;
-        letter-spacing: 0.4em;
-      }
-      .glitch-404-hud-meta--hide-sm {
-        display: none;
-      }
-    }
-
-    /* Reduced motion: keep static look, kill scrolls and shakes */
-    @media (prefers-reduced-motion: reduce) {
-      .glitch-404-container,
-      .glitch-404-static,
-      .glitch-404-scanlines::after,
-      .glitch-404-syncbar,
-      .glitch-404-title,
-      .glitch-404-title-slice--a,
-      .glitch-404-title-slice--b,
-      .glitch-404-rec-dot,
-      .glitch-404-nosignal,
-      .glitch-404-timecode,
-      .glitch-404-cursor,
-      .glitch-404-button-arrow,
-      .glitch-404-footer-warn {
-        animation: none !important;
-      }
-      .glitch-404-title {
-        text-shadow:
-          -2px 0 0 rgba(255, 45, 138, 0.85),
-          2px 0 0 rgba(0, 245, 255, 0.85);
-      }
+  /* Reduced motion — keep the stillness, drop the drift */
+  @media (prefers-reduced-motion: reduce) {
+    .forest-404-fog,
+    .forest-404-treeline,
+    .forest-404-firefly,
+    .forest-404-leaf,
+    .forest-404-compass-needle,
+    .forest-404-title,
+    .forest-404-fox,
+    .forest-404-moth {
+      animation: none !important;
     }
   }
 }

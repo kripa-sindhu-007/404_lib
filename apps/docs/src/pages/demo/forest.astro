@@ -1,0 +1,23 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { Forest404 } from "@kripa006/404-ui/react";
+---
+
+<BaseLayout
+  title="Forest 404 Demo | 404-UI"
+  description="Preview the Forest 404 old-growth-rainforest not-found page from 404-UI, available for React, Vue, and vanilla JavaScript."
+  keywords="Forest 404 demo, nature 404, woodland 404, serif 404, React 404 demo, Vue 404 demo, 404-UI template"
+>
+  <div style="height: calc(100vh - 64px);">
+    <Forest404
+      client:only="react"
+      title="404"
+      eyebrow="Trail uncharted"
+      headline="The path forks here."
+      subtitle="You've wandered off the map. The grove is quiet, the moss is patient — find your bearings and head back."
+      buttonText="Find your bearings"
+      coordinates="47°23′N · 122°02′W"
+      onButtonClick={() => window.location.href = '/404_lib/'}
+    />
+  </div>
+</BaseLayout>

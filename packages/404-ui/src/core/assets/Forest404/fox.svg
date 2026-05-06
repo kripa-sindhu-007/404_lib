@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 110" fill="none" aria-hidden="true">
+  <defs>
+    <linearGradient id="fr-fox-coat" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#d97a3c" />
+      <stop offset="100%" stop-color="#8a3a18" />
+    </linearGradient>
+  </defs>
+  <!-- Brush tail -->
+  <path
+    d="M14 70 Q4 50 18 38 Q34 32 46 50 Q56 66 38 76 Q24 80 14 70 Z"
+    fill="url(#fr-fox-coat)"
+    stroke="#3a2d1f"
+    stroke-width="1.2"
+  />
+  <!-- Tail tip (white) -->
+  <path d="M16 60 Q8 52 18 44 Q26 46 24 56 Q22 64 16 60 Z" fill="#f1e8d4" opacity="0.95" />
+  <!-- Body -->
+  <path
+    d="M40 76 Q44 56 78 50 Q108 46 138 52 Q162 58 174 66 Q186 70 196 78 Q188 86 158 88 Q120 90 86 88 Q56 86 40 76 Z"
+    fill="url(#fr-fox-coat)"
+    stroke="#3a2d1f"
+    stroke-width="1.2"
+  />
+  <!-- Head -->
+  <path
+    d="M168 56 Q188 50 198 36 Q208 24 200 18 Q192 12 184 22 Q176 30 168 36 L160 38 Q150 38 146 46 Q144 56 152 60 Q160 60 168 56 Z"
+    fill="url(#fr-fox-coat)"
+    stroke="#3a2d1f"
+    stroke-width="1.2"
+  />
+  <!-- Ear inner -->
+  <path d="M192 22 L198 14 L202 24 Z" fill="#3a2d1f" />
+  <!-- Snout / chin (white) -->
+  <path d="M148 50 Q156 56 168 56 Q176 56 178 60 L168 62 Q156 62 150 58 Z" fill="#f1e8d4" opacity="0.92" />
+  <!-- Eye -->
+  <circle cx="184" cy="32" r="1.6" fill="#0d1812" />
+  <!-- Nose -->
+  <circle cx="201" cy="22" r="1.6" fill="#0d1812" />
+  <!-- Legs -->
+  <g fill="url(#fr-fox-coat)" stroke="#3a2d1f" stroke-width="1">
+    <path d="M70 86 L66 104 L74 104 L78 88 Z" />
+    <path d="M104 88 L100 106 L108 106 L112 90 Z" />
+    <path d="M150 88 L146 106 L154 106 L158 90 Z" />
+    <path d="M180 84 L178 104 L186 104 L188 86 Z" />
+  </g>
+  <!-- Paw socks (white tips) -->
+  <g fill="#f1e8d4" opacity="0.92">
+    <rect x="65" y="100" width="10" height="6" rx="2" />
+    <rect x="99" y="102" width="10" height="6" rx="2" />
+    <rect x="145" y="102" width="10" height="6" rx="2" />
+    <rect x="177" y="100" width="10" height="6" rx="2" />
+  </g>
+</svg>
