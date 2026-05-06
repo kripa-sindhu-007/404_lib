@@ -1,4 +1,5 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..500&display=swap");
 
 @tailwind base;
 @tailwind components;
@@ -6,6 +7,17 @@
 
 @layer base {
   :root {
+    /* Editorial palette — mostly monochrome with one chroma pop. */
+    --ink: 10 11 9; /* near-black with a hint of green */
+    --ink-2: 17 19 17;
+    --ink-3: 26 29 26;
+    --paper: 245 244 240; /* warm off-white */
+    --paper-2: 236 235 230;
+    --paper-3: 215 214 208;
+    --rule: 124 255 74; /* phosphor, used only at low alpha as rules */
+    --accent: 124 255 74; /* phosphor green (from Apollo 404) */
+    --accent-ink: 10 11 9; /* high-contrast text on accent fills */
+    --accent-dim: 58 122 36;
     /* Editorial palette — mostly monochrome with one chroma pop. */
     --ink: 10 11 9; /* near-black with a hint of green */
     --ink-2: 17 19 17;
@@ -26,9 +38,25 @@
        gutter is always reserved, so `vw` stays stable and the hero heading
        doesn't reflow on hydration. */
     scrollbar-gutter: stable;
+    color-scheme: dark;
+    /* Prevent layout shift when vertical scrollbar appears — the scrollbar
+       gutter is always reserved, so `vw` stays stable and the hero heading
+       doesn't reflow on hydration. */
+    scrollbar-gutter: stable;
   }
 
   body {
+    background-color: rgb(var(--ink));
+    color: rgb(var(--paper));
+    font-family: "Space Grotesk", "Inter", system-ui, sans-serif;
+    font-feature-settings: "ss01", "ss02";
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    background: rgb(var(--accent) / 0.35);
+    color: rgb(var(--paper));
     background-color: rgb(var(--ink));
     color: rgb(var(--paper));
     font-family: "Space Grotesk", "Inter", system-ui, sans-serif;
@@ -82,7 +110,51 @@
   }
 
   /* ── Navigation ─────────────────────────────────────────────────────── */
+  /* ── Typography ─────────────────────────────────────────────────────── */
+  .font-serif {
+    font-family:
+      "Instrument Serif", "Iowan Old Style", "Apple Garamond", Georgia, serif;
+    font-feature-settings: "liga", "kern";
+  }
+
+  .font-display {
+    font-family:
+      "Instrument Serif", "Iowan Old Style", "Apple Garamond", Georgia, serif;
+    font-style: italic;
+    font-weight: 400;
+  }
+
+  .font-mono,
+  .font-tele {
+    font-family:
+      "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-feature-settings: "ss01", "ss02", "tnum";
+  }
+
+  .eyebrow {
+    @apply inline-flex items-center gap-2 text-[10px] uppercase;
+    font-family: "JetBrains Mono", ui-monospace, monospace;
+    letter-spacing: 0.35em;
+    color: rgb(var(--paper) / 0.6);
+  }
+
+  .eyebrow-dot {
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-radius: 999px;
+    background: rgb(var(--accent));
+    box-shadow: 0 0 10px rgb(var(--accent) / 0.8);
+  }
+
+  /* ── Navigation ─────────────────────────────────────────────────────── */
   .nav-link {
+    @apply relative text-sm transition-colors duration-200;
+    color: rgb(var(--paper) / 0.65);
+  }
+
+  .nav-link:hover {
+    color: rgb(var(--paper));
     @apply relative text-sm transition-colors duration-200;
     color: rgb(var(--paper) / 0.65);
   }
@@ -92,7 +164,19 @@
   }
 
   .nav-link[aria-current="page"],
+  .nav-link[aria-current="page"],
   .nav-link-active {
+    color: rgb(var(--paper));
+  }
+
+  .nav-link-active::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -22px;
+    height: 2px;
+    background: rgb(var(--accent));
     color: rgb(var(--paper));
   }
 
@@ -107,12 +191,39 @@
   }
 
   /* ── Buttons ────────────────────────────────────────────────────────── */
+  /* ── Buttons ────────────────────────────────────────────────────────── */
   .btn {
+    @apply relative inline-flex items-center justify-center gap-2 rounded-none px-4 py-2 text-sm font-medium transition-all duration-200;
+    letter-spacing: 0.01em;
     @apply relative inline-flex items-center justify-center gap-2 rounded-none px-4 py-2 text-sm font-medium transition-all duration-200;
     letter-spacing: 0.01em;
   }
 
   .btn-primary {
+    background: rgb(var(--accent));
+    color: rgb(var(--accent-ink));
+    box-shadow:
+      0 0 0 1px rgb(var(--accent)) inset,
+      0 0 24px rgb(var(--accent) / 0.25);
+  }
+
+  .btn-primary:hover {
+    background: rgb(var(--paper));
+    color: rgb(var(--ink));
+    box-shadow:
+      0 0 0 1px rgb(var(--paper)) inset,
+      0 0 32px rgb(var(--accent) / 0.4);
+  }
+
+  .btn-ghost {
+    color: rgb(var(--paper));
+    border: 1px solid rgb(var(--paper) / 0.2);
+    background: rgb(var(--paper) / 0.02);
+  }
+
+  .btn-ghost:hover {
+    border-color: rgb(var(--paper) / 0.45);
+    background: rgb(var(--paper) / 0.04);
     background: rgb(var(--accent));
     color: rgb(var(--accent-ink));
     box-shadow:
@@ -157,6 +268,40 @@
       linear-gradient(rgb(var(--paper) / 0.02) 1px, transparent 1px),
       linear-gradient(90deg, rgb(var(--paper) / 0.02) 1px, transparent 1px);
     background-size: 24px 24px;
+    @apply btn-ghost;
+  }
+
+  /* ── Cards / exhibit plates ─────────────────────────────────────────── */
+  .plate {
+    @apply relative overflow-hidden;
+    background: rgb(var(--ink-2));
+    border: 1px solid rgb(var(--paper) / 0.08);
+  }
+
+  .plate::before {
+    content: "";
+    @apply pointer-events-none absolute inset-0;
+    background-image:
+      linear-gradient(rgb(var(--paper) / 0.02) 1px, transparent 1px),
+      linear-gradient(90deg, rgb(var(--paper) / 0.02) 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+
+  .plate > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  .plate-label {
+    @apply absolute left-4 top-4 z-10 font-mono text-[10px] uppercase;
+    letter-spacing: 0.3em;
+    color: rgb(var(--paper) / 0.5);
+  }
+
+  .plate-tag {
+    @apply absolute right-4 top-4 z-10 font-mono text-[10px] uppercase;
+    letter-spacing: 0.25em;
+    color: rgb(var(--accent));
   }
 
   .plate > * {
@@ -180,6 +325,9 @@
     @apply relative overflow-hidden;
     background: rgb(var(--ink-2));
     border: 1px solid rgb(var(--paper) / 0.08);
+    @apply relative overflow-hidden;
+    background: rgb(var(--ink-2));
+    border: 1px solid rgb(var(--paper) / 0.08);
   }
 
   .card-hover {
@@ -188,10 +336,35 @@
 
   .card-hover:hover {
     border-color: rgb(var(--paper) / 0.25);
+    @apply transition-colors duration-200;
+  }
+
+  .card-hover:hover {
+    border-color: rgb(var(--paper) / 0.25);
   }
 
   /* ── Code surfaces ──────────────────────────────────────────────────── */
+  /* ── Code surfaces ──────────────────────────────────────────────────── */
   .code-block {
+    @apply overflow-x-auto p-5 font-mono text-[13px] leading-relaxed;
+    background: rgb(var(--ink-2));
+    border: 1px solid rgb(var(--paper) / 0.08);
+    color: rgb(var(--paper) / 0.9);
+  }
+
+  .code-inline {
+    @apply inline-flex items-center rounded-none px-1.5 py-0.5 font-mono text-[0.85em];
+    background: rgb(var(--paper) / 0.06);
+    border: 1px solid rgb(var(--paper) / 0.08);
+    color: rgb(var(--paper));
+  }
+
+  .kbd {
+    @apply inline-flex h-5 min-w-[1.25rem] items-center justify-center rounded-[4px] px-1 font-mono text-[10px];
+    background: rgb(var(--paper) / 0.08);
+    border: 1px solid rgb(var(--paper) / 0.18);
+    color: rgb(var(--paper) / 0.85);
+    box-shadow: inset 0 -1px 0 rgb(0 0 0 / 0.35);
     @apply overflow-x-auto p-5 font-mono text-[13px] leading-relaxed;
     background: rgb(var(--ink-2));
     border: 1px solid rgb(var(--paper) / 0.08);
@@ -214,7 +387,75 @@
   }
 
   /* ── Preview container ──────────────────────────────────────────────── */
+  /* ── Preview container ──────────────────────────────────────────────── */
   .preview-container {
+    @apply relative aspect-video overflow-hidden;
+    background: rgb(var(--ink-2));
+    border: 1px solid rgb(var(--paper) / 0.08);
+  }
+
+  /* A frame that hosts a live Space404 / Ocean404 at whatever height we set.
+     Overrides the component's `min-height: calc(100vh - 4rem)` so content
+     fills the frame instead of overflowing and requiring `transform: scale`
+     workarounds. */
+  .preview-surface {
+    @apply relative overflow-hidden;
+  }
+
+  .preview-surface .space-404-container,
+  .preview-surface .ocean-404-container {
+    min-height: 0 !important;
+    height: 100%;
+  }
+
+  /* ── Background textures ────────────────────────────────────────────── */
+  .bg-grid {
+    background-image:
+      linear-gradient(rgb(var(--paper) / 0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgb(var(--paper) / 0.04) 1px, transparent 1px);
+    background-size: 48px 48px;
+  }
+
+  .bg-grid-fine {
+    background-image:
+      linear-gradient(rgb(var(--paper) / 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgb(var(--paper) / 0.03) 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+
+  .bg-noise {
+    position: relative;
+  }
+
+  .bg-noise::after {
+    content: "";
+    @apply pointer-events-none absolute inset-0 z-0;
+    background-image: radial-gradient(
+      rgb(var(--paper) / 0.04) 1px,
+      transparent 1px
+    );
+    background-size: 3px 3px;
+    mix-blend-mode: overlay;
+  }
+
+  /* ── Dividers ───────────────────────────────────────────────────────── */
+  .rule {
+    background: rgb(var(--paper) / 0.08);
+    height: 1px;
+    width: 100%;
+    border: 0;
+  }
+
+  .rule-accent {
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgb(var(--accent) / 0.5),
+      transparent
+    );
+    height: 1px;
+    width: 100%;
+    border: 0;
     @apply relative aspect-video overflow-hidden;
     background: rgb(var(--ink-2));
     border: 1px solid rgb(var(--paper) / 0.08);
@@ -285,12 +526,18 @@
   }
 
   /* ── Framework toggle ───────────────────────────────────────────────── */
+  /* ── Framework toggle ───────────────────────────────────────────────── */
   .framework-toggle {
+    @apply inline-flex p-0;
+    border: 1px solid rgb(var(--paper) / 0.12);
     @apply inline-flex p-0;
     border: 1px solid rgb(var(--paper) / 0.12);
   }
 
   .framework-toggle-btn {
+    @apply px-3 py-1.5 font-mono text-[11px] uppercase tracking-[0.25em] transition-colors;
+    color: rgb(var(--paper) / 0.55);
+    background: transparent;
     @apply px-3 py-1.5 font-mono text-[11px] uppercase tracking-[0.25em] transition-colors;
     color: rgb(var(--paper) / 0.55);
     background: transparent;
@@ -343,6 +590,239 @@
 
   .link-arrow:hover svg {
     transform: translateX(3px);
+  }
+
+  /* ── Mini template tile (hero showcase grid) ────────────────────────── */
+  .tile {
+    @apply relative overflow-hidden;
+    background: rgb(var(--ink-2));
+    border: 1px solid rgb(var(--paper) / 0.08);
+    transition:
+      border-color 220ms ease,
+      transform 220ms ease;
+  }
+
+  .tile:hover {
+    border-color: rgb(var(--paper) / 0.22);
+    transform: translateY(-2px);
+  }
+
+  .tile-head {
+    @apply flex items-center justify-between px-3 py-2 font-mono text-[10px] uppercase tracking-[0.25em];
+    color: rgb(var(--paper) / 0.45);
+    border-bottom: 1px solid rgb(var(--paper) / 0.06);
+  }
+
+  .tile-foot {
+    @apply flex items-center justify-between px-3 py-2 font-mono text-[10px] uppercase tracking-[0.2em];
+    color: rgb(var(--paper) / 0.55);
+    border-top: 1px solid rgb(var(--paper) / 0.06);
+  }
+
+  .tile-soon {
+    @apply flex h-full flex-col items-center justify-center gap-3 p-6 text-center;
+    background:
+      repeating-linear-gradient(
+        45deg,
+        rgb(var(--paper) / 0.02) 0px,
+        rgb(var(--paper) / 0.02) 8px,
+        transparent 8px,
+        transparent 16px
+      ),
+      rgb(var(--ink-2));
+  }
+
+  .tile-soon-emoji {
+    font-size: 2.25rem;
+    line-height: 1;
+    filter: grayscale(0.3) opacity(0.85);
+  }
+
+  /* ── Hero thumbnail strip ───────────────────────────────────────────── */
+  .hero-thumb {
+    @apply relative flex flex-col items-stretch text-left;
+    background: rgb(var(--ink-2));
+    border: 1px solid rgb(var(--paper) / 0.08);
+    transition:
+      border-color 200ms ease,
+      transform 200ms ease;
+    cursor: pointer;
+  }
+
+  .hero-thumb:hover:not(:disabled) {
+    border-color: rgb(var(--paper) / 0.25);
+    transform: translateY(-1px);
+  }
+
+  .hero-thumb-active {
+    border-color: rgb(var(--accent) / 0.5) !important;
+    box-shadow: inset 0 0 0 1px rgb(var(--accent) / 0.25);
+  }
+
+  .hero-thumb-disabled {
+    cursor: not-allowed;
+    opacity: 0.7;
+  }
+
+  .hero-thumb-poster {
+    @apply relative flex h-[64px] items-center justify-center overflow-hidden;
+    border-bottom: 1px solid rgb(var(--paper) / 0.06);
+  }
+
+  .hero-thumb-tag {
+    @apply font-mono text-[20px] font-semibold;
+    letter-spacing: 0.04em;
+    color: rgb(var(--paper));
+    text-shadow: 0 0 12px rgb(var(--paper) / 0.5);
+  }
+
+  .hero-thumb-poster-apollo {
+    background:
+      radial-gradient(
+        ellipse 70% 60% at 50% 40%,
+        rgb(124 255 74 / 0.18),
+        transparent 60%
+      ),
+      linear-gradient(180deg, rgb(8 12 8) 0%, rgb(14 22 14) 100%);
+  }
+
+  .hero-thumb-poster-apollo .hero-thumb-tag {
+    color: rgb(var(--accent));
+    text-shadow: 0 0 12px rgb(var(--accent) / 0.7);
+  }
+
+  .hero-thumb-poster-ocean {
+    background:
+      radial-gradient(
+        ellipse 60% 70% at 50% 60%,
+        rgb(96 188 255 / 0.32),
+        transparent 65%
+      ),
+      linear-gradient(180deg, rgb(6 14 26) 0%, rgb(8 26 50) 100%);
+  }
+
+  .hero-thumb-poster-ocean .hero-thumb-tag {
+    color: rgb(180 220 255);
+    text-shadow: 0 0 14px rgb(96 188 255 / 0.8);
+  }
+
+  .hero-thumb-poster-glitch {
+    background:
+      repeating-linear-gradient(
+        0deg,
+        rgb(var(--paper) / 0.05) 0px,
+        rgb(var(--paper) / 0.05) 1px,
+        transparent 1px,
+        transparent 3px
+      ),
+      linear-gradient(180deg, rgb(20 8 24) 0%, rgb(36 16 36) 100%);
+  }
+
+  .hero-thumb-poster-glitch .hero-thumb-tag {
+    font-size: 26px;
+    filter: drop-shadow(2px 0 0 rgb(255 60 120 / 0.6))
+      drop-shadow(-2px 0 0 rgb(60 200 255 / 0.6));
+  }
+
+  .hero-thumb-poster-forest {
+    background:
+      radial-gradient(
+        ellipse 70% 70% at 50% 50%,
+        rgb(80 160 90 / 0.22),
+        transparent 65%
+      ),
+      linear-gradient(180deg, rgb(8 18 12) 0%, rgb(16 28 18) 100%);
+  }
+
+  .hero-thumb-poster-forest .hero-thumb-tag {
+    font-size: 26px;
+  }
+
+  .hero-thumb-label {
+    @apply px-2 py-1.5 font-mono text-[10px] uppercase;
+    letter-spacing: 0.25em;
+    color: rgb(var(--paper) / 0.7);
+  }
+
+  .hero-thumb-active .hero-thumb-label {
+    color: rgb(var(--paper));
+  }
+
+  /* ── Marquee (scrolling template names) ─────────────────────────────── */
+  .marquee {
+    @apply relative flex w-full overflow-hidden;
+    mask-image: linear-gradient(
+      90deg,
+      transparent,
+      black 12%,
+      black 88%,
+      transparent
+    );
+    -webkit-mask-image: linear-gradient(
+      90deg,
+      transparent,
+      black 12%,
+      black 88%,
+      transparent
+    );
+  }
+
+  .marquee-track {
+    @apply flex shrink-0 items-center gap-12 whitespace-nowrap py-1 pr-12;
+    animation: marqueeScroll 38s linear infinite;
+  }
+
+  .marquee:hover .marquee-track {
+    animation-play-state: paused;
+  }
+
+  .marquee-item {
+    @apply inline-flex items-center gap-3 font-mono text-[11px] uppercase;
+    letter-spacing: 0.32em;
+    color: rgb(var(--paper) / 0.55);
+  }
+
+  .marquee-item--accent {
+    color: rgb(var(--accent));
+  }
+
+  .marquee-sep {
+    width: 4px;
+    height: 4px;
+    border-radius: 999px;
+    background: rgb(var(--paper) / 0.2);
+  }
+
+  @keyframes marqueeScroll {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  /* ── Step (numbered "how it works") ─────────────────────────────────── */
+  .step-num {
+    @apply inline-flex h-9 w-9 items-center justify-center font-mono text-[12px];
+    color: rgb(var(--accent));
+    border: 1px solid rgb(var(--accent) / 0.45);
+    background: rgb(var(--accent) / 0.05);
+    letter-spacing: 0.05em;
+  }
+
+  /* ── Badges ─────────────────────────────────────────────────────────── */
+  .badge {
+    @apply inline-flex items-center gap-1.5 px-2 py-1 font-mono text-[10px] uppercase;
+    letter-spacing: 0.25em;
+    border: 1px solid rgb(var(--paper) / 0.12);
+    color: rgb(var(--paper) / 0.7);
+  }
+
+  .badge-accent {
+    color: rgb(var(--accent));
+    border-color: rgb(var(--accent) / 0.4);
+    background: rgb(var(--accent) / 0.04);
   }
 }
 

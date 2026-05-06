@@ -1,9 +1,16 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import { Space404, Ocean404 } from "@kripa006/404-ui/react";
+import { Space404, Ocean404, Glitch404, Forest404 } from "@kripa006/404-ui/react";
 
 // Template data
-const templates = [
+const templates: Array<{
+  id: string;
+  name: string;
+  description: string;
+  tags: string[];
+  preview: string;
+  comingSoon?: boolean;
+}> = [
   {
     id: "space",
     name: "Apollo 404",
@@ -21,18 +28,16 @@ const templates = [
   {
     id: "glitch",
     name: "Glitch 404",
-    description: "A retro-futuristic glitch effect with cyberpunk vibes",
-    tags: ["animated", "dark", "retro"],
+    description: "A corrupted-broadcast page with chromatic aberration, scanlines, sync-bar tear, and a 'NO SIGNAL' callout. Type GLITCH for a meltdown.",
+    tags: ["animated", "dark", "retro", "cyberpunk"],
     preview: "📺",
-    comingSoon: true,
   },
   {
     id: "forest",
     name: "Forest 404",
-    description: "A serene forest scene with falling leaves",
-    tags: ["animated", "nature", "green"],
+    description: "An old-growth rainforest at twilight — drifting fog, swaying canopies, fireflies, falling birch leaves, and a wobbling ranger compass. Type MOSS for a spring bloom.",
+    tags: ["animated", "dark", "nature"],
     preview: "🌲",
-    comingSoon: true,
   },
 ];
 ---
@@ -61,24 +66,6 @@ const templates = [
         </p>
       </div>
 
-      <!-- Framework Toggle -->
-      <div class="mt-12 flex flex-wrap items-center justify-between gap-4 border-b border-paper-faint pb-6">
-        <p class="font-mono text-[10px] uppercase tracking-[0.3em] text-paper-dim">
-          Framework
-        </p>
-        <div class="framework-toggle">
-          <button class="framework-toggle-btn framework-toggle-btn-active" data-framework="react">
-            React
-          </button>
-          <button class="framework-toggle-btn framework-toggle-btn-inactive" data-framework="vue">
-            Vue
-          </button>
-          <button class="framework-toggle-btn framework-toggle-btn-inactive" data-framework="vanilla">
-            Vanilla
-          </button>
-        </div>
-      </div>
-
       <!-- Templates Grid -->
       <div class="mt-12 grid gap-8 md:grid-cols-2">
         {templates.map((template) => (
@@ -102,6 +89,28 @@ const templates = [
                   subtitle="You've drifted too deep."
                   buttonText="Return to surface"
                   bubbleCount={18}
+                />
+              ) : template.id === "glitch" ? (
+                <Glitch404
+                  client:only="react"
+                  title="404"
+                  eyebrow="Transmission interrupted"
+                  headline="Page corrupted"
+                  subtitle="The signal carrying this page has been lost."
+                  buttonText="Retune"
+                  channelId="04"
+                />
+              ) : template.id === "forest" ? (
+                <Forest404
+                  client:only="react"
+                  title="404"
+                  eyebrow="Trail uncharted"
+                  headline="The path forks here."
+                  subtitle="You've wandered off the map."
+                  buttonText="Find your bearings"
+                  fireflyCount={14}
+                  leafCount={9}
+                  showNote={false}
                 />
               ) : (
                 <Space404
@@ -185,6 +194,22 @@ const templates = [
           </svg>
         </button>
       </div>
+      <div class="mb-4 flex flex-wrap items-center justify-between gap-3">
+        <p class="font-mono text-[10px] uppercase tracking-[0.3em] text-paper-dim">
+          Framework
+        </p>
+        <div class="framework-toggle" id="code-modal-framework">
+          <button type="button" class="framework-toggle-btn framework-toggle-btn-active" data-framework="react">
+            React
+          </button>
+          <button type="button" class="framework-toggle-btn framework-toggle-btn-inactive" data-framework="vue">
+            Vue
+          </button>
+          <button type="button" class="framework-toggle-btn framework-toggle-btn-inactive" data-framework="vanilla">
+            Vanilla
+          </button>
+        </div>
+      </div>
       <pre id="code-content" class="code-block max-h-96 overflow-auto"></pre>
       <button id="copy-code" class="btn btn-primary mt-4 w-full">
         Copy to Clipboard
@@ -194,19 +219,31 @@ const templates = [
 </BaseLayout>
 
 <script is:inline>
-  // Framework toggle
+  // Framework toggle (lives inside the code modal)
   let currentFramework = 'react';
-  document.querySelectorAll('[data-framework]').forEach(function(btn) {
+  let currentTemplateId = null;
+  const frameworkButtons = document.querySelectorAll('#code-modal-framework [data-framework]');
+  frameworkButtons.forEach(function(btn) {
     btn.addEventListener('click', function() {
-      document.querySelectorAll('[data-framework]').forEach(function(b) {
+      frameworkButtons.forEach(function(b) {
         b.classList.remove('framework-toggle-btn-active');
         b.classList.add('framework-toggle-btn-inactive');
       });
       btn.classList.remove('framework-toggle-btn-inactive');
       btn.classList.add('framework-toggle-btn-active');
       currentFramework = btn.dataset.framework || 'react';
+      renderCodeSnippet();
     });
   });
+
+  function renderCodeSnippet() {
+    if (!currentTemplateId || !codeSnippets[currentTemplateId]) return;
+    const code = codeSnippets[currentTemplateId][currentFramework];
+    const codeContent = document.getElementById('code-content');
+    if (codeContent) {
+      codeContent.textContent = code;
+    }
+  }
 
   // Code snippets
   const codeSnippets = {
@@ -226,6 +263,22 @@ const templates = [
       vanilla:
         "import { createOcean404 } from '@kripa006/404-ui/vanilla';\n\nconst container = document.getElementById('app');\n\nconst ocean404 = createOcean404(container, {\n  title: '404',\n  eyebrow: 'Signal lost · 11,034m',\n  subtitle: \"You've drifted too deep. The surface is waiting.\",\n  buttonText: 'Return to surface',\n  bubbleCount: 28,\n  showJellyfish: true,\n  onButtonClick: () => {\n    window.location.href = '/';\n  }\n});\n\n// Cleanup when needed\n// ocean404.destroy();",
     },
+    glitch: {
+      react:
+        "import { Glitch404 } from '@kripa006/404-ui/react';\n\nfunction NotFoundPage() {\n  return (\n    <Glitch404\n      title=\"404\"\n      eyebrow=\"Transmission interrupted\"\n      headline=\"Page corrupted\"\n      subtitle=\"The signal carrying this page has been lost in transit. Retune.\"\n      buttonText=\"Retune\"\n      channelId=\"04\"\n      showNoSignal={true}\n      onButtonClick={() => window.location.href = '/'}\n    />\n  );\n}\n\nexport default NotFoundPage;",
+      vue:
+        "<script setup>\nimport { Glitch404 } from '@kripa006/404-ui/vue';\n\nfunction handleClick() {\n  window.location.href = '/';\n}\n<\\/script>\n\n<template>\n  <Glitch404\n    title=\"404\"\n    eyebrow=\"Transmission interrupted\"\n    headline=\"Page corrupted\"\n    subtitle=\"The signal carrying this page has been lost in transit. Retune.\"\n    button-text=\"Retune\"\n    channel-id=\"04\"\n    :show-no-signal=\"true\"\n    @button-click=\"handleClick\"\n  />\n</template>",
+      vanilla:
+        "import { createGlitch404 } from '@kripa006/404-ui/vanilla';\n\nconst container = document.getElementById('app');\n\nconst glitch404 = createGlitch404(container, {\n  title: '404',\n  eyebrow: 'Transmission interrupted',\n  headline: 'Page corrupted',\n  subtitle: 'The signal carrying this page has been lost in transit. Retune.',\n  buttonText: 'Retune',\n  channelId: '04',\n  showNoSignal: true,\n  onButtonClick: () => {\n    window.location.href = '/';\n  }\n});\n\n// Cleanup when needed\n// glitch404.destroy();",
+    },
+    forest: {
+      react:
+        "import { Forest404 } from '@kripa006/404-ui/react';\n\nfunction NotFoundPage() {\n  return (\n    <Forest404\n      title=\"404\"\n      eyebrow=\"Trail uncharted\"\n      headline=\"The path forks here.\"\n      subtitle=\"You've wandered off the map. The grove is quiet, the moss is patient — find your bearings and head back.\"\n      buttonText=\"Find your bearings\"\n      coordinates=\"47°23′N · 122°02′W\"\n      fireflyCount={22}\n      leafCount={14}\n      onButtonClick={() => window.location.href = '/'}\n    />\n  );\n}\n\nexport default NotFoundPage;",
+      vue:
+        "<script setup>\nimport { Forest404 } from '@kripa006/404-ui/vue';\n\nfunction handleClick() {\n  window.location.href = '/';\n}\n<\\/script>\n\n<template>\n  <Forest404\n    title=\"404\"\n    eyebrow=\"Trail uncharted\"\n    headline=\"The path forks here.\"\n    subtitle=\"You've wandered off the map. The grove is quiet, the moss is patient — find your bearings and head back.\"\n    button-text=\"Find your bearings\"\n    coordinates=\"47°23′N · 122°02′W\"\n    :firefly-count=\"22\"\n    :leaf-count=\"14\"\n    @button-click=\"handleClick\"\n  />\n</template>",
+      vanilla:
+        "import { createForest404 } from '@kripa006/404-ui/vanilla';\n\nconst container = document.getElementById('app');\n\nconst forest404 = createForest404(container, {\n  title: '404',\n  eyebrow: 'Trail uncharted',\n  headline: 'The path forks here.',\n  subtitle: \"You've wandered off the map. The grove is quiet, the moss is patient — find your bearings and head back.\",\n  buttonText: 'Find your bearings',\n  coordinates: '47°23′N · 122°02′W',\n  fireflyCount: 22,\n  leafCount: 14,\n  onButtonClick: () => {\n    window.location.href = '/';\n  }\n});\n\n// Cleanup when needed\n// forest404.destroy();",
+    },
   };
 
   // Copy code button
@@ -234,12 +287,10 @@ const templates = [
       const templateId = btn.dataset.template;
       if (!templateId || !codeSnippets[templateId]) return;
 
-      const code = codeSnippets[templateId][currentFramework];
-      const codeContent = document.getElementById('code-content');
+      currentTemplateId = templateId;
       const codeModal = document.getElementById('code-modal');
-      
-      if (codeContent && codeModal) {
-        codeContent.textContent = code;
+      if (codeModal) {
+        renderCodeSnippet();
         codeModal.classList.remove('hidden');
         codeModal.classList.add('flex');
       }

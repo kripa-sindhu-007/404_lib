@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 60" fill="none" aria-hidden="true">
+  <defs>
+    <radialGradient id="fr-moth-wing" cx="50%" cy="50%" r="60%">
+      <stop offset="0%" stop-color="#f7e57f" stop-opacity="0.95" />
+      <stop offset="55%" stop-color="#d6a04a" stop-opacity="0.55" />
+      <stop offset="100%" stop-color="#3a2d1f" stop-opacity="0.85" />
+    </radialGradient>
+  </defs>
+  <!-- Left wing -->
+  <path
+    d="M40 30 Q22 8 8 18 Q0 28 12 38 Q24 44 40 36 Z"
+    fill="url(#fr-moth-wing)"
+    stroke="rgba(58,45,31,0.6)"
+    stroke-width="0.8"
+  />
+  <path d="M14 22 Q22 26 28 32" stroke="rgba(241,232,212,0.5)" stroke-width="0.6" fill="none" />
+  <circle cx="18" cy="28" r="2" fill="rgba(247,229,127,0.85)" />
+  <!-- Right wing -->
+  <path
+    d="M40 30 Q58 8 72 18 Q80 28 68 38 Q56 44 40 36 Z"
+    fill="url(#fr-moth-wing)"
+    stroke="rgba(58,45,31,0.6)"
+    stroke-width="0.8"
+  />
+  <path d="M66 22 Q58 26 52 32" stroke="rgba(241,232,212,0.5)" stroke-width="0.6" fill="none" />
+  <circle cx="62" cy="28" r="2" fill="rgba(247,229,127,0.85)" />
+  <!-- Body -->
+  <path d="M40 18 Q42 30 40 46 Q38 30 40 18 Z" fill="#1c130b" />
+  <!-- Antennae -->
+  <path d="M40 18 Q36 12 32 10" stroke="#1c130b" stroke-width="0.8" fill="none" />
+  <path d="M40 18 Q44 12 48 10" stroke="#1c130b" stroke-width="0.8" fill="none" />
+</svg>
