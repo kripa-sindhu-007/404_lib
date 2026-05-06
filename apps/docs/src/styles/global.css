@@ -344,6 +344,239 @@
   .link-arrow:hover svg {
     transform: translateX(3px);
   }
+
+  /* ── Mini template tile (hero showcase grid) ────────────────────────── */
+  .tile {
+    @apply relative overflow-hidden;
+    background: rgb(var(--ink-2));
+    border: 1px solid rgb(var(--paper) / 0.08);
+    transition:
+      border-color 220ms ease,
+      transform 220ms ease;
+  }
+
+  .tile:hover {
+    border-color: rgb(var(--paper) / 0.22);
+    transform: translateY(-2px);
+  }
+
+  .tile-head {
+    @apply flex items-center justify-between px-3 py-2 font-mono text-[10px] uppercase tracking-[0.25em];
+    color: rgb(var(--paper) / 0.45);
+    border-bottom: 1px solid rgb(var(--paper) / 0.06);
+  }
+
+  .tile-foot {
+    @apply flex items-center justify-between px-3 py-2 font-mono text-[10px] uppercase tracking-[0.2em];
+    color: rgb(var(--paper) / 0.55);
+    border-top: 1px solid rgb(var(--paper) / 0.06);
+  }
+
+  .tile-soon {
+    @apply flex h-full flex-col items-center justify-center gap-3 p-6 text-center;
+    background:
+      repeating-linear-gradient(
+        45deg,
+        rgb(var(--paper) / 0.02) 0px,
+        rgb(var(--paper) / 0.02) 8px,
+        transparent 8px,
+        transparent 16px
+      ),
+      rgb(var(--ink-2));
+  }
+
+  .tile-soon-emoji {
+    font-size: 2.25rem;
+    line-height: 1;
+    filter: grayscale(0.3) opacity(0.85);
+  }
+
+  /* ── Hero thumbnail strip ───────────────────────────────────────────── */
+  .hero-thumb {
+    @apply relative flex flex-col items-stretch text-left;
+    background: rgb(var(--ink-2));
+    border: 1px solid rgb(var(--paper) / 0.08);
+    transition:
+      border-color 200ms ease,
+      transform 200ms ease;
+    cursor: pointer;
+  }
+
+  .hero-thumb:hover:not(:disabled) {
+    border-color: rgb(var(--paper) / 0.25);
+    transform: translateY(-1px);
+  }
+
+  .hero-thumb-active {
+    border-color: rgb(var(--accent) / 0.5) !important;
+    box-shadow: inset 0 0 0 1px rgb(var(--accent) / 0.25);
+  }
+
+  .hero-thumb-disabled {
+    cursor: not-allowed;
+    opacity: 0.7;
+  }
+
+  .hero-thumb-poster {
+    @apply relative flex h-[64px] items-center justify-center overflow-hidden;
+    border-bottom: 1px solid rgb(var(--paper) / 0.06);
+  }
+
+  .hero-thumb-tag {
+    @apply font-mono text-[20px] font-semibold;
+    letter-spacing: 0.04em;
+    color: rgb(var(--paper));
+    text-shadow: 0 0 12px rgb(var(--paper) / 0.5);
+  }
+
+  .hero-thumb-poster-apollo {
+    background:
+      radial-gradient(
+        ellipse 70% 60% at 50% 40%,
+        rgb(124 255 74 / 0.18),
+        transparent 60%
+      ),
+      linear-gradient(180deg, rgb(8 12 8) 0%, rgb(14 22 14) 100%);
+  }
+
+  .hero-thumb-poster-apollo .hero-thumb-tag {
+    color: rgb(var(--accent));
+    text-shadow: 0 0 12px rgb(var(--accent) / 0.7);
+  }
+
+  .hero-thumb-poster-ocean {
+    background:
+      radial-gradient(
+        ellipse 60% 70% at 50% 60%,
+        rgb(96 188 255 / 0.32),
+        transparent 65%
+      ),
+      linear-gradient(180deg, rgb(6 14 26) 0%, rgb(8 26 50) 100%);
+  }
+
+  .hero-thumb-poster-ocean .hero-thumb-tag {
+    color: rgb(180 220 255);
+    text-shadow: 0 0 14px rgb(96 188 255 / 0.8);
+  }
+
+  .hero-thumb-poster-glitch {
+    background:
+      repeating-linear-gradient(
+        0deg,
+        rgb(var(--paper) / 0.05) 0px,
+        rgb(var(--paper) / 0.05) 1px,
+        transparent 1px,
+        transparent 3px
+      ),
+      linear-gradient(180deg, rgb(20 8 24) 0%, rgb(36 16 36) 100%);
+  }
+
+  .hero-thumb-poster-glitch .hero-thumb-tag {
+    font-size: 26px;
+    filter: drop-shadow(2px 0 0 rgb(255 60 120 / 0.6))
+      drop-shadow(-2px 0 0 rgb(60 200 255 / 0.6));
+  }
+
+  .hero-thumb-poster-forest {
+    background:
+      radial-gradient(
+        ellipse 70% 70% at 50% 50%,
+        rgb(80 160 90 / 0.22),
+        transparent 65%
+      ),
+      linear-gradient(180deg, rgb(8 18 12) 0%, rgb(16 28 18) 100%);
+  }
+
+  .hero-thumb-poster-forest .hero-thumb-tag {
+    font-size: 26px;
+  }
+
+  .hero-thumb-label {
+    @apply px-2 py-1.5 font-mono text-[10px] uppercase;
+    letter-spacing: 0.25em;
+    color: rgb(var(--paper) / 0.7);
+  }
+
+  .hero-thumb-active .hero-thumb-label {
+    color: rgb(var(--paper));
+  }
+
+  /* ── Marquee (scrolling template names) ─────────────────────────────── */
+  .marquee {
+    @apply relative flex w-full overflow-hidden;
+    mask-image: linear-gradient(
+      90deg,
+      transparent,
+      black 12%,
+      black 88%,
+      transparent
+    );
+    -webkit-mask-image: linear-gradient(
+      90deg,
+      transparent,
+      black 12%,
+      black 88%,
+      transparent
+    );
+  }
+
+  .marquee-track {
+    @apply flex shrink-0 items-center gap-12 whitespace-nowrap py-1 pr-12;
+    animation: marqueeScroll 38s linear infinite;
+  }
+
+  .marquee:hover .marquee-track {
+    animation-play-state: paused;
+  }
+
+  .marquee-item {
+    @apply inline-flex items-center gap-3 font-mono text-[11px] uppercase;
+    letter-spacing: 0.32em;
+    color: rgb(var(--paper) / 0.55);
+  }
+
+  .marquee-item--accent {
+    color: rgb(var(--accent));
+  }
+
+  .marquee-sep {
+    width: 4px;
+    height: 4px;
+    border-radius: 999px;
+    background: rgb(var(--paper) / 0.2);
+  }
+
+  @keyframes marqueeScroll {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  /* ── Step (numbered "how it works") ─────────────────────────────────── */
+  .step-num {
+    @apply inline-flex h-9 w-9 items-center justify-center font-mono text-[12px];
+    color: rgb(var(--accent));
+    border: 1px solid rgb(var(--accent) / 0.45);
+    background: rgb(var(--accent) / 0.05);
+    letter-spacing: 0.05em;
+  }
+
+  /* ── Badges ─────────────────────────────────────────────────────────── */
+  .badge {
+    @apply inline-flex items-center gap-1.5 px-2 py-1 font-mono text-[10px] uppercase;
+    letter-spacing: 0.25em;
+    border: 1px solid rgb(var(--paper) / 0.12);
+    color: rgb(var(--paper) / 0.7);
+  }
+
+  .badge-accent {
+    color: rgb(var(--accent));
+    border-color: rgb(var(--accent) / 0.4);
+    background: rgb(var(--accent) / 0.04);
+  }
 }
 
 @layer utilities {

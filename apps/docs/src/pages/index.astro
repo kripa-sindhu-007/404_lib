@@ -1,44 +1,55 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import { Space404, Ocean404 } from "@kripa006/404-ui/react";
+import { Space404, Ocean404, Glitch404 } from "@kripa006/404-ui/react";
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+
+// Marquee items — duplicated in markup for seamless loop
+const marqueeItems = [
+  { name: "Apollo 404", tag: "MISSION" },
+  { name: "Ocean 404", tag: "DEEP SEA" },
+  { name: "Glitch 404", tag: "RETRO" },
+  { name: "Forest 404", tag: "NATURE" },
+  { name: "Arcade 404", tag: "PIXEL" },
+  { name: "Aurora 404", tag: "AMBIENT" },
+];
 ---
 
 <BaseLayout
-  title="404-UI — design-forward 404 pages for React, Vue, and JavaScript"
-  description="A small library of carefully designed, animated 404 error pages. Drop them into any React, Vue, or Vanilla app. Handcrafted, not generated."
-  keywords="404 UI, animated 404 page, React 404 page, Vue 404 page, JavaScript error page, not found component, Tailwind 404 template"
+  title="404-UI — a library of design-forward 404 pages for React, Vue, and JavaScript"
+  description="A small, opinionated component library of animated 404 error pages. Drop them into any React, Vue, or Vanilla app. Handcrafted, themeable, tree-shakeable."
+  keywords="404 UI, 404 component library, animated 404 page, React 404 component, Vue 404 component, JavaScript 404 template, Tailwind 404 template, not found page library"
 >
   <!-- ═════════════════════════ Hero ═════════════════════════ -->
   <section class="relative overflow-hidden">
     <div class="bg-grid absolute inset-0 -z-10"></div>
-    <!-- Phosphor bleed -->
+    <!-- Soft phosphor wash -->
     <div
       aria-hidden="true"
-      class="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[600px]"
-      style="background: radial-gradient(ellipse 70% 60% at 70% 20%, rgb(124 255 74 / 0.08), transparent 60%);"
+      class="pointer-events-none absolute inset-x-0 top-0 -z-10 h-[700px]"
+      style="background: radial-gradient(ellipse 70% 60% at 70% 18%, rgb(124 255 74 / 0.07), transparent 60%);"
     ></div>
 
-    <div class="mx-auto grid max-w-6xl gap-10 px-4 pb-16 pt-12 sm:gap-12 sm:px-6 sm:pb-20 sm:pt-16 lg:grid-cols-[1.1fr_1fr] lg:gap-8 lg:px-8 lg:pt-24">
+    <div class="mx-auto grid max-w-6xl gap-12 px-4 pb-16 pt-12 sm:px-6 sm:pb-20 sm:pt-16 lg:grid-cols-[1fr_1fr] lg:items-center lg:gap-12 lg:px-8 lg:pt-24">
       <!-- Copy column -->
-      <div class="flex flex-col justify-center">
+      <div class="flex flex-col">
         <p class="eyebrow">
           <span class="eyebrow-dot" aria-hidden="true"></span>
-          v0.1 · Open source · MIT
+          v0.1 · open source · MIT
         </p>
 
-        <h1 class="mt-6 text-5xl font-semibold leading-[0.95] tracking-[-0.02em] text-balance sm:text-6xl lg:text-7xl xl:text-[6.25rem]">
-          <span>404 pages</span>
+        <h1 class="mt-6 text-5xl font-semibold leading-[0.95] tracking-[-0.02em] text-balance sm:text-6xl lg:text-[5.25rem]">
+          <span>The 404</span>
           <br />
-          <span>with <span class="font-display text-accent">a point of view.</span></span>
+          <span>component <span class="font-display text-accent">library.</span></span>
         </h1>
 
         <p class="mt-6 max-w-xl text-pretty text-base text-paper-muted leading-relaxed sm:mt-7 sm:text-lg">
-          A tiny library of handcrafted, animated 404 templates for React, Vue,
-          and vanilla JS. No purple-gradient clichés. Small, accessible,
-          tree-shakeable, and full of hidden easter eggs that reward the
-          curious.
+          A small, opinionated set of handcrafted not-found pages for
+          <span class="text-paper">React</span>,
+          <span class="text-paper">Vue</span>, and
+          <span class="text-paper">Vanilla&nbsp;JS</span>. Drop one in, theme
+          it, ship it. No purple-gradient clichés, no AI-slop.
         </p>
 
         <!-- CTAs -->
@@ -49,8 +60,8 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, "");
               <path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="square" />
             </svg>
           </a>
-          <a href={`${base}/demo/space`} class="btn btn-ghost">
-            Live demo
+          <a href="#install" class="btn btn-ghost">
+            Quick start
           </a>
           <button
             id="hero-copy"
@@ -64,11 +75,11 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, "");
           </button>
         </div>
 
-        <!-- Meta strip -->
-        <dl class="mt-10 grid grid-cols-3 gap-4 border-t border-paper-faint pt-6 sm:mt-12 sm:gap-6">
+        <!-- Stats strip -->
+        <dl class="mt-10 grid grid-cols-3 gap-4 border-t border-paper-faint pt-6 sm:gap-6">
           <div>
             <dt class="font-mono text-[9px] uppercase tracking-[0.3em] text-paper-dim sm:text-[10px]">Templates</dt>
-            <dd class="mt-1 font-serif text-2xl sm:text-3xl">2<span class="text-paper-dim">&nbsp;/ growing</span></dd>
+            <dd class="mt-1 font-serif text-2xl sm:text-3xl">3<span class="text-paper-dim">&nbsp;/ growing</span></dd>
           </div>
           <div>
             <dt class="font-mono text-[9px] uppercase tracking-[0.3em] text-paper-dim sm:text-[10px]">Frameworks</dt>
@@ -81,173 +92,377 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, "");
         </dl>
       </div>
 
-      <!-- Live preview column -->
+      <!-- Featured preview + thumbnail strip -->
       <div class="relative">
-        <!-- Window chrome -->
-        <div
-          class="relative"
-          style="border: 1px solid rgb(245 244 240 / 0.1); background: rgb(17 19 17);"
-        >
-          <div
-            class="flex items-center justify-between px-4 py-2 font-mono text-[10px] uppercase tracking-[0.3em] text-paper-dim"
-            style="border-bottom: 1px solid rgb(245 244 240 / 0.08);"
-          >
-            <div class="flex items-center gap-2">
-              <span class="dot-live" aria-hidden="true"></span>
-              <span>live preview</span>
-            </div>
-            <span class="hidden sm:inline">APOLLO-404.TSX</span>
-            <span class="text-accent">● running</span>
-          </div>
-          <div class="preview-surface h-[340px] sm:h-[400px] lg:h-[460px]">
-            <Space404
-              client:only="react"
-              title="404"
-              eyebrow="SIGNAL LOST · UPLINK DEGRADED"
-              headline="OFF-NOMINAL TRAJECTORY"
-              subtitle="The page you requested drifted outside the nominal envelope."
-              buttonText="RE-VECTOR"
-              missionId="APOLLO · LM-404"
-            />
-          </div>
-          <div
-            class="flex items-center justify-between px-4 py-2 font-mono text-[10px] uppercase tracking-[0.25em] text-paper-dim"
-            style="border-top: 1px solid rgb(245 244 240 / 0.08);"
-          >
-            <span>⏎ try ⇧ · type APOLLO · click the craft</span>
-            <span class="text-accent">Apollo 404</span>
-          </div>
+        <div class="mb-3 flex items-end justify-between">
+          <p class="font-mono text-[10px] uppercase tracking-[0.3em] text-paper-dim">
+            Featured · <span class="text-paper-muted" id="hero-feature-label">Apollo404</span>
+          </p>
+          <span class="badge badge-accent">
+            <span class="dot-live" aria-hidden="true"></span>
+            running
+          </span>
         </div>
 
-        <!-- Figure caption (below frame) -->
-        <p class="mt-3 text-right font-mono text-[10px] uppercase tracking-[0.35em] text-paper-dim">
-          fig. 01 — Apollo 404, rendered live
-        </p>
+        <!-- Featured frame -->
+        <article class="tile">
+          <div class="tile-head">
+            <span id="hero-feature-file">Apollo404.tsx</span>
+            <span class="flex items-center gap-2 text-paper-dim">
+              <span class="text-accent">●</span>
+              <span>react · vue · js</span>
+            </span>
+          </div>
+
+          <div class="relative">
+            <!-- Apollo pane -->
+            <div id="hero-pane-apollo" class="preview-surface h-[360px] sm:h-[400px] lg:h-[440px]">
+              <Space404
+                client:only="react"
+                title="404"
+                eyebrow="SIGNAL LOST · UPLINK DEGRADED"
+                headline="OFF-NOMINAL TRAJECTORY"
+                subtitle="The page you requested drifted outside the nominal envelope."
+                buttonText="RE-VECTOR"
+                missionId="APOLLO · LM-404"
+              />
+            </div>
+            <!-- Ocean pane -->
+            <div id="hero-pane-ocean" class="preview-surface hidden h-[360px] sm:h-[400px] lg:h-[440px]">
+              <Ocean404
+                client:only="react"
+                title="404"
+                eyebrow="Signal lost · 11,034m"
+                subtitle="You've drifted too deep."
+                buttonText="Return to surface"
+                bubbleCount={20}
+              />
+            </div>
+            <!-- Glitch pane -->
+            <div id="hero-pane-glitch" class="preview-surface hidden h-[360px] sm:h-[400px] lg:h-[440px]">
+              <Glitch404
+                client:only="react"
+                title="404"
+                eyebrow="Transmission interrupted"
+                headline="Page corrupted"
+                subtitle="The signal carrying this page has been lost."
+                buttonText="Retune"
+                channelId="04"
+              />
+            </div>
+          </div>
+
+          <div class="tile-foot">
+            <span id="hero-feature-caption">01 — Apollo · mission control</span>
+            <span id="hero-feature-hint" class="text-paper-dim">try ⇧ · type APOLLO</span>
+          </div>
+        </article>
+
+        <!-- Thumbnail strip -->
+        <div class="mt-3 grid grid-cols-4 gap-2" role="tablist" aria-label="Featured templates">
+          <button
+            type="button"
+            role="tab"
+            aria-selected="true"
+            data-feature="apollo"
+            class="hero-thumb hero-thumb-active"
+          >
+            <span class="hero-thumb-poster hero-thumb-poster-apollo" aria-hidden="true">
+              <span class="hero-thumb-tag">404</span>
+            </span>
+            <span class="hero-thumb-label">Apollo</span>
+          </button>
+          <button
+            type="button"
+            role="tab"
+            aria-selected="false"
+            data-feature="ocean"
+            class="hero-thumb"
+          >
+            <span class="hero-thumb-poster hero-thumb-poster-ocean" aria-hidden="true">
+              <span class="hero-thumb-tag">404</span>
+            </span>
+            <span class="hero-thumb-label">Ocean</span>
+          </button>
+          <button
+            type="button"
+            role="tab"
+            aria-selected="false"
+            data-feature="glitch"
+            class="hero-thumb"
+          >
+            <span class="hero-thumb-poster hero-thumb-poster-glitch" aria-hidden="true">
+              <span class="hero-thumb-tag">404</span>
+            </span>
+            <span class="hero-thumb-label">Glitch</span>
+          </button>
+          <button
+            type="button"
+            role="tab"
+            aria-selected="false"
+            disabled
+            data-feature="forest"
+            class="hero-thumb hero-thumb-disabled"
+          >
+            <span class="hero-thumb-poster hero-thumb-poster-forest" aria-hidden="true">
+              <span class="hero-thumb-tag">🌲</span>
+            </span>
+            <span class="hero-thumb-label">Forest · soon</span>
+          </button>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- ═════════════════ What you get strip ═════════════════ -->
-  <section class="border-y border-paper-faint">
-    <div class="mx-auto grid max-w-6xl grid-cols-2 md:grid-cols-5">
+  <!-- ═════════════════ Marquee ═════════════════ -->
+  <section class="border-y border-paper-faint" style="background: rgb(245 244 240 / 0.015);">
+    <div class="marquee py-4">
+      <div class="marquee-track" aria-hidden="false">
+        {[...marqueeItems, ...marqueeItems].map((item) => (
+          <span class="marquee-item">
+            <span class="marquee-sep" aria-hidden="true"></span>
+            <span>{item.name}</span>
+            <span class="marquee-item--accent text-[9px] tracking-[0.4em]">{item.tag}</span>
+          </span>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ═════════════════ What you get (feature grid) ═════════════════ -->
+  <section class="relative mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
+    <div class="flex flex-col items-start gap-4 sm:flex-row sm:items-end sm:justify-between sm:gap-6">
+      <div>
+        <p class="eyebrow">
+          <span class="eyebrow-dot" aria-hidden="true"></span>
+          01 — what you get
+        </p>
+        <h2 class="mt-4 max-w-2xl text-4xl font-semibold tracking-[-0.01em] text-balance sm:text-5xl">
+          Library-grade ergonomics.
+          <span class="font-display text-paper-muted">Without the ceremony.</span>
+        </h2>
+      </div>
+    </div>
+
+    <div class="mt-12 grid gap-px border border-paper-faint sm:grid-cols-2 lg:grid-cols-3" style="background: rgb(245 244 240 / 0.04);">
       {[
-        { k: "01", label: "React · Vue · Vanilla", cls: "" },
-        { k: "02", label: "Tailwind preset included", cls: "border-l border-paper-faint" },
-        { k: "03", label: "Tree-shakeable ESM", cls: "border-t border-paper-faint md:border-t-0 md:border-l" },
-        { k: "04", label: "A11y + reduced-motion", cls: "border-l border-t border-paper-faint md:border-t-0" },
-        { k: "05", label: "Easter eggs by default", cls: "col-span-2 border-t border-paper-faint md:col-span-1 md:border-l md:border-t-0" },
+        {
+          k: "01",
+          h: "Drop-in components",
+          p: "One import per template. Sensible props. No setup wizards, no providers, no ‘just install these 12 packages first’.",
+        },
+        {
+          k: "02",
+          h: "React · Vue · Vanilla",
+          p: "Three first-class entry points. Same prop API, same behavior, same bundle budget. Pick the one you ship.",
+        },
+        {
+          k: "03",
+          h: "Tree-shakeable ESM",
+          p: "Subpath imports per framework. Only the template you use lands in your bundle — typically under 6 kB gzipped.",
+        },
+        {
+          k: "04",
+          h: "Accessible by default",
+          p: "Real headings, focusable controls, prefers-reduced-motion respected, screen-reader-friendly status messages.",
+        },
+        {
+          k: "05",
+          h: "Themeable via tokens",
+          p: "Each template exposes CSS variables for color, type, and timing. Override one value, restyle the whole template.",
+        },
+        {
+          k: "06",
+          h: "Easter eggs included",
+          p: "Every template ships with small ungated delights — a key combo, a click sequence, a hidden console message.",
+        },
       ].map((f) => (
-        <div class={`px-4 py-5 sm:px-5 sm:py-6 ${f.cls}`}>
-          <p class="font-mono text-[10px] uppercase tracking-[0.3em] text-accent">{f.k}</p>
-          <p class="mt-2 text-sm text-paper">{f.label}</p>
+        <div class="bg-ink p-6 sm:p-7">
+          <div class="flex items-baseline justify-between">
+            <span class="font-mono text-[10px] uppercase tracking-[0.3em] text-accent">{f.k}</span>
+            <span class="font-mono text-[10px] uppercase tracking-[0.3em] text-paper-dim">f / {f.k}</span>
+          </div>
+          <h3 class="mt-4 font-serif text-2xl text-paper">{f.h}</h3>
+          <p class="mt-3 text-sm text-paper-muted leading-relaxed text-pretty">{f.p}</p>
         </div>
       ))}
     </div>
   </section>
 
   <!-- ═══════════════════ Template showcase ═══════════════════ -->
-  <section class="relative mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
-    <div class="flex flex-col items-start gap-4 sm:flex-row sm:items-end sm:justify-between sm:gap-6">
-      <div>
-        <p class="eyebrow">
-          <span class="eyebrow-dot" aria-hidden="true"></span>
-          02 — the library
-        </p>
-        <h2 class="mt-4 max-w-2xl text-4xl font-semibold tracking-[-0.01em] text-balance sm:text-5xl">
-          Two templates.<br />
-          <span class="font-display text-paper-muted">Each one an opinion.</span>
-        </h2>
+  <section class="relative border-t border-paper-faint">
+    <div class="bg-grid-fine absolute inset-0 -z-10 opacity-40"></div>
+    <div class="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
+      <div class="flex flex-col items-start gap-4 sm:flex-row sm:items-end sm:justify-between sm:gap-6">
+        <div>
+          <p class="eyebrow">
+            <span class="eyebrow-dot" aria-hidden="true"></span>
+            02 — the catalogue
+          </p>
+          <h2 class="mt-4 max-w-2xl text-4xl font-semibold tracking-[-0.01em] text-balance sm:text-5xl">
+            Three shipping today.
+            <span class="font-display text-paper-muted">More on the bench.</span>
+          </h2>
+        </div>
+        <a href={`${base}/gallery`} class="link-arrow">
+          <span>Open gallery</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="square" />
+          </svg>
+        </a>
       </div>
-      <a href={`${base}/gallery`} class="link-arrow">
-        <span>All templates</span>
-        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-          <path d="M5 12h14M13 5l7 7-7 7" stroke="currentColor" stroke-width="2" stroke-linecap="square" />
-        </svg>
-      </a>
-    </div>
 
-    <div class="mt-12 grid gap-6 lg:grid-cols-2">
-      <!-- Apollo -->
-      <article class="plate">
-        <div class="plate-label">Fig. A</div>
-        <div class="plate-tag">MISSION CONTROL</div>
-        <div class="preview-surface h-[280px] sm:h-[320px] md:h-[360px] border-b border-paper-faint">
-          <Space404
-            client:only="react"
-            title="404"
-            eyebrow="SIGNAL LOST"
-            headline="OFF-NOMINAL TRAJECTORY"
-            subtitle="Drifted outside the nominal envelope."
-            buttonText="RE-VECTOR"
-            missionId="APOLLO · LM-404"
-          />
-        </div>
-        <div class="p-6">
-          <div class="flex items-center justify-between">
-            <h3 class="font-serif text-3xl text-paper">Apollo 404</h3>
-            <code class="code-inline text-[11px]">Space404</code>
+      <div class="mt-12 grid gap-6 lg:grid-cols-2 xl:grid-cols-3">
+        <!-- Apollo -->
+        <article class="plate">
+          <div class="tile-head">
+            <span>01 / live</span>
+            <span class="text-accent">Apollo404</span>
           </div>
-          <p class="mt-3 text-sm text-paper-muted text-pretty">
-            An Apollo-era mission-control console. CRT phosphor, live
-            telemetry rails, and an orbital diagnostic that shows the
-            off-nominal trajectory. Type <span class="text-paper">APOLLO</span>
-            to launch a rocket.
-          </p>
-          <ul class="mt-4 flex flex-wrap gap-2">
-            {["mission-control", "dark", "animated", "easter-eggs"].map((t) => (
-              <li class="font-mono text-[10px] uppercase tracking-[0.25em] text-paper-dim" style="border: 1px solid rgb(245 244 240 / 0.1); padding: 4px 8px;">
-                {t}
-              </li>
-            ))}
-          </ul>
-          <div class="mt-6 flex gap-3">
-            <a href={`${base}/demo/space`} class="btn btn-primary">Open demo</a>
-            <a href={`${base}/gallery`} class="btn btn-ghost">Copy code</a>
+          <div class="preview-surface h-[280px] sm:h-[320px] md:h-[360px] border-b border-paper-faint">
+            <Space404
+              client:only="react"
+              title="404"
+              eyebrow="SIGNAL LOST"
+              headline="OFF-NOMINAL TRAJECTORY"
+              subtitle="Drifted outside the nominal envelope."
+              buttonText="RE-VECTOR"
+              missionId="APOLLO · LM-404"
+            />
           </div>
-        </div>
-      </article>
+          <div class="p-6">
+            <div class="flex items-center justify-between">
+              <h3 class="font-serif text-3xl text-paper">Apollo 404</h3>
+              <code class="code-inline text-[11px]">&lt;Space404 /&gt;</code>
+            </div>
+            <p class="mt-3 text-sm text-paper-muted text-pretty">
+              An Apollo-era mission-control console. CRT phosphor, telemetry
+              rails, an orbital diagnostic, and an easter egg that launches
+              when you type <span class="text-paper">APOLLO</span>.
+            </p>
+            <ul class="mt-4 flex flex-wrap gap-2">
+              {["mission-control", "dark", "animated", "easter-eggs"].map((t) => (
+                <li class="font-mono text-[10px] uppercase tracking-[0.25em] text-paper-dim" style="border: 1px solid rgb(245 244 240 / 0.1); padding: 4px 8px;">
+                  {t}
+                </li>
+              ))}
+            </ul>
+            <div class="mt-6 flex gap-3">
+              <a href={`${base}/demo/space`} class="btn btn-primary">Open demo</a>
+              <a href={`${base}/gallery`} class="btn btn-ghost">Copy code</a>
+            </div>
+          </div>
+        </article>
 
-      <!-- Ocean -->
-      <article class="plate">
-        <div class="plate-label">Fig. B</div>
-        <div class="plate-tag">DEEP SEA</div>
-        <div class="preview-surface h-[280px] sm:h-[320px] md:h-[360px] border-b border-paper-faint">
-          <Ocean404
-            client:only="react"
-            title="404"
-            eyebrow="Signal lost · 11,034m"
-            subtitle="You've drifted too deep."
-            buttonText="Return to surface"
-            bubbleCount={24}
-          />
-        </div>
-        <div class="p-6">
-          <div class="flex items-center justify-between">
-            <h3 class="font-serif text-3xl text-paper">Ocean 404</h3>
-            <code class="code-inline text-[11px]">Ocean404</code>
+        <!-- Ocean -->
+        <article class="plate">
+          <div class="tile-head">
+            <span>02 / live</span>
+            <span class="text-accent">Ocean404</span>
           </div>
-          <p class="mt-3 text-sm text-paper-muted text-pretty">
-            A bioluminescent deep-sea drift. Rising bubbles you can pop, a
-            drifting jellyfish, a sonar ping, and a depth HUD that loops past
-            404m. The Konami code summons a submarine.
-          </p>
-          <ul class="mt-4 flex flex-wrap gap-2">
-            {["ocean", "dark", "animated", "easter-eggs"].map((t) => (
-              <li class="font-mono text-[10px] uppercase tracking-[0.25em] text-paper-dim" style="border: 1px solid rgb(245 244 240 / 0.1); padding: 4px 8px;">
-                {t}
-              </li>
-            ))}
-          </ul>
-          <div class="mt-6 flex gap-3">
-            <a href={`${base}/demo/ocean`} class="btn btn-primary">Open demo</a>
-            <a href={`${base}/gallery`} class="btn btn-ghost">Copy code</a>
+          <div class="preview-surface h-[280px] sm:h-[320px] md:h-[360px] border-b border-paper-faint">
+            <Ocean404
+              client:only="react"
+              title="404"
+              eyebrow="Signal lost · 11,034m"
+              subtitle="You've drifted too deep."
+              buttonText="Return to surface"
+              bubbleCount={24}
+            />
           </div>
-        </div>
-      </article>
+          <div class="p-6">
+            <div class="flex items-center justify-between">
+              <h3 class="font-serif text-3xl text-paper">Ocean 404</h3>
+              <code class="code-inline text-[11px]">&lt;Ocean404 /&gt;</code>
+            </div>
+            <p class="mt-3 text-sm text-paper-muted text-pretty">
+              A bioluminescent deep-sea drift. Pop bubbles, watch a drifting
+              jellyfish, follow a sonar ping. The Konami code summons a
+              submarine.
+            </p>
+            <ul class="mt-4 flex flex-wrap gap-2">
+              {["ocean", "dark", "animated", "easter-eggs"].map((t) => (
+                <li class="font-mono text-[10px] uppercase tracking-[0.25em] text-paper-dim" style="border: 1px solid rgb(245 244 240 / 0.1); padding: 4px 8px;">
+                  {t}
+                </li>
+              ))}
+            </ul>
+            <div class="mt-6 flex gap-3">
+              <a href={`${base}/demo/ocean`} class="btn btn-primary">Open demo</a>
+              <a href={`${base}/gallery`} class="btn btn-ghost">Copy code</a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Glitch -->
+        <article class="plate">
+          <div class="tile-head">
+            <span>03 / live</span>
+            <span class="text-accent">Glitch404</span>
+          </div>
+          <div class="preview-surface h-[280px] sm:h-[320px] md:h-[360px] border-b border-paper-faint">
+            <Glitch404
+              client:only="react"
+              title="404"
+              eyebrow="Transmission interrupted"
+              headline="Page corrupted"
+              subtitle="Signal lost in transit."
+              buttonText="Retune"
+              channelId="04"
+            />
+          </div>
+          <div class="p-6">
+            <div class="flex items-center justify-between">
+              <h3 class="font-serif text-3xl text-paper">Glitch 404</h3>
+              <code class="code-inline text-[11px]">&lt;Glitch404 /&gt;</code>
+            </div>
+            <p class="mt-3 text-sm text-paper-muted text-pretty">
+              A corrupted broadcast feed. Chromatic aberration, sync-bar tear,
+              static-noise overlay, blinking <span class="text-paper">NO SIGNAL</span>.
+              Type <span class="text-paper">GLITCH</span> for a meltdown.
+            </p>
+            <ul class="mt-4 flex flex-wrap gap-2">
+              {["cyberpunk", "dark", "animated", "easter-eggs"].map((t) => (
+                <li class="font-mono text-[10px] uppercase tracking-[0.25em] text-paper-dim" style="border: 1px solid rgb(245 244 240 / 0.1); padding: 4px 8px;">
+                  {t}
+                </li>
+              ))}
+            </ul>
+            <div class="mt-6 flex gap-3">
+              <a href={`${base}/demo/glitch`} class="btn btn-primary">Open demo</a>
+              <a href={`${base}/gallery`} class="btn btn-ghost">Copy code</a>
+            </div>
+          </div>
+        </article>
+      </div>
+
+      <!-- Coming-soon row (slim) -->
+      <div class="mt-6 grid gap-6 sm:grid-cols-2">
+        {[
+          { k: "04", name: "Forest 404", emoji: "🌲", note: "Falling leaves · rain · ambient nature" },
+          { k: "05", name: "Aurora 404", emoji: "🌌", note: "Slow gradient sweep · low-poly mountains" },
+        ].map((t) => (
+          <div class="card p-5 sm:p-6">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-4">
+                <span class="text-3xl" aria-hidden="true">{t.emoji}</span>
+                <div>
+                  <h3 class="font-serif text-xl text-paper">{t.name}</h3>
+                  <p class="mt-0.5 text-sm text-paper-muted">{t.note}</p>
+                </div>
+              </div>
+              <span class="badge">
+                <span class="text-paper-dim">○</span>
+                {t.k} · soon
+              </span>
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   </section>
 
-  <!-- ═══════════════════ Install / Framework tabs ═══════════════════ -->
+  <!-- ═══════════════════ How it works (3 steps + framework tabs) ═══════════════════ -->
   <section id="install" class="relative border-t border-paper-faint">
     <div class="bg-grid-fine absolute inset-0 -z-10 opacity-60"></div>
     <div class="mx-auto max-w-6xl px-4 py-16 sm:px-6 sm:py-24 lg:px-8">
@@ -255,18 +470,43 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, "");
         <div>
           <p class="eyebrow">
             <span class="eyebrow-dot" aria-hidden="true"></span>
-            03 — install
+            03 — quick start
           </p>
           <h2 class="mt-4 text-4xl font-semibold tracking-[-0.01em] text-balance sm:text-5xl">
-            Three files.<br />
-            <span class="font-display text-paper-muted">One import.</span>
+            Three steps.
+            <span class="font-display text-paper-muted">Three frameworks.</span>
           </h2>
           <p class="mt-6 max-w-md text-paper-muted text-pretty">
-            Pick your framework. Copy two lines. Ship a 404 page that
-            actually says something about your product.
+            Install once. Import the template you want. Hand it to your
+            router&apos;s 404 boundary. That&apos;s it.
           </p>
 
-          <div class="mt-8 flex flex-col gap-3">
+          <!-- Steps -->
+          <ol class="mt-10 flex flex-col gap-6 border-l border-paper-faint pl-6">
+            <li class="relative">
+              <span class="step-num absolute -left-[3.05rem] top-0">01</span>
+              <h3 class="font-serif text-xl text-paper">Install</h3>
+              <code class="code-inline mt-2 inline-block text-[11px]">npm i @kripa006/404-ui</code>
+            </li>
+            <li class="relative">
+              <span class="step-num absolute -left-[3.05rem] top-0">02</span>
+              <h3 class="font-serif text-xl text-paper">Import</h3>
+              <p class="mt-1 text-sm text-paper-muted text-pretty">
+                Pull a template from the framework subpath that matches
+                your stack.
+              </p>
+            </li>
+            <li class="relative">
+              <span class="step-num absolute -left-[3.05rem] top-0">03</span>
+              <h3 class="font-serif text-xl text-paper">Ship</h3>
+              <p class="mt-1 text-sm text-paper-muted text-pretty">
+                Render it from your router&apos;s catch-all route. Theme via
+                CSS variables.
+              </p>
+            </li>
+          </ol>
+
+          <div class="mt-10 flex flex-col gap-3">
             <div class="flex items-center gap-3">
               <code class="code-inline flex-1 justify-between py-2 text-xs">
                 <span><span class="text-accent">$</span> npm i @kripa006/404-ui</span>
@@ -274,7 +514,7 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, "");
               </code>
             </div>
             <p class="font-mono text-[10px] uppercase tracking-[0.3em] text-paper-dim">
-              Or — <span class="text-paper-muted">pnpm add @kripa006/404-ui</span>
+              Or — <span class="text-paper-muted">pnpm add @kripa006/404-ui</span> · <span class="text-paper-muted">yarn add @kripa006/404-ui</span>
             </p>
           </div>
         </div>
@@ -400,7 +640,7 @@ const space404 = createSpace404(app, {
         {
           k: "C",
           h: "Hidden delights",
-          p: "Every template ships with small, ungated easter eggs. Reward the users who linger — they’re the ones who remember.",
+          p: "Every template ships with small, ungated easter eggs. Reward the users who linger — they're the ones who remember.",
         },
       ].map((x) => (
         <article>
@@ -469,6 +709,65 @@ const space404 = createSpace404(app, {
   const heroCopy = document.getElementById("hero-copy");
   const heroCopyState = document.getElementById("hero-copy-state");
   heroCopy?.addEventListener("click", () => copyInstall(heroCopyState));
+
+  // Hero featured-template switcher
+  const heroFeatures = {
+    apollo: {
+      label: "Apollo404",
+      file: "Apollo404.tsx",
+      caption: "01 — Apollo · mission control",
+      hint: "try ⇧ · type APOLLO",
+    },
+    ocean: {
+      label: "Ocean404",
+      file: "Ocean404.tsx",
+      caption: "02 — Ocean · deep sea",
+      hint: "click bubbles · ↑↑↓↓",
+    },
+    glitch: {
+      label: "Glitch404",
+      file: "Glitch404.tsx",
+      caption: "03 — Glitch · broken broadcast",
+      hint: "type GLITCH · hold to densify",
+    },
+  };
+  const heroPanes = {
+    apollo: document.getElementById("hero-pane-apollo"),
+    ocean: document.getElementById("hero-pane-ocean"),
+    glitch: document.getElementById("hero-pane-glitch"),
+  };
+  const heroLabel = document.getElementById("hero-feature-label");
+  const heroFile = document.getElementById("hero-feature-file");
+  const heroCaption = document.getElementById("hero-feature-caption");
+  const heroHint = document.getElementById("hero-feature-hint");
+
+  document.querySelectorAll("[data-feature]").forEach((thumb) => {
+    if (thumb.disabled) return;
+    thumb.addEventListener("click", () => {
+      const key = thumb.dataset.feature;
+      const meta = heroFeatures[key];
+      if (!meta) return;
+
+      // toggle thumb states
+      document.querySelectorAll("[data-feature]").forEach((t) => {
+        t.classList.remove("hero-thumb-active");
+        t.setAttribute("aria-selected", "false");
+      });
+      thumb.classList.add("hero-thumb-active");
+      thumb.setAttribute("aria-selected", "true");
+
+      // toggle panes
+      Object.entries(heroPanes).forEach(([k, el]) => {
+        if (!el) return;
+        el.classList.toggle("hidden", k !== key);
+      });
+
+      if (heroLabel) heroLabel.textContent = meta.label;
+      if (heroFile) heroFile.textContent = meta.file;
+      if (heroCaption) heroCaption.textContent = meta.caption;
+      if (heroHint) heroHint.textContent = meta.hint;
+    });
+  });
 
   const installCopy = document.getElementById("install-copy");
   installCopy?.addEventListener("click", () => copyInstall(installCopy));

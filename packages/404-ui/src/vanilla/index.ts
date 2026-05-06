@@ -9,6 +9,11 @@ export {
   Ocean404Element,
   type Ocean404Options,
 } from "./Ocean404";
+export {
+  createGlitch404,
+  Glitch404Element,
+  type Glitch404Options,
+} from "./Glitch404";
 
 // Re-export core utilities for convenience
 export {

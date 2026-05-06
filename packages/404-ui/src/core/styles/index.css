@@ -215,6 +215,262 @@
   }
 }
 
+/* Glitch404 keyframes ─ broken broadcast */
+@keyframes glitchShakeX {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+  10% {
+    transform: translate(-2px, 1px);
+  }
+  20% {
+    transform: translate(3px, -1px);
+  }
+  30% {
+    transform: translate(-1px, 2px);
+  }
+  40% {
+    transform: translate(2px, 0);
+  }
+  50% {
+    transform: translate(-3px, -1px);
+  }
+  60% {
+    transform: translate(1px, 1px);
+  }
+  70% {
+    transform: translate(-2px, 0);
+  }
+  80% {
+    transform: translate(2px, -2px);
+  }
+  90% {
+    transform: translate(-1px, 1px);
+  }
+}
+
+@keyframes glitchAberrate {
+  0%,
+  90%,
+  100% {
+    text-shadow:
+      -3px 0 0 rgba(255, 45, 138, 0.85),
+      3px 0 0 rgba(0, 245, 255, 0.85),
+      0 0 28px rgba(255, 45, 138, 0.25);
+  }
+  91% {
+    text-shadow:
+      -8px 0 0 rgba(255, 45, 138, 1),
+      8px 0 0 rgba(0, 245, 255, 1),
+      0 0 36px rgba(255, 253, 0, 0.6);
+  }
+  93% {
+    text-shadow:
+      -2px 0 0 rgba(255, 253, 0, 0.95),
+      6px 1px 0 rgba(0, 245, 255, 0.85),
+      -4px -2px 0 rgba(255, 45, 138, 0.85),
+      0 0 24px rgba(0, 245, 255, 0.4);
+  }
+  95% {
+    text-shadow:
+      -10px 0 0 rgba(255, 45, 138, 1),
+      10px 0 0 rgba(0, 245, 255, 1);
+  }
+}
+
+@keyframes glitchSlice1 {
+  0%,
+  100% {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    transform: translate(0, 0);
+  }
+  18% {
+    clip-path: polygon(0 18%, 100% 18%, 100% 28%, 0 28%);
+    transform: translate(-12px, 0);
+  }
+  21% {
+    clip-path: polygon(0 18%, 100% 18%, 100% 28%, 0 28%);
+    transform: translate(8px, 0);
+  }
+  23% {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    transform: translate(0, 0);
+  }
+  56% {
+    clip-path: polygon(0 62%, 100% 62%, 100% 70%, 0 70%);
+    transform: translate(-18px, 0);
+  }
+  59% {
+    clip-path: polygon(0 62%, 100% 62%, 100% 70%, 0 70%);
+    transform: translate(14px, 0);
+  }
+  61% {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    transform: translate(0, 0);
+  }
+  82% {
+    clip-path: polygon(0 42%, 100% 42%, 100% 48%, 0 48%);
+    transform: translate(-22px, 0);
+  }
+  85% {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    transform: translate(0, 0);
+  }
+}
+
+@keyframes glitchSlice2 {
+  0%,
+  100% {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    transform: translate(0, 0);
+  }
+  32% {
+    clip-path: polygon(0 6%, 100% 6%, 100% 14%, 0 14%);
+    transform: translate(16px, 0);
+  }
+  35% {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    transform: translate(0, 0);
+  }
+  68% {
+    clip-path: polygon(0 78%, 100% 78%, 100% 86%, 0 86%);
+    transform: translate(-20px, 0);
+  }
+  71% {
+    clip-path: polygon(0 78%, 100% 78%, 100% 86%, 0 86%);
+    transform: translate(10px, 0);
+  }
+  73% {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    transform: translate(0, 0);
+  }
+}
+
+@keyframes glitchScanCrawl {
+  0% {
+    transform: translateY(-30%);
+  }
+  100% {
+    transform: translateY(130%);
+  }
+}
+
+@keyframes glitchSyncBar {
+  0% {
+    transform: translateY(-110%);
+    opacity: 0;
+  }
+  4% {
+    opacity: 0.55;
+  }
+  10% {
+    opacity: 0.8;
+  }
+  18% {
+    opacity: 0.4;
+  }
+  100% {
+    transform: translateY(110%);
+    opacity: 0;
+  }
+}
+
+@keyframes glitchStaticShift {
+  0%,
+  100% {
+    background-position:
+      0 0,
+      0 0;
+  }
+  20% {
+    background-position:
+      17px 9px,
+      -11px 6px;
+  }
+  40% {
+    background-position:
+      -7px 14px,
+      9px -3px;
+  }
+  60% {
+    background-position:
+      11px -8px,
+      -14px 11px;
+  }
+  80% {
+    background-position:
+      -13px 5px,
+      7px 14px;
+  }
+}
+
+@keyframes glitchNoSignalBlink {
+  0%,
+  49%,
+  100% {
+    opacity: 1;
+  }
+  50%,
+  99% {
+    opacity: 0.18;
+  }
+}
+
+@keyframes glitchTimecode {
+  0%,
+  100% {
+    letter-spacing: 0.18em;
+  }
+  50% {
+    letter-spacing: 0.21em;
+  }
+}
+
+@keyframes glitchHueDrift {
+  0%,
+  100% {
+    filter: hue-rotate(0deg);
+  }
+  50% {
+    filter: hue-rotate(8deg);
+  }
+}
+
+@keyframes glitchMeltdown {
+  0% {
+    filter: hue-rotate(0deg) saturate(1) contrast(1);
+    transform: scale(1);
+  }
+  20% {
+    filter: hue-rotate(120deg) saturate(2) contrast(1.5);
+    transform: scale(1.02) skewX(-2deg);
+  }
+  45% {
+    filter: hue-rotate(-90deg) saturate(2.5) contrast(2) invert(0.1);
+    transform: scale(0.98) skewX(2deg);
+  }
+  70% {
+    filter: hue-rotate(220deg) saturate(3) contrast(1.6);
+    transform: scale(1.04);
+  }
+  100% {
+    filter: hue-rotate(0deg) saturate(1) contrast(1);
+    transform: scale(1);
+  }
+}
+
+@keyframes glitchCursorBlock {
+  0%,
+  49% {
+    opacity: 1;
+  }
+  50%,
+  100% {
+    opacity: 0;
+  }
+}
+
 /* Base styles for 404 UI components */
 @layer base {
   :root {
@@ -804,6 +1060,470 @@
     .ocean-404-submarine,
     .ocean-404-angler {
       animation: none !important;
+    }
+  }
+
+  /* ─────────────────────────────────────────────────────────────────────────
+     Glitch 404 — corrupted broadcast / dying CRT
+     ───────────────────────────────────────────────────────────────────────── */
+  .glitch-404-container {
+    @apply relative flex w-full flex-col overflow-hidden;
+    min-height: calc(100vh - 4rem);
+    container-type: inline-size;
+    container-name: glitch404;
+    background:
+      radial-gradient(
+        ellipse 70% 80% at 50% 50%,
+        rgba(255, 45, 138, 0.1) 0%,
+        rgba(0, 245, 255, 0.04) 35%,
+        rgba(4, 2, 10, 0) 70%
+      ),
+      linear-gradient(180deg, #06030d 0%, #04020a 60%, #0a0414 100%);
+    color: #f0eef5;
+    font-family:
+      "VT323", "JetBrains Mono", "IBM Plex Mono", ui-monospace, SFMono-Regular,
+      Menlo, monospace;
+    isolation: isolate;
+    animation: glitchHueDrift 11s ease-in-out infinite;
+  }
+
+  /* Animated static noise — two layered radial dot grids that shift */
+  .glitch-404-static {
+    @apply pointer-events-none absolute inset-0;
+    z-index: 1;
+    background-image:
+      radial-gradient(rgba(240, 238, 245, 0.18) 1px, transparent 1px),
+      radial-gradient(rgba(255, 45, 138, 0.1) 1px, transparent 1px);
+    background-size:
+      3px 3px,
+      5px 5px;
+    background-position:
+      0 0,
+      1px 2px;
+    mix-blend-mode: screen;
+    opacity: 0.6;
+    animation: glitchStaticShift 220ms steps(1, end) infinite;
+  }
+
+  /* Scanlines crawling slowly */
+  .glitch-404-scanlines {
+    @apply pointer-events-none absolute inset-0;
+    z-index: 2;
+    background: repeating-linear-gradient(
+      to bottom,
+      rgba(0, 245, 255, 0.05) 0px,
+      rgba(0, 245, 255, 0.05) 1px,
+      transparent 2px,
+      transparent 3px
+    );
+    mix-blend-mode: overlay;
+  }
+
+  .glitch-404-scanlines::after {
+    content: "";
+    @apply absolute inset-x-0;
+    top: 0;
+    height: 26%;
+    background: linear-gradient(
+      180deg,
+      transparent 0%,
+      rgba(255, 45, 138, 0.08) 35%,
+      rgba(0, 245, 255, 0.1) 50%,
+      rgba(255, 45, 138, 0.08) 65%,
+      transparent 100%
+    );
+    animation: glitchScanCrawl 7.5s linear infinite;
+  }
+
+  /* Sync bar — a sweep of horizontal distortion every cycle */
+  .glitch-404-syncbar {
+    @apply pointer-events-none absolute inset-x-0;
+    z-index: 3;
+    top: 0;
+    height: 18%;
+    background: linear-gradient(
+      180deg,
+      transparent 0%,
+      rgba(0, 245, 255, 0.18) 12%,
+      rgba(240, 238, 245, 0.55) 50%,
+      rgba(255, 45, 138, 0.22) 88%,
+      transparent 100%
+    );
+    mix-blend-mode: screen;
+    filter: blur(0.5px);
+    animation: glitchSyncBar 9s ease-out infinite;
+    animation-delay: 1.4s;
+  }
+
+  /* CRT vignette + tube curve */
+  .glitch-404-vignette {
+    @apply pointer-events-none absolute inset-0;
+    z-index: 4;
+    background: radial-gradient(
+      ellipse 90% 100% at center,
+      transparent 50%,
+      rgba(4, 2, 10, 0.4) 78%,
+      rgba(4, 2, 10, 0.92) 100%
+    );
+    box-shadow: inset 0 0 200px rgba(0, 0, 0, 0.7);
+  }
+
+  /* Top broadcast HUD bar */
+  .glitch-404-hud {
+    @apply relative z-10 flex flex-wrap items-center gap-4 px-6 py-3 text-[11px] uppercase;
+    letter-spacing: 0.32em;
+    border-bottom: 1px solid rgba(255, 45, 138, 0.22);
+    background: linear-gradient(
+      180deg,
+      rgba(255, 45, 138, 0.06),
+      rgba(4, 2, 10, 0.4)
+    );
+    color: rgba(240, 238, 245, 0.85);
+  }
+
+  .glitch-404-rec {
+    @apply inline-flex items-center gap-2;
+    color: #ff2d8a;
+  }
+
+  .glitch-404-rec-dot {
+    display: inline-block;
+    width: 9px;
+    height: 9px;
+    border-radius: 999px;
+    background: #ff2d8a;
+    box-shadow: 0 0 12px rgba(255, 45, 138, 0.9);
+    animation: glitchNoSignalBlink 1.5s steps(1, end) infinite;
+  }
+
+  .glitch-404-hud-key {
+    color: rgba(0, 245, 255, 0.85);
+    letter-spacing: 0.4em;
+  }
+
+  .glitch-404-hud-val {
+    color: #f0eef5;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .glitch-404-hud-spacer {
+    flex: 1;
+  }
+
+  .glitch-404-timecode {
+    color: rgba(255, 253, 0, 0.85);
+    font-variant-numeric: tabular-nums;
+    animation: glitchTimecode 1.4s ease-in-out infinite;
+  }
+
+  /* Center stage */
+  .glitch-404-stage {
+    @apply relative z-10 flex flex-1 flex-col items-center justify-center gap-7 px-6 py-12 text-center;
+  }
+
+  .glitch-404-eyebrow {
+    @apply inline-flex items-center gap-3 text-[10px] uppercase;
+    letter-spacing: 0.55em;
+    color: rgba(0, 245, 255, 0.85);
+  }
+
+  .glitch-404-eyebrow::before,
+  .glitch-404-eyebrow::after {
+    content: "";
+    width: 24px;
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(0, 245, 255, 0.7),
+      transparent
+    );
+  }
+
+  /* The headline 404 — chromatic aberration + glitch slices */
+  .glitch-404-title-wrap {
+    @apply relative;
+    line-height: 0.9;
+    isolation: isolate;
+  }
+
+  .glitch-404-title {
+    @apply relative font-black uppercase;
+    font-size: clamp(7rem, 26vw, 22rem);
+    line-height: 0.85;
+    letter-spacing: 0.06em;
+    color: #f7f5fa;
+    text-shadow:
+      -3px 0 0 rgba(255, 45, 138, 0.85),
+      3px 0 0 rgba(0, 245, 255, 0.85),
+      0 0 28px rgba(255, 45, 138, 0.25);
+    animation:
+      glitchAberrate 4.6s steps(1, end) infinite,
+      glitchShakeX 2.8s steps(2, end) infinite;
+    user-select: none;
+  }
+
+  /* Two duplicate layers slicing horizontal bands across the title */
+  .glitch-404-title-slice {
+    @apply pointer-events-none absolute inset-0;
+    color: #f7f5fa;
+    text-shadow:
+      -3px 0 0 rgba(255, 45, 138, 0.95),
+      3px 0 0 rgba(0, 245, 255, 0.95);
+    mix-blend-mode: screen;
+  }
+
+  .glitch-404-title-slice--a {
+    animation: glitchSlice1 4.2s steps(1, end) infinite;
+  }
+
+  .glitch-404-title-slice--b {
+    animation: glitchSlice2 5.6s steps(1, end) infinite;
+    animation-delay: 1.1s;
+    color: rgba(255, 253, 0, 0.65);
+    text-shadow:
+      -2px 0 0 rgba(255, 45, 138, 0.65),
+      2px 0 0 rgba(0, 245, 255, 0.65);
+  }
+
+  .glitch-404-headline {
+    @apply text-base font-medium uppercase;
+    letter-spacing: 0.42em;
+    color: #f0eef5;
+  }
+
+  .glitch-404-subtitle {
+    @apply max-w-md text-sm;
+    color: rgba(240, 238, 245, 0.7);
+    letter-spacing: 0.05em;
+    line-height: 1.65;
+  }
+
+  .glitch-404-subtitle .glitch-404-subtitle-mark {
+    color: rgba(255, 253, 0, 0.95);
+    background: rgba(255, 45, 138, 0.18);
+    padding: 0 6px;
+    border-radius: 1px;
+  }
+
+  .glitch-404-cursor {
+    display: inline-block;
+    width: 10px;
+    height: 1em;
+    margin-left: 4px;
+    background: #f0eef5;
+    vertical-align: text-bottom;
+    animation: glitchCursorBlock 1s steps(1, end) infinite;
+  }
+
+  /* "NO SIGNAL" callout in the corner */
+  .glitch-404-nosignal {
+    @apply absolute z-10 flex items-center gap-2 px-3 py-1.5 font-bold uppercase;
+    top: 28%;
+    right: 6%;
+    font-size: 12px;
+    letter-spacing: 0.42em;
+    color: #ffaa1f;
+    border: 1.5px solid #ffaa1f;
+    background: rgba(20, 8, 0, 0.6);
+    box-shadow:
+      inset 0 0 0 1px rgba(255, 170, 31, 0.15),
+      0 0 24px rgba(255, 170, 31, 0.25);
+    transform: rotate(-2deg);
+    animation: glitchNoSignalBlink 1.6s steps(1, end) infinite;
+  }
+
+  .glitch-404-nosignal::before {
+    content: "";
+    width: 7px;
+    height: 7px;
+    border-radius: 999px;
+    background: #ffaa1f;
+    box-shadow: 0 0 10px #ffaa1f;
+  }
+
+  /* Action button — "RETUNE" */
+  .glitch-404-button {
+    @apply relative inline-flex items-center gap-3 px-7 py-3 text-[11px] font-bold uppercase transition-all duration-200;
+    letter-spacing: 0.45em;
+    color: #f7f5fa;
+    border: 1px solid rgba(0, 245, 255, 0.55);
+    background: linear-gradient(
+      180deg,
+      rgba(0, 245, 255, 0.12),
+      rgba(255, 45, 138, 0.08)
+    );
+    box-shadow:
+      inset 0 0 0 1px rgba(255, 45, 138, 0.18),
+      0 0 18px rgba(0, 245, 255, 0.18);
+    text-shadow:
+      -1px 0 0 rgba(255, 45, 138, 0.7),
+      1px 0 0 rgba(0, 245, 255, 0.7);
+  }
+
+  .glitch-404-button::before,
+  .glitch-404-button::after {
+    content: "";
+    @apply absolute;
+    width: 8px;
+    height: 8px;
+    border: 1.5px solid rgba(0, 245, 255, 0.85);
+  }
+
+  .glitch-404-button::before {
+    top: -3px;
+    left: -3px;
+    border-right: 0;
+    border-bottom: 0;
+  }
+
+  .glitch-404-button::after {
+    bottom: -3px;
+    right: -3px;
+    border-left: 0;
+    border-top: 0;
+  }
+
+  .glitch-404-button:hover {
+    color: #04020a;
+    background: linear-gradient(
+      180deg,
+      rgba(0, 245, 255, 0.95),
+      rgba(255, 45, 138, 0.95)
+    );
+    text-shadow: none;
+    box-shadow:
+      0 0 28px rgba(0, 245, 255, 0.45),
+      0 0 48px rgba(255, 45, 138, 0.35);
+    transform: translateY(-1px);
+  }
+
+  .glitch-404-button:focus-visible {
+    outline: 2px solid #ffaa1f;
+    outline-offset: 3px;
+  }
+
+  .glitch-404-button-arrow {
+    color: rgba(255, 253, 0, 0.95);
+    animation: glitchNoSignalBlink 1.2s steps(1, end) infinite;
+  }
+
+  /* Bottom telemetry strip */
+  .glitch-404-footer {
+    @apply relative z-10 flex flex-wrap items-center gap-4 px-6 py-3 text-[10px] uppercase;
+    letter-spacing: 0.32em;
+    border-top: 1px solid rgba(0, 245, 255, 0.18);
+    background: linear-gradient(
+      180deg,
+      rgba(4, 2, 10, 0.4),
+      rgba(0, 245, 255, 0.05)
+    );
+    color: rgba(240, 238, 245, 0.7);
+  }
+
+  .glitch-404-footer-warn {
+    color: #ff2d8a;
+    animation: glitchNoSignalBlink 1.4s steps(1, end) infinite;
+  }
+
+  /* Meltdown overlay (GLITCH easter egg) */
+  .glitch-404-container[data-meltdown="true"] {
+    animation:
+      glitchHueDrift 11s ease-in-out infinite,
+      glitchMeltdown 1.6s ease-in-out forwards;
+  }
+
+  .glitch-404-container[data-meltdown="true"] .glitch-404-static {
+    opacity: 1;
+    mix-blend-mode: difference;
+  }
+
+  /* Channel-flip easter egg (Konami) — palette swap */
+  .glitch-404-container[data-channel="alt"] {
+    background:
+      radial-gradient(
+        ellipse 70% 80% at 50% 50%,
+        rgba(124, 255, 74, 0.1) 0%,
+        rgba(255, 220, 0, 0.04) 35%,
+        rgba(2, 10, 4, 0) 70%
+      ),
+      linear-gradient(180deg, #061008 0%, #04080a 60%, #0a1410 100%);
+  }
+
+  .glitch-404-container[data-channel="alt"] .glitch-404-title {
+    text-shadow:
+      -3px 0 0 rgba(124, 255, 74, 0.85),
+      3px 0 0 rgba(255, 61, 61, 0.85),
+      0 0 28px rgba(255, 220, 0, 0.25);
+  }
+
+  .glitch-404-container[data-channel="alt"] .glitch-404-eyebrow {
+    color: rgba(255, 220, 0, 0.9);
+  }
+
+  .glitch-404-container[data-channel="alt"] .glitch-404-rec,
+  .glitch-404-container[data-channel="alt"] .glitch-404-rec-dot {
+    color: #7cff4a;
+    background: #7cff4a;
+  }
+
+  /* Container queries — tighter padding when embedded in narrow preview frames */
+  @container glitch404 (max-width: 720px) {
+    .glitch-404-hud,
+    .glitch-404-footer {
+      gap: 10px;
+      padding: 8px 14px;
+      font-size: 9px;
+      letter-spacing: 0.22em;
+    }
+    .glitch-404-stage {
+      gap: 18px;
+      padding: 18px 12px;
+    }
+    .glitch-404-nosignal {
+      top: 16%;
+      right: 4%;
+      font-size: 9px;
+      padding: 4px 8px;
+      letter-spacing: 0.3em;
+    }
+  }
+
+  @container glitch404 (max-width: 560px) {
+    .glitch-404-headline {
+      font-size: 11px;
+      letter-spacing: 0.32em;
+    }
+    .glitch-404-eyebrow {
+      font-size: 9px;
+      letter-spacing: 0.4em;
+    }
+    .glitch-404-hud-meta--hide-sm {
+      display: none;
+    }
+  }
+
+  /* Reduced motion: keep static look, kill scrolls and shakes */
+  @media (prefers-reduced-motion: reduce) {
+    .glitch-404-container,
+    .glitch-404-static,
+    .glitch-404-scanlines::after,
+    .glitch-404-syncbar,
+    .glitch-404-title,
+    .glitch-404-title-slice--a,
+    .glitch-404-title-slice--b,
+    .glitch-404-rec-dot,
+    .glitch-404-nosignal,
+    .glitch-404-timecode,
+    .glitch-404-cursor,
+    .glitch-404-button-arrow,
+    .glitch-404-footer-warn {
+      animation: none !important;
+    }
+    .glitch-404-title {
+      text-shadow:
+        -2px 0 0 rgba(255, 45, 138, 0.85),
+        2px 0 0 rgba(0, 245, 255, 0.85);
     }
   }
 }
