@@ -59,8 +59,6 @@ Four handcrafted templates, each shipping today for React, Vue, and Vanilla JS. 
   </tr>
 </table>
 
-> 🎞️ Thumbnails are 12-frame GIF loops captured live from the Astro demos. The `<img>` tags use absolute `raw.githubusercontent.com` URLs so they render on npmjs.com without relying on `repository.directory` resolution. Source files live in `apps/docs/public/og/<theme>.gif` in the repo.
-
 ## ✨ Features
 
 - 🎨 Four animated templates — Space, Glitch, Ocean, Forest. All shipping today.
