@@ -28,7 +28,7 @@ Four handcrafted templates, each shipping today for React, Vue, and Vanilla JS.
   <tr>
     <td align="center" width="25%">
       <a href="https://kripa-sindhu-007.github.io/404_lib/demo/space">
-        <img src="apps/docs/public/og/space.gif" alt="Space 404 — Apollo-era mission-control console" width="240" />
+        <img src="https://raw.githubusercontent.com/kripa-sindhu-007/404_lib/main/apps/docs/public/og/space.gif" alt="Space 404 — Apollo-era mission-control console" width="240" />
         <br />
         <strong>Space 404</strong>
       </a>
@@ -37,7 +37,7 @@ Four handcrafted templates, each shipping today for React, Vue, and Vanilla JS.
     </td>
     <td align="center" width="25%">
       <a href="https://kripa-sindhu-007.github.io/404_lib/demo/glitch">
-        <img src="apps/docs/public/og/glitch.gif" alt="Glitch 404 — corrupted broadcast feed" width="240" />
+        <img src="https://raw.githubusercontent.com/kripa-sindhu-007/404_lib/main/apps/docs/public/og/glitch.gif" alt="Glitch 404 — corrupted broadcast feed" width="240" />
         <br />
         <strong>Glitch 404</strong>
       </a>
@@ -46,7 +46,7 @@ Four handcrafted templates, each shipping today for React, Vue, and Vanilla JS.
     </td>
     <td align="center" width="25%">
       <a href="https://kripa-sindhu-007.github.io/404_lib/demo/ocean">
-        <img src="apps/docs/public/og/ocean.gif" alt="Ocean 404 — bioluminescent deep-sea drift" width="240" />
+        <img src="https://raw.githubusercontent.com/kripa-sindhu-007/404_lib/main/apps/docs/public/og/ocean.gif" alt="Ocean 404 — bioluminescent deep-sea drift" width="240" />
         <br />
         <strong>Ocean 404</strong>
       </a>
@@ -55,7 +55,7 @@ Four handcrafted templates, each shipping today for React, Vue, and Vanilla JS.
     </td>
     <td align="center" width="25%">
       <a href="https://kripa-sindhu-007.github.io/404_lib/demo/forest">
-        <img src="apps/docs/public/og/forest.gif" alt="Forest 404 — old-growth rainforest at twilight" width="240" />
+        <img src="https://raw.githubusercontent.com/kripa-sindhu-007/404_lib/main/apps/docs/public/og/forest.gif" alt="Forest 404 — old-growth rainforest at twilight" width="240" />
         <br />
         <strong>Forest 404</strong>
       </a>
