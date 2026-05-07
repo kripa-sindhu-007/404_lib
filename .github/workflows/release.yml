@@ -33,6 +33,15 @@ jobs:
           cache: "pnpm"
           registry-url: "https://registry.npmjs.org"
 
+      # node 22 LTS bundles npm 10.x; npm Trusted Publishing requires
+      # npm >= 11.5.x to actually pass the OIDC token to the publish
+      # PUT request (older versions only use OIDC for provenance signing,
+      # which then 404s because the publish itself was anonymous).
+      - name: Upgrade npm CLI to a version that supports Trusted Publishing
+        run: |
+          npm install -g npm@latest
+          echo "npm version after upgrade: $(npm --version)"
+
       - name: Debug — dump OIDC token claims for npm:registry.npmjs.org audience
         run: |
           set +e
