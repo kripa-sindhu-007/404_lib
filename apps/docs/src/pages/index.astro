@@ -1,6 +1,6 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
-import { Space404, Ocean404, Glitch404 } from "@kripa006/404-ui/react";
+import { Space404, Ocean404, Glitch404, Forest404 } from "@kripa006/404-ui/react";
 
 const base = import.meta.env.BASE_URL.replace(/\/$/, "");
 
@@ -79,7 +79,7 @@ const marqueeItems = [
         <dl class="mt-10 grid grid-cols-3 gap-4 border-t border-paper-faint pt-6 sm:gap-6">
           <div>
             <dt class="font-mono text-[9px] uppercase tracking-[0.3em] text-paper-dim sm:text-[10px]">Templates</dt>
-            <dd class="mt-1 font-serif text-2xl sm:text-3xl">3<span class="text-paper-dim">&nbsp;/ growing</span></dd>
+            <dd class="mt-1 font-serif text-2xl sm:text-3xl">4<span class="text-paper-dim">&nbsp;/ growing</span></dd>
           </div>
           <div>
             <dt class="font-mono text-[9px] uppercase tracking-[0.3em] text-paper-dim sm:text-[10px]">Frameworks</dt>
@@ -150,6 +150,20 @@ const marqueeItems = [
                 channelId="04"
               />
             </div>
+            <!-- Forest pane -->
+            <div id="hero-pane-forest" class="preview-surface hidden h-[360px] sm:h-[400px] lg:h-[440px]">
+              <Forest404
+                client:only="react"
+                title="404"
+                eyebrow="Trail uncharted"
+                headline="The path forks here."
+                subtitle="You've wandered off the map."
+                buttonText="Find your bearings"
+                fireflyCount={16}
+                leafCount={10}
+                showNote={false}
+              />
+            </div>
           </div>
 
           <div class="tile-foot">
@@ -200,14 +214,13 @@ const marqueeItems = [
             type="button"
             role="tab"
             aria-selected="false"
-            disabled
             data-feature="forest"
-            class="hero-thumb hero-thumb-disabled"
+            class="hero-thumb"
           >
             <span class="hero-thumb-poster hero-thumb-poster-forest" aria-hidden="true">
-              <span class="hero-thumb-tag">🌲</span>
+              <span class="hero-thumb-tag">404</span>
             </span>
-            <span class="hero-thumb-label">Forest · soon</span>
+            <span class="hero-thumb-label">Forest</span>
           </button>
         </div>
 
@@ -215,7 +228,7 @@ const marqueeItems = [
         <dl class="mt-10 grid grid-cols-3 gap-4 border-t border-paper-faint pt-6 sm:mt-12 sm:gap-6">
           <div>
             <dt class="font-mono text-[9px] uppercase tracking-[0.3em] text-paper-dim sm:text-[10px]">Templates</dt>
-            <dd class="mt-1 font-serif text-2xl sm:text-3xl">2<span class="text-paper-dim">&nbsp;/ growing</span></dd>
+            <dd class="mt-1 font-serif text-2xl sm:text-3xl">4<span class="text-paper-dim">&nbsp;/ growing</span></dd>
           </div>
           <div>
             <dt class="font-mono text-[9px] uppercase tracking-[0.3em] text-paper-dim sm:text-[10px]">Frameworks</dt>
@@ -360,7 +373,7 @@ const marqueeItems = [
             02 — the catalogue
           </p>
           <h2 class="mt-4 max-w-2xl text-4xl font-semibold tracking-[-0.01em] text-balance sm:text-5xl">
-            Three shipping today.
+            Four shipping today.
             <span class="font-display text-paper-muted">More on the bench.</span>
           </h2>
         </div>
@@ -372,7 +385,7 @@ const marqueeItems = [
         </a>
       </div>
 
-      <div class="mt-12 grid gap-6 lg:grid-cols-2 xl:grid-cols-3">
+      <div class="mt-12 grid gap-6 md:grid-cols-2 xl:grid-cols-2">
         <!-- Apollo -->
         <article class="plate">
           <div class="tile-head">
@@ -494,12 +507,55 @@ const marqueeItems = [
             </div>
           </div>
         </article>
+
+        <!-- Forest -->
+        <article class="plate">
+          <div class="tile-head">
+            <span>04 / live</span>
+            <span class="text-accent">Forest404</span>
+          </div>
+          <div class="preview-surface h-[280px] sm:h-[320px] md:h-[360px] border-b border-paper-faint">
+            <Forest404
+              client:only="react"
+              title="404"
+              eyebrow="Trail uncharted"
+              headline="The path forks here."
+              subtitle="You've wandered off the map."
+              buttonText="Find your bearings"
+              fireflyCount={18}
+              leafCount={12}
+              showNote={false}
+            />
+          </div>
+          <div class="p-6">
+            <div class="flex items-center justify-between">
+              <h3 class="font-serif text-3xl text-paper">Forest 404</h3>
+              <code class="code-inline text-[11px]">&lt;Forest404 /&gt;</code>
+            </div>
+            <p class="mt-3 text-sm text-paper-muted text-pretty">
+              An old-growth rainforest at twilight — drifting fog, swaying
+              canopies, fireflies, falling birch leaves, and a wobbling
+              ranger compass. Type <span class="text-paper">MOSS</span> for a
+              spring bloom.
+            </p>
+            <ul class="mt-4 flex flex-wrap gap-2">
+              {["nature", "dark", "animated", "easter-eggs"].map((t) => (
+                <li class="font-mono text-[10px] uppercase tracking-[0.25em] text-paper-dim" style="border: 1px solid rgb(245 244 240 / 0.1); padding: 4px 8px;">
+                  {t}
+                </li>
+              ))}
+            </ul>
+            <div class="mt-6 flex gap-3">
+              <a href={`${base}/demo/forest`} class="btn btn-primary">Open demo</a>
+              <a href={`${base}/gallery`} class="btn btn-ghost">Copy code</a>
+            </div>
+          </div>
+        </article>
       </div>
 
       <!-- Coming-soon row (slim) -->
-      <div class="mt-6 grid gap-6 sm:grid-cols-2">
+      <div class="mt-6 grid gap-6 sm:grid-cols-1">
         {[
-          { k: "04", name: "Forest 404", emoji: "🌲", note: "Falling leaves · rain · ambient nature" },
           { k: "05", name: "Aurora 404", emoji: "🌌", note: "Slow gradient sweep · low-poly mountains" },
         ].map((t) => (
           <div class="card p-5 sm:p-6">
@@ -729,7 +785,7 @@ const space404 = createSpace404(app, {
         Your next 404 is <span class="font-display text-accent">one import away.</span>
       </h2>
       <p class="mx-auto mt-6 max-w-xl text-paper-muted text-pretty">
-        Two templates today. More on the way. Open an issue if you want one
+        Four templates today. More on the way. Open an issue if you want one
         specific to your app — contributions welcome.
       </p>
       <div class="mt-10 flex flex-wrap justify-center gap-3">
@@ -790,11 +846,18 @@ const space404 = createSpace404(app, {
       caption: "03 — Glitch · broken broadcast",
       hint: "type GLITCH · hold to densify",
     },
+    forest: {
+      label: "Forest404",
+      file: "Forest404.tsx",
+      caption: "04 — Forest · twilight grove",
+      hint: "type MOSS · click the compass",
+    },
   };
   const heroPanes = {
     apollo: document.getElementById("hero-pane-apollo"),
     ocean: document.getElementById("hero-pane-ocean"),
     glitch: document.getElementById("hero-pane-glitch"),
+    forest: document.getElementById("hero-pane-forest"),
   };
   const heroLabel = document.getElementById("hero-feature-label");
   const heroFile = document.getElementById("hero-feature-file");
