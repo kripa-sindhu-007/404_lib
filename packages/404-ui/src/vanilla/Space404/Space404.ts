@@ -324,8 +324,18 @@ export function createSpace404(
 
 /**
  * Web Component wrapper: <space-404 title="404" subtitle="..."></space-404>
+ *
+ * `HTMLElement` is undefined in Node; using a dummy fallback at module load
+ * keeps the bare `import` SSR-safe. The class is only ever instantiated by
+ * the browser via `customElements.define` below, so the fallback is never
+ * exercised at runtime.
  */
-export class Space404Element extends HTMLElement {
+const SafeHTMLElement: typeof HTMLElement =
+  typeof HTMLElement !== "undefined"
+    ? HTMLElement
+    : (class {} as unknown as typeof HTMLElement);
+
+export class Space404Element extends SafeHTMLElement {
   private _cleanup: (() => void) | null = null;
 
   static get observedAttributes(): string[] {

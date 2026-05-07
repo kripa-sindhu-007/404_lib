@@ -309,8 +309,17 @@ export function createForest404(
 
 /**
  * Web Component: <forest-404 title="404" subtitle="..."></forest-404>
+ *
+ * `HTMLElement` is undefined in Node; using a dummy fallback keeps the bare
+ * `import` SSR-safe. Only browsers ever instantiate the class via
+ * `customElements.define` below.
  */
-export class Forest404Element extends HTMLElement {
+const SafeHTMLElement: typeof HTMLElement =
+  typeof HTMLElement !== "undefined"
+    ? HTMLElement
+    : (class {} as unknown as typeof HTMLElement);
+
+export class Forest404Element extends SafeHTMLElement {
   private _cleanup: (() => void) | null = null;
 
   static get observedAttributes(): string[] {
