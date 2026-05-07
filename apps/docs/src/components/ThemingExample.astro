@@ -1,0 +1,81 @@
+---
+import { Space404, Forest404 } from "@kripa006/404-ui/react";
+---
+
+<section
+  aria-label="Live theming example: default Space404 vs themed Space404"
+  class="grid gap-6 md:grid-cols-2"
+>
+  <figure class="card overflow-hidden">
+    <figcaption
+      class="flex items-center justify-between border-b border-paper-faint px-4 py-2 font-mono text-[10px] uppercase tracking-[0.3em] text-paper-dim"
+    >
+      <span>Default</span>
+      <span class="text-accent">style = undefined</span>
+    </figcaption>
+    <div
+      class="preview-surface h-[320px]"
+      style="background: rgb(17 19 17);"
+    >
+      <Space404
+        client:only="react"
+        title="404"
+        eyebrow="SIGNAL LOST · UPLINK DEGRADED"
+        headline="OFF-NOMINAL TRAJECTORY"
+        subtitle="Default Apollo phosphor palette."
+        buttonText="RE-VECTOR"
+        missionId="APOLLO · LM-404"
+      />
+    </div>
+  </figure>
+
+  <figure class="card overflow-hidden">
+    <figcaption
+      class="flex items-center justify-between border-b border-paper-faint px-4 py-2 font-mono text-[10px] uppercase tracking-[0.3em] text-paper-dim"
+    >
+      <span>Themed</span>
+      <span class="text-accent">style.--orbit-duration = 6s</span>
+    </figcaption>
+    <div
+      class="preview-surface h-[320px]"
+      style="background: rgb(17 19 17);"
+    >
+      <Space404
+        client:only="react"
+        title="404"
+        eyebrow="SIGNAL LOST · OVERCLOCKED"
+        headline="OFF-NOMINAL TRAJECTORY"
+        subtitle="Same component, faster orbital ring via --orbit-duration."
+        buttonText="RE-VECTOR"
+        missionId="APOLLO · LM-404"
+        style={{ ["--orbit-duration" as string]: "6s" }}
+      />
+    </div>
+  </figure>
+
+  <figure class="card overflow-hidden md:col-span-2">
+    <figcaption
+      class="flex items-center justify-between border-b border-paper-faint px-4 py-2 font-mono text-[10px] uppercase tracking-[0.3em] text-paper-dim"
+    >
+      <span>Forest404 · leaf tint swap</span>
+      <span class="text-accent">style.--leaf-tint = #b85a2c</span>
+    </figcaption>
+    <div
+      class="preview-surface h-[360px]"
+      style="background: rgb(17 19 17);"
+    >
+      <Forest404
+        client:only="react"
+        title="404"
+        eyebrow="Trail uncharted"
+        headline="The path forks here."
+        subtitle="Falling leaves recolored via the --leaf-tint custom property."
+        buttonText="Find your bearings"
+        fireflyCount={14}
+        leafCount={9}
+        showNote={false}
+        style={{ ["--leaf-tint" as string]: "#b85a2c" }}
+      />
+    </div>
+  </figure>
+</section>

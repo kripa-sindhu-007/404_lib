@@ -17,10 +17,12 @@ const base = import.meta.env.BASE_URL.replace(/\/$/, "");
 const faviconPath = `${base}/favicon.svg`;
 const homePath = `${base}/`;
 const galleryPath = `${base}/gallery`;
+const themingPath = `${base}/theming`;
 
 const currentPath = Astro.url.pathname.replace(/\/$/, "") || "/";
 const isGallery = currentPath.startsWith(`${base}/gallery`);
-const isHome = !isGallery;
+const isTheming = currentPath.startsWith(`${base}/theming`);
+const isHome = !isGallery && !isTheming;
 ---
 
 <!doctype html>
@@ -82,6 +84,12 @@ const isHome = !isGallery;
               class={`nav-link ${isGallery ? "nav-link-active" : ""}`}
             >
               Templates
+            </a>
+            <a
+              href={themingPath}
+              class={`nav-link ${isTheming ? "nav-link-active" : ""}`}
+            >
+              Theming
             </a>
             <a
               href="https://www.npmjs.com/package/@kripa006/404-ui"
@@ -158,14 +166,20 @@ const isHome = !isGallery;
             </a>
           </li>
           <li>
-            <a href="https://www.npmjs.com/package/@kripa006/404-ui" target="_blank" rel="noopener" class="block py-2 text-sm text-paper-muted hover:text-paper">
+            <a href={themingPath} class="block py-2 text-sm text-paper-muted hover:text-paper">
               <span class="font-mono text-[10px] uppercase tracking-[0.3em] text-paper-dim">03</span>
+              &nbsp;&nbsp;Theming
+            </a>
+          </li>
+          <li>
+            <a href="https://www.npmjs.com/package/@kripa006/404-ui" target="_blank" rel="noopener" class="block py-2 text-sm text-paper-muted hover:text-paper">
+              <span class="font-mono text-[10px] uppercase tracking-[0.3em] text-paper-dim">04</span>
               &nbsp;&nbsp;npm
             </a>
           </li>
           <li>
             <a href="https://github.com/kripa-sindhu-007/404_lib" target="_blank" rel="noopener" class="block py-2 text-sm text-paper-muted hover:text-paper">
-              <span class="font-mono text-[10px] uppercase tracking-[0.3em] text-paper-dim">04</span>
+              <span class="font-mono text-[10px] uppercase tracking-[0.3em] text-paper-dim">05</span>
               &nbsp;&nbsp;GitHub
             </a>
           </li>
@@ -207,6 +221,7 @@ const isHome = !isGallery;
             <ul class="flex flex-col gap-2 text-sm">
               <li><a href={homePath} class="link-arrow">Overview</a></li>
               <li><a href={galleryPath} class="link-arrow">Templates</a></li>
+              <li><a href={themingPath} class="link-arrow">Theming</a></li>
               <li><a href={`${base}/demo/space`} class="link-arrow">Apollo 404</a></li>
               <li><a href={`${base}/demo/ocean`} class="link-arrow">Ocean 404</a></li>
             </ul>
