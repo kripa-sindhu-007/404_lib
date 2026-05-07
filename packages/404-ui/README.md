@@ -18,7 +18,7 @@
 
 Four handcrafted templates, each shipping today for React, Vue, and Vanilla JS.
 
-> 📸 **TODO:** OG-style thumbnails (`apps/docs/public/og/<theme>.png` in the repo) are placeholders pending real screenshots — links resolve correctly meanwhile.
+> 🎞️ Each demo link below renders the live component. Open one to interact with the scene; the README on GitHub also includes an animated thumbnail row sourced from `apps/docs/public/og/<theme>.gif`.
 
 | Template       | Live demo                                                                                                |
 | -------------- | -------------------------------------------------------------------------------------------------------- |
