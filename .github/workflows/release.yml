@@ -26,28 +26,30 @@ jobs:
       - name: Setup pnpm
         uses: pnpm/action-setup@v4
 
+      # Node 24 ships with npm 11.x out of the box, which is the minimum
+      # version that includes a working `npm publish` over OIDC for
+      # Trusted Publishing. Node 22 LTS still bundles npm 10.x, and
+      # in-place self-upgrades (`npm install -g npm@11 [--force]`) hit
+      # a known race condition that crashes with `Cannot find module
+      # 'promise-retry'`. Switching to node 24 sidesteps the upgrade
+      # dance entirely.
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: "22"
+          node-version: "24"
           cache: "pnpm"
           registry-url: "https://registry.npmjs.org"
 
-      # node 22 LTS bundles npm 10.x; npm Trusted Publishing requires
-      # npm >= 11.5.x to actually pass the OIDC token to the publish
-      # PUT request (older versions only use OIDC for provenance signing,
-      # which then 404s because the publish itself was anonymous).
-      #
-      # `npm install -g npm@latest` (without --force) hits a known
-      # in-place-rewrite race: the existing npm starts cleaning up its
-      # own internals before the new install finishes, and the install
-      # crashes with "Cannot find module 'promise-retry'". `--force`
-      # tells npm to overwrite without that early cleanup. Pinning to
-      # a specific 11.x line keeps CI deterministic across runs.
-      - name: Upgrade npm CLI to a version that supports Trusted Publishing
+      - name: Verify npm version meets Trusted Publishing requirement
         run: |
-          npm install -g --force npm@11
-          echo "npm version after upgrade: $(npm --version)"
+          NPM_VER=$(npm --version)
+          echo "npm version: $NPM_VER"
+          # npm 11.5+ ships the publish-over-OIDC code path
+          MAJOR=${NPM_VER%%.*}
+          if [ "$MAJOR" -lt 11 ]; then
+            echo "::error::npm $NPM_VER is too old for Trusted Publishing; need >= 11.5"
+            exit 1
+          fi
 
       - name: Debug — dump OIDC token claims for npm:registry.npmjs.org audience
         run: |
