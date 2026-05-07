@@ -220,7 +220,7 @@ jobs:
     name: PR Validation Complete
     runs-on: ubuntu-latest
     if: always()
-    needs: [lint, prettier, typecheck, build, size, release-check]
+    needs: [lint, prettier, typecheck, test, build, size, release-check]
     steps:
       - name: Check job status
         run: |
