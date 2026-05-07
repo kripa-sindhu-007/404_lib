@@ -1,0 +1,307 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import ThemingExample from "../components/ThemingExample.astro";
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, "");
+
+const tokens: Array<{ group: string; tokens: string[]; note: string }> = [
+  {
+    group: "spaceColors.space",
+    tokens: [
+      "hull",
+      "panel",
+      "panel-lite",
+      "phosphor",
+      "phosphor-dim",
+      "amber",
+      "warn",
+      "accent",
+      "glow",
+    ],
+    note: "Apollo-era mission-control palette consumed by Space404.",
+  },
+  {
+    group: "spaceColors.ocean",
+    tokens: ["900", "800", "700", "600", "accent", "glow", "pearl"],
+    note: "Bioluminescent deep-sea palette consumed by Ocean404.",
+  },
+  {
+    group: "spaceColors.forest",
+    tokens: [
+      "900 / 800 / 700 / 600 / 500",
+      "moss",
+      "moss-soft",
+      "bark",
+      "bark-light",
+      "parchment",
+      "mist",
+      "ember",
+      "firefly",
+      "rust",
+    ],
+    note: "Old-growth temperate-rainforest palette consumed by Forest404.",
+  },
+  {
+    group: "animationKeyframes / animationUtilities",
+    tokens: [
+      "scan",
+      "crt-glitch",
+      "orbit-spin",
+      "rise",
+      "caustic",
+      "sonar",
+      "jelly-bell",
+      "canopy-sway",
+      "fog-drift",
+      "firefly-pulse",
+      "leaf-fall",
+      "ember-breathe",
+    ],
+    note: "Compose with Tailwind: animate-scan, animate-rise, animate-firefly-pulse, etc.",
+  },
+  {
+    group: "spaceFontFamily",
+    tokens: ["space (sans)", "telemetry (mono)", "grove (serif)"],
+    note: "Maps to Tailwind font-space, font-telemetry, font-grove.",
+  },
+];
+
+const cssVars: Array<{ template: string; vars: string[] }> = [
+  {
+    template: "Space404",
+    vars: ["--orbit-duration", "--rocket-x"],
+  },
+  {
+    template: "Ocean404",
+    vars: [
+      "--bubble-x",
+      "--bubble-size",
+      "--bubble-duration",
+      "--bubble-delay",
+      "--bubble-drift",
+      "--jelly-x",
+      "--jelly-y",
+      "--jelly-size",
+      "--jelly-duration",
+      "--jelly-delay",
+    ],
+  },
+  {
+    template: "Forest404",
+    vars: [
+      "--ff-x",
+      "--ff-y",
+      "--ff-size",
+      "--ff-duration",
+      "--ff-delay",
+      "--ff-drift-x",
+      "--ff-drift-y",
+      "--leaf-x",
+      "--leaf-size",
+      "--leaf-tint",
+      "--leaf-duration",
+      "--leaf-drift",
+      "--leaf-spin",
+    ],
+  },
+  {
+    template: "Glitch404",
+    vars: ["(no per-instance variables — theme via Tailwind preset)"],
+  },
+];
+---
+
+<BaseLayout
+  title="Theming | 404-UI"
+  description="Document the 404-UI theme exports and the per-template CSS variables you can override per instance via the style prop."
+  keywords="404-UI theming, Tailwind preset, CSS variables, design tokens, spaceColors, animationUtilities"
+>
+  <section class="py-16">
+    <div class="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+      <p class="eyebrow">
+        <span class="eyebrow-dot" aria-hidden="true"></span>
+        Theming
+      </p>
+      <h1
+        class="mt-4 text-5xl font-semibold tracking-[-0.01em] text-balance sm:text-6xl"
+      >
+        Tokens, presets, and
+        <span class="font-display text-paper-muted">per-instance overrides.</span>
+      </h1>
+      <p class="mt-5 max-w-2xl text-paper-muted text-pretty">
+        Every template ships with a Tailwind preset for build-time theming and
+        forwards <code class="code-inline">style</code> + <code
+          class="code-inline">className</code
+        > to its root element so you can tweak animation timing and tunable CSS
+        variables without forking any CSS.
+      </p>
+
+      <!-- Tailwind preset import -->
+      <div class="mt-12">
+        <h2 class="text-2xl font-semibold tracking-[-0.01em]">
+          Tailwind preset
+        </h2>
+        <p class="mt-3 max-w-2xl text-paper-muted text-pretty">
+          The package re-exports its design tokens on the <code
+            class="code-inline">./theme</code
+          > subpath. Use the bundled preset, or import individual groups to compose
+          your own.
+        </p>
+        <pre
+          class="code-block mt-6">{`// tailwind.config.ts
+import { fourZeroFourPreset } from "@kripa006/404-ui/theme";
+
+export default {
+  presets: [fourZeroFourPreset],
+  content: ["./src/**/*.{js,ts,jsx,tsx,vue,astro}"],
+};
+
+// Or import the raw groups:
+import {
+  spaceColors,
+  animationKeyframes,
+  animationUtilities,
+  spaceFontFamily,
+} from "@kripa006/404-ui/theme";`}</pre>
+      </div>
+
+      <!-- Tokens table -->
+      <div class="mt-16">
+        <h2 class="text-2xl font-semibold tracking-[-0.01em]">
+          Exported tokens
+        </h2>
+        <p class="mt-3 max-w-2xl text-paper-muted text-pretty">
+          The table below summarises what's available from <code
+            class="code-inline">@kripa006/404-ui/theme</code
+          >. See the source for the canonical list.
+        </p>
+        <div class="mt-6 overflow-x-auto">
+          <table class="w-full border-collapse text-sm">
+            <thead>
+              <tr class="border-b border-paper-faint text-left">
+                <th
+                  class="py-3 pr-4 font-mono text-[10px] uppercase tracking-[0.3em] text-paper-dim"
+                  >Group</th
+                >
+                <th
+                  class="py-3 pr-4 font-mono text-[10px] uppercase tracking-[0.3em] text-paper-dim"
+                  >Tokens</th
+                >
+                <th
+                  class="py-3 font-mono text-[10px] uppercase tracking-[0.3em] text-paper-dim"
+                  >Notes</th
+                >
+              </tr>
+            </thead>
+            <tbody>
+              {
+                tokens.map((row) => (
+                  <tr class="border-b border-paper-faint align-top">
+                    <td class="py-3 pr-4 font-mono text-[12px] text-paper">
+                      {row.group}
+                    </td>
+                    <td class="py-3 pr-4 font-mono text-[12px] text-paper-muted">
+                      {row.tokens.join(", ")}
+                    </td>
+                    <td class="py-3 text-paper-muted">{row.note}</td>
+                  </tr>
+                ))
+              }
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- CSS variables table -->
+      <div class="mt-16">
+        <h2 class="text-2xl font-semibold tracking-[-0.01em]">
+          Per-instance CSS variables
+        </h2>
+        <p class="mt-3 max-w-2xl text-paper-muted text-pretty">
+          Every template forwards <code class="code-inline">style</code> to its
+          root container, so you can override these custom properties per
+          instance without touching global CSS.
+        </p>
+        <div class="mt-6 overflow-x-auto">
+          <table class="w-full border-collapse text-sm">
+            <thead>
+              <tr class="border-b border-paper-faint text-left">
+                <th
+                  class="py-3 pr-4 font-mono text-[10px] uppercase tracking-[0.3em] text-paper-dim"
+                  >Template</th
+                >
+                <th
+                  class="py-3 font-mono text-[10px] uppercase tracking-[0.3em] text-paper-dim"
+                  >CSS variables</th
+                >
+              </tr>
+            </thead>
+            <tbody>
+              {
+                cssVars.map((row) => (
+                  <tr class="border-b border-paper-faint align-top">
+                    <td class="py-3 pr-4 font-mono text-[12px] text-paper">
+                      {row.template}
+                    </td>
+                    <td class="py-3 font-mono text-[12px] text-paper-muted">
+                      {row.vars.join(", ")}
+                    </td>
+                  </tr>
+                ))
+              }
+            </tbody>
+          </table>
+        </div>
+
+        <pre
+          class="code-block mt-8">{`// Speed up the orbital ring per instance.
+<Space404 style={{ "--orbit-duration": "6s" } as React.CSSProperties} />
+
+// Recolor falling birch leaves.
+<Forest404 style={{ "--leaf-tint": "#b85a2c" } as React.CSSProperties} />`}</pre>
+      </div>
+
+      <!-- Live example -->
+      <div class="mt-16">
+        <h2 class="text-2xl font-semibold tracking-[-0.01em]">Live example</h2>
+        <p class="mt-3 max-w-2xl text-paper-muted text-pretty">
+          The default Space404 sits beside an instance with <code
+            class="code-inline">--orbit-duration: 6s</code
+          >. The ring on the right rotates noticeably faster — same component,
+          inline CSS variable.
+        </p>
+        <div class="mt-8">
+          <ThemingExample />
+        </div>
+      </div>
+
+      <!-- Further reading -->
+      <div class="mt-16">
+        <h2 class="text-2xl font-semibold tracking-[-0.01em]">
+          Further reading
+        </h2>
+        <ul class="mt-4 flex flex-col gap-2 text-sm">
+          <li>
+            <a
+              href="https://github.com/kripa-sindhu-007/404_lib#-theming"
+              target="_blank"
+              rel="noopener"
+              class="link-arrow">README · Theming section</a
+            >
+          </li>
+          <li>
+            <a
+              href="https://github.com/kripa-sindhu-007/404_lib/blob/main/packages/404-ui/src/theme.ts"
+              target="_blank"
+              rel="noopener"
+              class="link-arrow">packages/404-ui/src/theme.ts · token source</a
+            >
+          </li>
+          <li>
+            <a href={`${base}/gallery`} class="link-arrow">Templates gallery</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -25,6 +25,11 @@
       "inputs": ["$TURBO_DEFAULT$"],
       "outputs": []
     },
+    "test": {
+      "dependsOn": ["^build"],
+      "inputs": ["$TURBO_DEFAULT$"],
+      "outputs": []
+    },
     "clean": {
       "cache": false
     }
