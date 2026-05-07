@@ -23,8 +23,6 @@
 
 Four handcrafted templates, each shipping today for React, Vue, and Vanilla JS.
 
-> 🎞️ Each thumbnail is a 12-frame, 8 fps loop captured live from the Astro demo via `chrome-devtools` and stitched with `ffmpeg`. Source files live in `apps/docs/public/og/<theme>.gif` — refresh them whenever a template's visual changes.
-
 <table>
   <tr>
     <td align="center" width="25%">
