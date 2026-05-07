@@ -6,6 +6,7 @@
 
 [![npm version](https://img.shields.io/npm/v/@kripa006/404-ui.svg?style=flat-square)](https://www.npmjs.com/package/@kripa006/404-ui)
 [![npm downloads](https://img.shields.io/npm/dm/@kripa006/404-ui.svg?style=flat-square)](https://www.npmjs.com/package/@kripa006/404-ui)
+[![bundle size budget](https://img.shields.io/badge/bundle-12kb%20gzip%20max-brightgreen?style=flat-square)](https://github.com/kripa-sindhu-007/404_lib/blob/main/packages/404-ui/package.json#:~:text=size-limit)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=flat-square)](https://opensource.org/licenses/MIT)
 [![TypeScript](https://img.shields.io/badge/TypeScript-Ready-blue.svg?style=flat-square)](https://www.typescriptlang.org/)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
@@ -132,6 +133,64 @@ createSpace404(container, {
 | Glitch 404 | Retro-futuristic glitch effect    | 🚧 Coming Soon |
 | Ocean 404  | Peaceful underwater scene         | 🚧 Coming Soon |
 | Forest 404 | Serene forest with falling leaves | 🚧 Coming Soon |
+
+## 🎨 Theming
+
+404-UI ships its design tokens as a Tailwind preset on the `./theme` subpath, and every template forwards `style` and `className` to its root element so you can override animation timing and tunable CSS variables per instance.
+
+### Tailwind preset
+
+```ts
+// tailwind.config.ts
+import { fourZeroFourPreset } from "@kripa006/404-ui/theme";
+
+export default {
+  presets: [fourZeroFourPreset],
+  content: ["./src/**/*.{js,ts,jsx,tsx,vue,astro}"],
+};
+```
+
+The preset exposes:
+
+- `spaceColors` — palette tokens grouped under `space.*`, `ocean.*`, and `forest.*` (e.g. `space.phosphor`, `space.hull`, `ocean.accent`, `ocean.glow`, `forest.moss`, `forest.ember`, `forest.parchment`).
+- `animationKeyframes` + `animationUtilities` — keyframes and `animation-*` utilities (e.g. `animate-scan`, `animate-rise`, `animate-firefly-pulse`).
+- `spaceFontFamily` — `font-space`, `font-telemetry` (mono), and `font-grove` (serif) stacks.
+- `fourZeroFourPreset` — the assembled `Partial<Config>` (also the default export).
+
+Import the raw groups directly if you prefer to compose your own preset:
+
+```ts
+import { spaceColors, animationUtilities } from "@kripa006/404-ui/theme";
+```
+
+### CSS variable overrides
+
+Each template’s root container forwards an inline `style` prop, so you can tweak the tunable variables it consumes without forking any CSS:
+
+| Template  | CSS variables                                                                                                                                                                              |
+| --------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Space404  | `--orbit-duration`, `--rocket-x`                                                                                                                                                           |
+| Ocean404  | `--bubble-x`, `--bubble-size`, `--bubble-duration`, `--bubble-delay`, `--bubble-drift`, `--jelly-x`, `--jelly-y`, `--jelly-size`, `--jelly-duration`, `--jelly-delay`                      |
+| Forest404 | `--ff-x`, `--ff-y`, `--ff-size`, `--ff-duration`, `--ff-delay`, `--ff-drift-x`, `--ff-drift-y`, `--leaf-x`, `--leaf-size`, `--leaf-tint`, `--leaf-duration`, `--leaf-drift`, `--leaf-spin` |
+| Glitch404 | inherits container tokens from the Tailwind preset (no per-instance variables)                                                                                                             |
+
+```tsx
+// Slow the orbital ring + warm the falling leaves on a per-instance basis.
+<Space404 style={{ "--orbit-duration": "60s" } as React.CSSProperties} />
+
+<Forest404 style={{ "--leaf-tint": "#b85a2c" } as React.CSSProperties} />
+```
+
+For deeper palette swaps, override the Tailwind tokens at build time via the preset, or wrap a template in a parent rule:
+
+```css
+.brand-space-404 .space-404-container {
+  background-color: #1a0033;
+  color: #ff00aa;
+}
+```
+
+See [`packages/404-ui/src/theme.ts`](packages/404-ui/src/theme.ts) for the canonical token list and the [Theming guide](https://kripa-sindhu-007.github.io/404_lib/theming) on the docs site for live examples.
 
 ## 📖 API Reference
 
