@@ -8,7 +8,8 @@ const svgAsText = {
   name: "svg-as-text",
   enforce: "pre" as const,
   transform(code: string, id: string) {
-    if (id.endsWith(".svg")) {
+    const path = id.split("?", 1)[0];
+    if (path.endsWith(".svg")) {
       return {
         code: `export default ${JSON.stringify(code)};`,
         map: null,
