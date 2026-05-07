@@ -103,8 +103,35 @@
     "typecheck": "tsc --noEmit",
     "lint": "eslint src/",
     "lint:fix": "eslint src/ --fix",
+    "size": "size-limit",
     "clean": "rimraf dist"
   },
+  "size-limit": [
+    {
+      "name": "react entry (gzip)",
+      "path": "dist/react/index.js",
+      "gzip": true,
+      "limit": "11 KB"
+    },
+    {
+      "name": "vue entry (gzip)",
+      "path": "dist/vue/index.js",
+      "gzip": true,
+      "limit": "11 KB"
+    },
+    {
+      "name": "vanilla entry (gzip)",
+      "path": "dist/vanilla/index.js",
+      "gzip": true,
+      "limit": "12 KB"
+    },
+    {
+      "name": "styles.css (gzip)",
+      "path": "dist/styles.css",
+      "gzip": true,
+      "limit": "11 KB"
+    }
+  ],
   "peerDependencies": {
     "react": ">=18.0.0",
     "react-dom": ">=18.0.0",
@@ -130,6 +157,8 @@
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "rimraf": "^6.0.1",
+    "size-limit": "^11.1.6",
+    "@size-limit/preset-small-lib": "^11.1.6",
     "tailwindcss": "^3.4.17",
     "tsup": "^8.3.5",
     "typescript": "^5.7.2",

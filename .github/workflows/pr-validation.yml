@@ -111,6 +111,31 @@ jobs:
             apps/docs/dist
           retention-days: 7
 
+  size:
+    name: Bundle Size
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "pnpm"
+
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Build package
+        run: pnpm --filter @kripa006/404-ui build
+
+      - name: Check bundle size
+        run: pnpm --filter @kripa006/404-ui size
+
   release-check:
     name: Release Check (Dry Run)
     runs-on: ubuntu-latest
@@ -173,7 +198,7 @@ jobs:
     name: PR Validation Complete
     runs-on: ubuntu-latest
     if: always()
-    needs: [lint, prettier, typecheck, build, release-check]
+    needs: [lint, prettier, typecheck, build, size, release-check]
     steps:
       - name: Check job status
         run: |
@@ -199,7 +224,12 @@ jobs:
             echo "❌ Build job failed or was cancelled"
             exit 1
           fi
-          
+
+          if [ "${{ needs.size.result }}" != "success" ]; then
+            echo "❌ Bundle Size job failed or was cancelled"
+            exit 1
+          fi
+
           if [ "${{ needs.release-check.result }}" != "success" ]; then
             echo "❌ Release Check job failed or was cancelled"
             exit 1
