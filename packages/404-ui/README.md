@@ -16,16 +16,50 @@
 
 ## 🖼️ Gallery
 
-Four handcrafted templates, each shipping today for React, Vue, and Vanilla JS.
+Four handcrafted templates, each shipping today for React, Vue, and Vanilla JS. Click any thumbnail to open the live demo.
 
-> 🎞️ Each demo link below renders the live component. Open one to interact with the scene; the README on GitHub also includes an animated thumbnail row sourced from `apps/docs/public/og/<theme>.gif`.
+<table>
+  <tr>
+    <td align="center" width="25%">
+      <a href="https://kripa-sindhu-007.github.io/404_lib/demo/space">
+        <img src="https://raw.githubusercontent.com/kripa-sindhu-007/404_lib/main/apps/docs/public/og/space.gif" alt="Space 404 — Apollo-era mission-control console" width="240" />
+        <br />
+        <strong>Space 404</strong>
+      </a>
+      <br />
+      <sub>Mission-control console</sub>
+    </td>
+    <td align="center" width="25%">
+      <a href="https://kripa-sindhu-007.github.io/404_lib/demo/glitch">
+        <img src="https://raw.githubusercontent.com/kripa-sindhu-007/404_lib/main/apps/docs/public/og/glitch.gif" alt="Glitch 404 — corrupted broadcast feed" width="240" />
+        <br />
+        <strong>Glitch 404</strong>
+      </a>
+      <br />
+      <sub>Corrupted broadcast</sub>
+    </td>
+    <td align="center" width="25%">
+      <a href="https://kripa-sindhu-007.github.io/404_lib/demo/ocean">
+        <img src="https://raw.githubusercontent.com/kripa-sindhu-007/404_lib/main/apps/docs/public/og/ocean.gif" alt="Ocean 404 — bioluminescent deep-sea drift" width="240" />
+        <br />
+        <strong>Ocean 404</strong>
+      </a>
+      <br />
+      <sub>Deep-sea drift</sub>
+    </td>
+    <td align="center" width="25%">
+      <a href="https://kripa-sindhu-007.github.io/404_lib/demo/forest">
+        <img src="https://raw.githubusercontent.com/kripa-sindhu-007/404_lib/main/apps/docs/public/og/forest.gif" alt="Forest 404 — old-growth rainforest at twilight" width="240" />
+        <br />
+        <strong>Forest 404</strong>
+      </a>
+      <br />
+      <sub>Twilight rainforest</sub>
+    </td>
+  </tr>
+</table>
 
-| Template       | Live demo                                                                                                |
-| -------------- | -------------------------------------------------------------------------------------------------------- |
-| **Space 404**  | [kripa-sindhu-007.github.io/404_lib/demo/space](https://kripa-sindhu-007.github.io/404_lib/demo/space)   |
-| **Glitch 404** | [kripa-sindhu-007.github.io/404_lib/demo/glitch](https://kripa-sindhu-007.github.io/404_lib/demo/glitch) |
-| **Ocean 404**  | [kripa-sindhu-007.github.io/404_lib/demo/ocean](https://kripa-sindhu-007.github.io/404_lib/demo/ocean)   |
-| **Forest 404** | [kripa-sindhu-007.github.io/404_lib/demo/forest](https://kripa-sindhu-007.github.io/404_lib/demo/forest) |
+> 🎞️ Thumbnails are 12-frame GIF loops captured live from the Astro demos. The `<img>` tags use absolute `raw.githubusercontent.com` URLs so they render on npmjs.com without relying on `repository.directory` resolution. Source files live in `apps/docs/public/og/<theme>.gif` in the repo.
 
 ## ✨ Features
 
