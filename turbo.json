@@ -25,6 +25,17 @@
       "inputs": ["$TURBO_DEFAULT$"],
       "outputs": []
     },
+    "test": {
+      "dependsOn": ["^build"],
+      "inputs": [
+        "src/**",
+        "tests/**",
+        "vitest.config.ts",
+        "package.json",
+        "tsconfig.json"
+      ],
+      "outputs": []
+    },
     "clean": {
       "cache": false
     }
