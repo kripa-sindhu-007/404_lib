@@ -199,8 +199,13 @@ jobs:
         id: check-changeset
         run: |
           # Check if any changeset files were added or modified in this PR.
-          # Compare against the base branch to find changed files.
-          CHANGED_FILES=$(git diff --name-only origin/${{ github.base_ref }}...HEAD)
+          # `--diff-filter=AM` excludes Deleted, so the changesets bot's
+          # "chore: version packages" PR — which only deletes consumed
+          # changesets while bumping package versions — correctly reports
+          # `has-changeset=false` and skips the status check below
+          # (which would otherwise complain "packages changed but no
+          # changesets found").
+          CHANGED_FILES=$(git diff --name-only --diff-filter=AM origin/${{ github.base_ref }}...HEAD)
           
           # Check if any .md files in .changeset directory (excluding README.md specifically)
           CHANGESET_FILES=$(echo "$CHANGED_FILES" | grep -E '^\.changeset/.*\.md$' | grep -v '^\.changeset/README\.md$' || true)
