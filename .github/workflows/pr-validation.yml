@@ -181,12 +181,25 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
+      # `pnpm changeset status` (run further down) compares HEAD against
+      # the local branch named in `.changeset/config.json` (`baseBranch:
+      # "main"`). actions/checkout@v4 with fetch-depth: 0 fetches all
+      # commits but only sets up a remote-tracking ref `origin/main` —
+      # the local `main` branch doesn't exist, so changeset's
+      # `getDivergedCommit` aborts with "Failed to find where HEAD
+      # diverged from main". Create the local `main` ref so the status
+      # command can find its base.
+      - name: Ensure base branch is available locally
+        run: |
+          git fetch origin ${{ github.base_ref }}:${{ github.base_ref }} || true
+          git branch --list ${{ github.base_ref }} || \
+            git branch ${{ github.base_ref }} origin/${{ github.base_ref }}
+
       - name: Check for changeset files
         id: check-changeset
         run: |
-          # Check if any changeset files were added or modified in this PR
-          # Compare against the base branch to find changed files
-          git fetch origin ${{ github.base_ref }}
+          # Check if any changeset files were added or modified in this PR.
+          # Compare against the base branch to find changed files.
           CHANGED_FILES=$(git diff --name-only origin/${{ github.base_ref }}...HEAD)
           
           # Check if any .md files in .changeset directory (excluding README.md specifically)
