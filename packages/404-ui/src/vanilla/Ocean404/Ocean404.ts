@@ -231,8 +231,17 @@ export function createOcean404(
 
 /**
  * Web Component wrapper: <ocean-404 title="404" subtitle="..."></ocean-404>
+ *
+ * `HTMLElement` is undefined in Node; using a dummy fallback keeps the bare
+ * `import` SSR-safe. Only browsers ever instantiate the class via
+ * `customElements.define` below.
  */
-export class Ocean404Element extends HTMLElement {
+const SafeHTMLElement: typeof HTMLElement =
+  typeof HTMLElement !== "undefined"
+    ? HTMLElement
+    : (class {} as unknown as typeof HTMLElement);
+
+export class Ocean404Element extends SafeHTMLElement {
   private _cleanup: (() => void) | null = null;
 
   static get observedAttributes(): string[] {
