@@ -51,41 +51,6 @@ jobs:
             exit 1
           fi
 
-      - name: Debug — dump OIDC token claims for npm:registry.npmjs.org audience
-        run: |
-          set +e
-          RESP=$(curl -sS -H "Authorization: bearer $ACTIONS_ID_TOKEN_REQUEST_TOKEN" \
-            "$ACTIONS_ID_TOKEN_REQUEST_URL&audience=npm:registry.npmjs.org")
-          TOKEN=$(echo "$RESP" | jq -r '.value // empty')
-          if [ -z "$TOKEN" ]; then
-            echo "::error::Could not obtain OIDC token. Response: $RESP"
-            exit 0
-          fi
-          PAYLOAD=$(echo "$TOKEN" | cut -d. -f2)
-          # base64url -> base64 + padding
-          PAYLOAD=$(echo "$PAYLOAD" | tr '_-' '/+')
-          PAD=$(( (4 - ${#PAYLOAD} % 4) % 4 ))
-          for _ in $(seq 1 $PAD); do PAYLOAD="${PAYLOAD}="; done
-          echo "=== OIDC claims for audience=npm:registry.npmjs.org ==="
-          echo "$PAYLOAD" | base64 -d 2>/dev/null | jq '{
-            sub,
-            aud,
-            repository,
-            repository_owner,
-            repository_id,
-            workflow,
-            workflow_ref,
-            workflow_sha,
-            job_workflow_ref,
-            ref,
-            ref_type,
-            environment,
-            event_name,
-            actor,
-            actor_id,
-            run_id
-          }'
-
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
