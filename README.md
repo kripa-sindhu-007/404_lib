@@ -123,7 +123,6 @@ Each template has the same prop shape across React, Vue, and Vanilla. Expand a t
 
 ```tsx
 import { Space404 } from "@kripa006/404-ui/react";
-import "@kripa006/404-ui/styles.css";
 
 export default function NotFound() {
   return (
@@ -145,7 +144,6 @@ export default function NotFound() {
 ```vue
 <script setup>
 import { Space404 } from "@kripa006/404-ui/vue";
-import "@kripa006/404-ui/styles.css";
 </script>
 
 <template>
@@ -165,7 +163,6 @@ import "@kripa006/404-ui/styles.css";
 
 ```js
 import { createSpace404 } from "@kripa006/404-ui/vanilla";
-import "@kripa006/404-ui/styles.css";
 
 const space404 = createSpace404(document.getElementById("app"), {
   title: "404",
@@ -189,7 +186,6 @@ const space404 = createSpace404(document.getElementById("app"), {
 
 ```tsx
 import { Glitch404 } from "@kripa006/404-ui/react";
-import "@kripa006/404-ui/styles.css";
 
 export default function NotFound() {
   return (
@@ -211,7 +207,6 @@ export default function NotFound() {
 ```vue
 <script setup>
 import { Glitch404 } from "@kripa006/404-ui/vue";
-import "@kripa006/404-ui/styles.css";
 </script>
 
 <template>
@@ -231,7 +226,6 @@ import "@kripa006/404-ui/styles.css";
 
 ```js
 import { createGlitch404 } from "@kripa006/404-ui/vanilla";
-import "@kripa006/404-ui/styles.css";
 
 const glitch404 = createGlitch404(document.getElementById("app"), {
   title: "404",
@@ -255,7 +249,6 @@ const glitch404 = createGlitch404(document.getElementById("app"), {
 
 ```tsx
 import { Ocean404 } from "@kripa006/404-ui/react";
-import "@kripa006/404-ui/styles.css";
 
 export default function NotFound() {
   return (
@@ -276,7 +269,6 @@ export default function NotFound() {
 ```vue
 <script setup>
 import { Ocean404 } from "@kripa006/404-ui/vue";
-import "@kripa006/404-ui/styles.css";
 </script>
 
 <template>
@@ -295,7 +287,6 @@ import "@kripa006/404-ui/styles.css";
 
 ```js
 import { createOcean404 } from "@kripa006/404-ui/vanilla";
-import "@kripa006/404-ui/styles.css";
 
 const ocean404 = createOcean404(document.getElementById("app"), {
   title: "404",
@@ -318,7 +309,6 @@ const ocean404 = createOcean404(document.getElementById("app"), {
 
 ```tsx
 import { Forest404 } from "@kripa006/404-ui/react";
-import "@kripa006/404-ui/styles.css";
 
 export default function NotFound() {
   return (
@@ -340,7 +330,6 @@ export default function NotFound() {
 ```vue
 <script setup>
 import { Forest404 } from "@kripa006/404-ui/vue";
-import "@kripa006/404-ui/styles.css";
 </script>
 
 <template>
@@ -360,7 +349,6 @@ import "@kripa006/404-ui/styles.css";
 
 ```js
 import { createForest404 } from "@kripa006/404-ui/vanilla";
-import "@kripa006/404-ui/styles.css";
 
 const forest404 = createForest404(document.getElementById("app"), {
   title: "404",
